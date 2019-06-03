@@ -6,15 +6,26 @@ export default function Header() {
   return (
     <div>
       <h1>NC-NEWS</h1>
+
       <div className="Navs">
-        <Link to="/">Homepage</Link>
-
-        <Link to="/articles">Articles</Link>
-
-        <Link to="/topics">Topics</Link>
-
-        <Link to="/users/">Users</Link>
+        <Link id="Nav1" to="/">
+          Homepage
+        </Link>
+        <Link id="Nav2" to="/articles">
+          Articles
+        </Link>
+        <Link id="Nav3" to="/topics">
+          Topics
+        </Link>
+        <Link id="Nav4" to="/users/">
+          Users
+        </Link>
+        <button id="LogOut">LOG OUT</button>
       </div>
+      <form id="SearchBar">
+        <input type="text" placeholder="Search Articles..." />
+        <button>SEARCH</button>
+      </form>
     </div>
   );
 }

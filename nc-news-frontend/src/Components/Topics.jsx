@@ -3,7 +3,7 @@ import React from "react";
 export default function Topics() {
   return (
     <div>
-      <h3>Topics Page</h3>
+      <h2>Topics Page</h2>
     </div>
   );
 }
