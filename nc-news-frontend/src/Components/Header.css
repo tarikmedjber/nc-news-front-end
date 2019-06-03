@@ -1,0 +1,32 @@
+.Navs {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.Navs a {
+  text-decoration: none;
+  font-family: Cambria, serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: normal;
+  text-transform: normal;
+  letter-spacing: normal;
+  line-height: 1.3em;
+  color: #596365;
+}
+
+.Navs a:hover {
+  text-decoration: none;
+  font-family: Cambria, serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: normal;
+  text-transform: normal;
+  letter-spacing: normal;
+  line-height: 1.3em;
+  color: #000;
+}
