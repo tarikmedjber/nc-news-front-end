@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ArticleList from "./ArticleList";
-import { Router } from "@reach/router";
-import SingleArticle from "./SingleArticle";
+
 import { getArticles } from "../Api";
 export default class ArticlesPage extends Component {
   state = {
@@ -12,13 +11,17 @@ export default class ArticlesPage extends Component {
       this.setState({ articles: articles });
     });
   }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.slug !== this.props.slug) {
+      getArticles(this.props.slug).then(articles => {
+        this.setState({ article: articles });
+      });
+    }
+  }
   render() {
     const { articles } = this.state;
     return (
       <div>
-        <Router>
-          <SingleArticle path="/:article_id" />
-        </Router>
         <h2>Articles</h2>
         <ul>
           <ArticleList articles={articles} />
