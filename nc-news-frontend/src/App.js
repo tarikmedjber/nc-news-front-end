@@ -9,23 +9,28 @@ import UserArticle from "./Components/UserArticle";
 import SingleArticle from "./Components/SingleArticle";
 import SingleTopic from "./Components/SingleTopic";
 import Comments from "./Components/Comments";
+import LogInBox from "./Components/LogInBox";
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Router>
-        <Homepage path="/" />
-        <ArticlesPage path="/articles" />
-        <UserArticle path="/users/*" />
-        <TopicsPage path="/topics" />
-        <UserArticle path="/users/:username" />
-        <SingleArticle path="/articles/:article_id" />
-        <SingleTopic path="/topics/:slug/articles" />
-        <Comments path="/articles/:article_id/comments" />
-      </Router>
-    </div>
-  );
+class App extends React.Component {
+  state = { logInButton: "LOG IN", loggedInUser: "" };
+  render() {
+    return (
+      <div className="App">
+        <Header logInButton={this.state.logInButton} />
+        <Router>
+          <Homepage path="/" />
+          <ArticlesPage path="/articles" />
+          <UserArticle path="/users/*" />
+          <TopicsPage path="/topics" />
+          <UserArticle path="/users/:username" />
+          <SingleArticle path="/articles/:article_id" />
+          <SingleTopic path="/topics/:slug/articles" />
+          <Comments path="/articles/:article_id/comments" />
+          <LogInBox path="/signin" />
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;

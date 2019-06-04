@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "@reach/router";
 import "./Header.css";
 
-export default function Header() {
+export default function Header(props) {
   return (
     <div>
       <h1>NC-NEWS</h1>
@@ -17,15 +17,13 @@ export default function Header() {
         <Link id="Nav3" to="/topics">
           Topics
         </Link>
-        <Link id="Nav4" to="/users/">
+        <Link id="Nav4" to="/users">
           Users
         </Link>
-        <button id="LogOut">LOG OUT</button>
+        <Link to="/signin" id="LogOut">
+          {props.logInButton}
+        </Link>
       </div>
-      <form id="SearchBar">
-        <input type="text" placeholder="Search Articles..." />
-        <button>SEARCH</button>
-      </form>
     </div>
   );
 }

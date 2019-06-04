@@ -23,7 +23,7 @@ export default class ArticlesPage extends Component {
     return (
       <div>
         <h2>Articles</h2>
-        <ul>
+        <ul id="Article">
           <ArticleList articles={articles} />
         </ul>
       </div>
