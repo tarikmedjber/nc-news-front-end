@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getComments } from "../Api";
+import "./Comments.css";
 export default class Comments extends Component {
   state = { comments: [] };
   componentDidMount() {
@@ -8,7 +9,7 @@ export default class Comments extends Component {
     });
   }
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.comments !== this.state.comments) {
+    if (prevProps.article_id !== this.props.article_id) {
       getComments(this.props.article_id).then(comments => {
         this.setState({ comments: comments });
       });
@@ -16,10 +17,18 @@ export default class Comments extends Component {
   }
   render() {
     const { comments } = this.state;
-
+    console.log(comments);
     return (
       <div>
-        <p>HELLO!!!</p>
+        {comments.map(comment => {
+          return (
+            <li id="Comment" key={comment.comment_id}>
+              <h3>{comment.author}:</h3>
+              <p>{comment.body}</p>
+              <p>{`${comment.votes} votes`}</p>
+            </li>
+          );
+        })}
       </div>
     );
   }

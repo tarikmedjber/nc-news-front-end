@@ -1,3 +1,4 @@
 .Article {
   display: grid;
+  list-style: none;
 }

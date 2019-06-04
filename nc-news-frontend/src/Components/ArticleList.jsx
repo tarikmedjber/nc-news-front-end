@@ -10,7 +10,9 @@ export default function ArticleList(props) {
             <h3>{article.title}</h3>
           </Link>
           <h4>{`Created by ${article.author}`}</h4>
-          {`${article.comment_count} comments`}
+          <Link to={`/articles/${article.article_id}/comments`}>
+            {`${article.comment_count} comments`}
+          </Link>
           {` ${article.votes} votes`}
         </li>
       </div>

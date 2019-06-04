@@ -25,7 +25,9 @@ export default class SingleTopic extends Component {
                   </Link>
                   <h3>{article.body}</h3>
                   <h4>{`${article.votes} votes`}</h4>
-                  <h4>{`${article.comment_count} comments`}</h4>
+                  <Link to={`/articles/${article.article_id}/comments`}>
+                    <h4>{`${article.comment_count} comments`}</h4>
+                  </Link>
                 </li>
               );
             })}
