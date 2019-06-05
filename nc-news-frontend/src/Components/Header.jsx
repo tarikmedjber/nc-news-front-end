@@ -1,16 +1,21 @@
 import React from "react";
 import { Link } from "@reach/router";
 import "./Header.css";
+import LogInBox from "./LogInBox";
 
 export default function Header(props) {
   return (
     <div>
       <h1 id="Title">NC-NEWS</h1>
-      <h4>
-        <Link to="/signin" id="LogOut">
+      <LogInBox
+        logInButton={props.logInButton}
+        updateUsername={props.updateUsername}
+      />
+      {/* <h4>
+        <Link to="/articles" id="LogOut">
           {props.logInButton}
         </Link>
-      </h4>
+      </h4> */}
       <div className="Navs">
         <Link id="Nav1" to="/">
           Homepage

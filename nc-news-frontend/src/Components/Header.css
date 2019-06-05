@@ -70,13 +70,12 @@
   border-style: groove;
 }
 
-#LogOut {
+.LogOut {
   position: absolute;
   margin-top: 0px;
   right: 150px;
   width: 5em;
   height: 1.2em;
-  border: 3px solid green;
 }
 
 #SignIn {
@@ -85,17 +84,8 @@
 }
 
 #LoginForm {
-  font-size: 50px;
-  position: center;
-  margin-top: 100px;
-
-  height: 1.2em;
-}
-
-#Input {
-  font-size: 30px;
-  position: center;
-  margin-top: 50px;
-
+  position: absolute;
+  right: 150px;
+  width: 5em;
   height: 1.2em;
 }

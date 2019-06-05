@@ -9,14 +9,16 @@ import UserArticle from "./Components/UserArticle";
 import SingleArticle from "./Components/SingleArticle";
 import SingleTopic from "./Components/SingleTopic";
 import Comments from "./Components/Comments";
-import LogInBox from "./Components/LogInBox";
 
 class App extends React.Component {
-  state = { logInButton: "LOG IN", loggedInUser: "" };
+  state = { logInButton: "", loggedInUser: "" };
   render() {
     return (
       <div className="App">
-        <Header logInButton={this.state.logInButton} />
+        <Header
+          logInButton={this.state.logInButton}
+          updateUsername={this.updateUsername}
+        />
 
         <Router>
           <Homepage path="/" />
@@ -33,19 +35,16 @@ class App extends React.Component {
             path="/articles/:article_id/comments"
             loggedInUser={this.state.loggedInUser}
           />
-          <LogInBox
-            logInButton={this.state.logInButton}
-            updateUsername={this.updateUsername}
-            path="/signin"
-          />
         </Router>
       </div>
     );
   }
   updateUsername = user => {
-    if (this.state.logInButton === "LOG IN") {
+    if (this.state.logInButton === "") {
       this.setState({ loggedInUser: user, logInButton: "LOG OUT" });
-    } else this.setState({ loggedInUser: "", logInButton: "LOG IN" });
+    } else if (this.state.logInButton === "LOG OUT") {
+      this.setState({ loggedInUser: "", logInButton: "" });
+    }
   };
 }
 

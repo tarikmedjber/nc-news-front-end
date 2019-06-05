@@ -5,7 +5,14 @@ export default class LogInBox extends Component {
   state = { usernameInput: "" };
 
   render() {
-    if (this.props.logInButton === "LOG IN") {
+    console.log(this.props.logInButton);
+    if (this.props.logInButton === "LOG OUT") {
+      return (
+        <div className="LogOut">
+          <button onClick={this.props.updateUsername}>LOG OUT</button>
+        </div>
+      );
+    } else
       return (
         <div>
           <form id="LoginForm">
@@ -22,15 +29,9 @@ export default class LogInBox extends Component {
           </form>
         </div>
       );
-    } else
-      return (
-        <div>
-          <button onClick={() => this.props.updateUsername()}>Log Out</button>
-        </div>
-      );
   }
+
   handleUsernameChange = event => {
-    console.log(event.target.value);
     this.setState({ usernameInput: event.target.value });
   };
   checkUsername = event => {
@@ -40,12 +41,3 @@ export default class LogInBox extends Component {
     });
   };
 }
-/*
-    Calls in app, function is in app where the function changes the apps state on a submit where they get logged in.
-    Login box needs the handle sumit and store user input as they type, check user exists in the loginbox file so need to make 
-    a request here to the users endpoint. 
-    Then simply put in conditional logic before any divs(?) to see if its truthy. 
-    Local storage in mount to show that the person has logged in. 
-
-
-*/
