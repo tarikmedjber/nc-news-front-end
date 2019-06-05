@@ -9,15 +9,7 @@ export default class Comments extends Component {
       this.setState({ comments: comments });
     });
   }
-  // componentDidUpdate(prevProps, prevState) {
-  //   console.log(prevState.comments, "prev");
-  //   console.log(this.state.comments, "state");
-  //   if (prevState.comments !== this.state.comments) {
-  //     getComments(this.props.article_id).then(comments => {
-  //       this.setState({ comments: comments });
-  //     });
-  //   }
-  // }
+
   render() {
     const { comments } = this.state;
 
@@ -35,8 +27,6 @@ export default class Comments extends Component {
           </div>
         )}
         {comments.map(comment => {
-          console.log(comment.author);
-          console.log(this.props.loggedInUser);
           return (
             <li id="Comment" key={comment.comment_id}>
               <h3>{comment.author}:</h3>

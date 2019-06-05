@@ -11,3 +11,8 @@
 .VoteButton {
   font-size: 30px;
 }
+
+#Article {
+  display: flex;
+  flex-wrap: wrap;
+}
