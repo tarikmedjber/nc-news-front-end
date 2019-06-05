@@ -14,7 +14,6 @@ import LogInBox from "./Components/LogInBox";
 class App extends React.Component {
   state = { logInButton: "LOG IN", loggedInUser: "" };
   render() {
-    console.log(this.state.loggedInUser, "loggedinuser");
     return (
       <div className="App">
         <Header logInButton={this.state.logInButton} />
@@ -25,9 +24,15 @@ class App extends React.Component {
           <UserArticle path="/users/*" />
           <TopicsPage path="/topics" />
           <UserArticle path="/users/:username" />
-          <SingleArticle path="/articles/:article_id" />
+          <SingleArticle
+            loggedInUser={this.state.loggedInUser}
+            path="/articles/:article_id"
+          />
           <SingleTopic path="/topics/:slug/articles" />
-          <Comments path="/articles/:article_id/comments" />
+          <Comments
+            path="/articles/:article_id/comments"
+            loggedInUser={this.state.loggedInUser}
+          />
           <LogInBox
             logInButton={this.state.logInButton}
             updateUsername={this.updateUsername}

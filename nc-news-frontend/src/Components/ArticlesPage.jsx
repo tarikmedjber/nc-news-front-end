@@ -4,8 +4,7 @@ import ArticleList from "./ArticleList";
 import { getArticles } from "../Api";
 export default class ArticlesPage extends Component {
   state = {
-    articles: [],
-    orderBy: "desc"
+    articles: []
   };
   componentDidMount() {
     getArticles().then(articles => {
@@ -15,6 +14,7 @@ export default class ArticlesPage extends Component {
 
   render() {
     const { articles } = this.state;
+
     return (
       <div>
         <h2>Articles</h2>
@@ -27,8 +27,6 @@ export default class ArticlesPage extends Component {
         <button onClick={() => this.sortBy("votes")}>
           Filter by vote count
         </button>
-        <button onClick={this.orderByAscending}>Ascending</button>
-        <button onClick={this.orderByDescending}>Descending</button>
 
         <ul id="Article">
           <ArticleList articles={articles} />
@@ -36,6 +34,7 @@ export default class ArticlesPage extends Component {
       </div>
     );
   }
+
   sortBy(searchTerm) {
     if (this.state.orderBy === "desc") {
       getArticles({ sort_by: searchTerm }).then(articles => {
@@ -48,11 +47,4 @@ export default class ArticlesPage extends Component {
         }
       );
   }
-  orderByAscending = () => {
-    this.setState({ orderBy: "asc" });
-  };
-
-  orderByDescending = () => {
-    this.setState({ orderBy: "desc" });
-  };
 }

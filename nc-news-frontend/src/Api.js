@@ -37,3 +37,20 @@ export const getUsers = username => {
     return user;
   });
 };
+
+export const postComment = (article_id, body) => {
+  return axios
+    .post(`${url}/articles/${article_id}/comments`, body)
+    .then(({ data: { comment } }) => {
+      return comment;
+    });
+};
+
+export const deleteComment = comment_id => {
+  axios
+    .delete(`${url}/comments/${comment_id}`)
+    .then(res => {
+      console.log(res, "deleted");
+    })
+    .catch(err => console.log(err));
+};

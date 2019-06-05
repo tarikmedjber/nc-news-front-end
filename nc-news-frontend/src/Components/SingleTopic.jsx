@@ -3,7 +3,7 @@ import { getArticles } from "../Api";
 import { Link } from "@reach/router";
 
 export default class SingleTopic extends Component {
-  state = { topic: [], orderBy: "descending" };
+  state = { topic: [] };
 
   componentDidMount() {
     getArticles({ topic: this.props.slug }).then(articles => {
@@ -17,7 +17,7 @@ export default class SingleTopic extends Component {
       topic && (
         <div>
           <h1>{`All about ${this.props.slug}`}</h1>
-          <button onClick={() => this.sortBy("date_created")}>
+          <button onClick={() => this.sortBy("created_at")}>
             Filter by date created
           </button>
           <button onClick={() => this.sortBy("comment_count")}>
@@ -26,8 +26,6 @@ export default class SingleTopic extends Component {
           <button onClick={() => this.sortBy("votes")}>
             Filter by vote count
           </button>
-          <button onClick={this.orderByAscending}>Ascending</button>
-          <button onClick={this.orderByDescending}>Descending</button>
 
           <ul>
             {topic.map(article => {
@@ -51,29 +49,10 @@ export default class SingleTopic extends Component {
   }
 
   sortBy(searchTerm) {
-    if (this.state.orderBy === "descending") {
-      this.setState(prevState => {
-        return {
-          topic: [...prevState.topic].sort(
-            (a, b) => a[searchTerm] - b[searchTerm]
-          )
-        };
-      });
-    } else if (this.state.orderBy === "acsending") {
-      this.setState(prevState => {
-        return {
-          topic: [...prevState.topic].sort(
-            (a, b) => b[searchTerm] - a[searchTerm]
-          )
-        };
-      });
-    }
+    getArticles({ topic: this.props.slug, sort_by: searchTerm }).then(
+      articles => {
+        this.setState({ topic: articles });
+      }
+    );
   }
-  orderByAscending = () => {
-    this.setState({ orderBy: "ascending" });
-  };
-
-  orderByDescending = () => {
-    this.setState({ orderBy: "descending" });
-  };
 }

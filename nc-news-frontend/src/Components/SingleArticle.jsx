@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getArticleById } from "../Api";
 import "./SingleArticle.css";
 import { Link } from "@reach/router";
+import Comments from "./Comments";
 
 export default class SingleArticle extends Component {
   state = { article: null };
@@ -30,11 +31,10 @@ export default class SingleArticle extends Component {
           </Link>
           <h3>{article.body}</h3>
           <h4>{`${article.votes} votes`}</h4>
-          <Link to={`/articles/${article.article_id}/comments`}>
-            <h4>{`${article.comment_count} comments`}</h4>
-          </Link>
-
-          {/* <button onClick={this.deleteStudents}>Delete Student</button> */}
+          <Comments
+            article_id={article.article_id}
+            loggedInUser={this.props.loggedInUser}
+          />
         </div>
       )
     );
