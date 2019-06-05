@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "@reach/router";
-
+import "./articles.css";
 export default function ArticleList(props) {
   return props.articles.map((article, i) => {
     return (
@@ -9,13 +9,16 @@ export default function ArticleList(props) {
           <Link to={`${article.article_id}`}>
             <h3>{article.title}</h3>
           </Link>
-          <h4>{`Created by ${article.author}`}</h4>
+          <h4>{`Created by ${article.author}  `}</h4>
           <Link to={`/articles/${article.article_id}/comments`}>
             {`${article.comment_count} comments`}
           </Link>
           {` ${article.votes} votes`}
+          <p id="CreatedAt">{article.created_at}</p>
         </li>
       </div>
     );
   });
 }
+
+//extract the div out and create a new page of single article and call that new page here

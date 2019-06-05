@@ -8,16 +8,18 @@ export default class LogInBox extends Component {
     if (this.props.logInButton === "LOG IN") {
       return (
         <div>
-          <form>
+          <form id="LoginForm">
             Username:
             <input
+              id="Input"
               onChange={this.handleUsernameChange}
               type="text"
               placeholder="Type Username Here"
             />
-            <button onClick={this.checkUsername}>Sign In</button>
+            <button id="SignIn" onClick={this.checkUsername}>
+              Sign In
+            </button>
           </form>
-          <p>login box</p>
         </div>
       );
     } else

@@ -4,7 +4,8 @@ import ArticleList from "./ArticleList";
 import { getArticles } from "../Api";
 export default class ArticlesPage extends Component {
   state = {
-    articles: []
+    articles: [],
+    orderBy: "desc"
   };
   componentDidMount() {
     getArticles().then(articles => {
@@ -17,7 +18,7 @@ export default class ArticlesPage extends Component {
     return (
       <div>
         <h2>Articles</h2>
-        <button onClick={() => this.sortBy("date_created")}>
+        <button onClick={() => this.sortBy("created_at")}>
           Filter by date created
         </button>
         <button onClick={() => this.sortBy("comment_count")}>
@@ -26,6 +27,8 @@ export default class ArticlesPage extends Component {
         <button onClick={() => this.sortBy("votes")}>
           Filter by vote count
         </button>
+        <button onClick={this.orderByAscending}>Ascending</button>
+        <button onClick={this.orderByDescending}>Descending</button>
 
         <ul id="Article">
           <ArticleList articles={articles} />
@@ -34,12 +37,22 @@ export default class ArticlesPage extends Component {
     );
   }
   sortBy(searchTerm) {
-    this.setState(prevState => {
-      return {
-        articles: [...prevState.articles].sort(
-          (a, b) => a[searchTerm] - b[searchTerm]
-        )
-      };
-    });
+    if (this.state.orderBy === "desc") {
+      getArticles({ sort_by: searchTerm }).then(articles => {
+        this.setState({ articles: articles });
+      });
+    } else
+      getArticles({ sort_by: searchTerm, order: this.state.orderBy }).then(
+        articles => {
+          this.setState({ articles: articles });
+        }
+      );
   }
+  orderByAscending = () => {
+    this.setState({ orderBy: "asc" });
+  };
+
+  orderByDescending = () => {
+    this.setState({ orderBy: "desc" });
+  };
 }
