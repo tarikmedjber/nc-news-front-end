@@ -41,7 +41,15 @@ export default class Comments extends Component {
             <li id="Comment" key={comment.comment_id}>
               <h3>{comment.author}:</h3>
               <p>{comment.body}</p>
-              <p>{`${comment.votes} votes`}</p>
+              <div>
+                <span className="VoteButton" role="img" aria-label="upHand">
+                  ☝︎
+                </span>
+                <p>{comment.votes}</p>
+                <span className="VoteButton" role="img" aria-label="downHand">
+                  ☟
+                </span>
+              </div>
               {comment.author === this.props.loggedInUser.username ? (
                 <button onClick={() => deleteComment(comment.comment_id)}>
                   Delete Comment

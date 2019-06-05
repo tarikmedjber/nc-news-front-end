@@ -9,11 +9,23 @@ export default function ArticleList(props) {
           <Link to={`${article.article_id}`}>
             <h3>{article.title}</h3>
           </Link>
+
           <h4>{`Created by ${article.author}  `}</h4>
+          <div className="ArticleVotes">
+            <span className="VoteButton" role="img" aria-label="upHand">
+              ☝︎
+            </span>
+
+            <p>{article.votes}</p>
+            <span className="VoteButton" role="img" aria-label="downHand">
+              ☟
+            </span>
+          </div>
+
           <Link to={`/articles/${article.article_id}/comments`}>
             {`${article.comment_count} comments`}
           </Link>
-          {` ${article.votes} votes`}
+
           <p id="CreatedAt">{article.created_at}</p>
         </li>
       </div>

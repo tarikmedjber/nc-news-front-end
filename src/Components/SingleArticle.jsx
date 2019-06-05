@@ -29,8 +29,19 @@ export default class SingleArticle extends Component {
           <Link to={`/topics`}>
             <h3>{`Topic: ${article.topic}`}</h3>
           </Link>
-          <h3>{article.body}</h3>
-          <h4>{`${article.votes} votes`}</h4>
+
+          <div className="Article">
+            <h3 id="ArticleBody">{article.body}</h3>
+            <div>
+              <span className="VoteButton" role="img" aria-label="upHand">
+                ☝︎
+              </span>
+              <p>{article.votes}</p>
+              <span className="VoteButton" role="img" aria-label="downHand">
+                ☟
+              </span>
+            </div>
+          </div>
           <Comments
             article_id={article.article_id}
             loggedInUser={this.props.loggedInUser}

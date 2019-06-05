@@ -2,3 +2,9 @@
   display: grid;
   list-style: none;
 }
+
+#ArticleBody {
+  padding: 10px;
+  margin-right: 25%;
+  margin-left: 25%;
+}

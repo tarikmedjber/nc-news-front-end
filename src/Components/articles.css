@@ -1,3 +1,13 @@
 #CreatedAt {
   font-size: 12px;
 }
+.ArticleVotes {
+  margin-left: 17%;
+  margin-right: 70%;
+  margin-top: 0em;
+  padding: 10px;
+}
+
+.VoteButton {
+  font-size: 30px;
+}
