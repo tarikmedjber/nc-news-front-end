@@ -29,7 +29,7 @@ export default class Comments extends Component {
           </form>
         ) : (
           <div id="NoUser">
-            <p>Hey Log In To Comment!</p>
+            <p>Log In To Comment And Vote</p>
           </div>
         )}
         <ul>

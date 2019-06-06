@@ -8,6 +8,9 @@ export default class SingleComment extends Component {
     if (prevProps.loggedInUser !== this.props.loggedInUser) {
       this.setState({ disableButton: false });
     }
+    // if (prevProps.loggedInUser.length !== this.props.loggedInUser.length) {
+    //   this.setState({ disableButton: false });
+    // }
   }
   render() {
     const { comment } = this.props;

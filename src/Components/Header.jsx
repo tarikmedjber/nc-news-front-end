@@ -11,11 +11,7 @@ export default function Header(props) {
         logInButton={props.logInButton}
         updateUsername={props.updateUsername}
       />
-      {/* <h4>
-        <Link to="/articles" id="LogOut">
-          {props.logInButton}
-        </Link>
-      </h4> */}
+
       <div className="Navs">
         <Link id="Nav1" to="/">
           Homepage
@@ -25,9 +21,6 @@ export default function Header(props) {
         </Link>
         <Link id="Nav3" to="/topics">
           Topics
-        </Link>
-        <Link id="Nav4" to="/users">
-          Users
         </Link>
       </div>
     </div>
