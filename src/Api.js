@@ -26,7 +26,7 @@ export const getTopics = props => {
 
 export const getComments = article_id => {
   return axios
-    .get(`${url}/articles/${article_id}/comments`)
+    .get(`${url}/articles/${article_id}/comments?order=desc`)
     .then(({ data: { comments } }) => {
       return comments;
     });
@@ -47,10 +47,10 @@ export const postComment = (article_id, body) => {
 };
 
 export const deleteComment = comment_id => {
-  axios
+  return axios
     .delete(`${url}/comments/${comment_id}`)
     .then(res => {
-      console.log(res, "deleted");
+      return res;
     })
     .catch(err => console.log(err));
 };
@@ -60,5 +60,13 @@ export const updateArticleVotes = (article_id, direction) => {
     .patch(`${url}/articles/${article_id}`, direction)
     .then(({ data: { article } }) => {
       return article;
+    });
+};
+
+export const updateCommentVotes = (comment_id, direction) => {
+  return axios
+    .patch(`${url}/comments/${comment_id}`, direction)
+    .then(({ data: { comment } }) => {
+      return comment;
     });
 };

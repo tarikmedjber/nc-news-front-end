@@ -11,17 +11,8 @@ export default function ArticleList(props) {
           </Link>
 
           <h4>{`Created by ${article.author}  `}</h4>
-          <button onClick={props.handleVoteChange}>
-            <span className="VoteButton" role="img" aria-label="upHand">
-              ☝︎
-            </span>
-          </button>
-          <p>{article.votes}</p>
-          <button onClick={props.handleVoteChange}>
-            <span className="VoteButton" role="img" aria-label="downHand">
-              ☟
-            </span>
-          </button>
+
+          <p>{`${article.votes} votes`}</p>
 
           <Link to={`/articles/${article.article_id}/comments`}>
             {`${article.comment_count} comments`}

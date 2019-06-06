@@ -5,7 +5,6 @@ export default class LogInBox extends Component {
   state = { usernameInput: "" };
 
   render() {
-    console.log(this.props.logInButton);
     if (this.props.logInButton === "LOG OUT") {
       return (
         <div className="LogOut">

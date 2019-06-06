@@ -5,7 +5,7 @@ import { Link } from "@reach/router";
 import Comments from "./Comments";
 
 export default class SingleArticle extends Component {
-  state = { article: null, voteChange: 0 };
+  state = { article: null, voteChange: 0, disableButton: true };
 
   componentDidMount() {
     getArticleById(this.props.article_id).then(article => {
@@ -13,16 +13,12 @@ export default class SingleArticle extends Component {
     });
   }
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.article_id !== this.props.article_id) {
-      getArticleById(this.props.article_id).then(article => {
-        this.setState({ article: article });
-      });
+    if (prevProps.loggedInUser !== this.props.loggedInUser) {
+      this.setState({ disableButton: false });
     }
   }
 
   render() {
-    console.log(this.state.voteChange);
-
     const { article } = this.state;
     return (
       article && (
@@ -34,18 +30,25 @@ export default class SingleArticle extends Component {
 
           <div className="Article">
             <h3 id="ArticleBody">{article.body}</h3>
-            <button onClick={() => this.handleVoteChange(1)}>
+            <button
+              disabled={this.state.disableButton || this.state.voteChange > 0}
+              onClick={() => this.handleVoteChange(1)}
+            >
               <span className="VoteButton" role="img" aria-label="upHand">
                 ☝︎
               </span>
             </button>
             <p>{article.votes + this.state.voteChange}</p>
-            <button onClick={() => this.handleVoteChange(-1)}>
+            <button
+              disabled={this.state.disableButton || this.state.voteChange < 0}
+              onClick={() => this.handleVoteChange(-1)}
+            >
               <span className="VoteButton" role="img" aria-label="downHand">
                 ☟
               </span>
             </button>
           </div>
+
           <Comments
             article_id={article.article_id}
             loggedInUser={this.props.loggedInUser}
