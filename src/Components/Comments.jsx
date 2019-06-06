@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getComments, postComment } from "../Api";
+import { getComments, postComment, deleteComment } from "../Api";
 import "./Comments.css";
 import SingleComment from "./SingleComment";
 export default class Comments extends Component {
@@ -37,6 +37,7 @@ export default class Comments extends Component {
             comments.map(comment => {
               return (
                 <SingleComment
+                  deleteUserComment={this.deleteUserComment}
                   comment_id={comment.comment_id}
                   comment={comment}
                   key={comment.comment_id}
@@ -48,6 +49,19 @@ export default class Comments extends Component {
       </div>
     );
   }
+  deleteUserComment = comment_id => {
+    deleteComment(comment_id).then(res => {
+      this.setState(prevState => {
+        return {
+          comments: [
+            ...prevState.comments.filter(comment => {
+              return comment.comment_id !== comment_id;
+            })
+          ]
+        };
+      });
+    });
+  };
   handleOnChange = event => {
     this.setState({ userComment: event.target.value });
   };

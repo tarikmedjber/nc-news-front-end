@@ -62,7 +62,7 @@ You should implement the following functionality in your website. Check the lect
 
 <!-- 10. vote on an article and immediately see the change. -->
 
-11. vote on a comment and immediately see the change.
+<!-- 11. vote on a comment and immediately see the change. -->
 
 **As a hiring partner, I should be able to...**
 

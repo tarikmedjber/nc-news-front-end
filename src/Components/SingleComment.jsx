@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { deleteComment, updateCommentVotes } from "../Api";
+import { updateCommentVotes } from "../Api";
 
 export default class SingleComment extends Component {
   state = { voteChange: 0, disableButton: true };
@@ -16,7 +16,7 @@ export default class SingleComment extends Component {
         <h3>{comment.author}:</h3>
         <p>{comment.body}</p>
         <button
-          //   disabled={this.state.disableButton || this.state.voteChange > 0}
+          disabled={this.state.disableButton || this.state.voteChange > 0}
           onClick={() => this.handleVoteChange(1)}
         >
           <span className="VoteButton" role="img" aria-label="upHand">
@@ -25,7 +25,7 @@ export default class SingleComment extends Component {
         </button>
         <p>{comment.votes + this.state.voteChange}</p>
         <button
-          //   disabled={this.state.disableButton || this.state.voteChange > 0}
+          disabled={this.state.disableButton || this.state.voteChange < 0}
           onClick={() => this.handleVoteChange(-1)}
         >
           <span className="VoteButton" role="img" aria-label="downHand">
@@ -33,7 +33,9 @@ export default class SingleComment extends Component {
           </span>
         </button>
         {comment.author === this.props.loggedInUser.username ? (
-          <button onClick={() => this.deleteUserComment(comment.comment_id)}>
+          <button
+            onClick={() => this.props.deleteUserComment(comment.comment_id)}
+          >
             Delete Comment
           </button>
         ) : null}
@@ -41,11 +43,6 @@ export default class SingleComment extends Component {
       </li>
     );
   }
-  deleteUserComment = comment_id => {
-    deleteComment(comment_id).then(res => {
-      console.log(res);
-    });
-  };
 
   handleVoteChange = direction => {
     this.setState(prevState => {
