@@ -16,6 +16,12 @@ export default class SingleArticle extends Component {
     if (prevProps.loggedInUser !== this.props.loggedInUser) {
       this.setState({ disableButton: false });
     }
+    if (
+      prevProps.loggedInUser !== this.props.loggedInUser &&
+      this.props.loggedInUser.length < 1
+    ) {
+      this.setState({ disableButton: true });
+    }
   }
 
   render() {
