@@ -54,3 +54,11 @@ export const deleteComment = comment_id => {
     })
     .catch(err => console.log(err));
 };
+
+export const updateArticleVotes = (article_id, direction) => {
+  return axios
+    .patch(`${url}/articles/${article_id}`, direction)
+    .then(({ data: { article } }) => {
+      return article;
+    });
+};

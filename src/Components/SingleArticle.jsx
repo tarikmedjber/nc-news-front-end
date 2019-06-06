@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { getArticleById } from "../Api";
+import { getArticleById, updateArticleVotes } from "../Api";
 import "./SingleArticle.css";
 import { Link } from "@reach/router";
 import Comments from "./Comments";
 
 export default class SingleArticle extends Component {
-  state = { article: null };
+  state = { article: null, voteChange: 0 };
 
   componentDidMount() {
     getArticleById(this.props.article_id).then(article => {
@@ -21,6 +21,8 @@ export default class SingleArticle extends Component {
   }
 
   render() {
+    console.log(this.state.voteChange);
+
     const { article } = this.state;
     return (
       article && (
@@ -32,15 +34,17 @@ export default class SingleArticle extends Component {
 
           <div className="Article">
             <h3 id="ArticleBody">{article.body}</h3>
-            <div>
+            <button onClick={() => this.handleVoteChange(1)}>
               <span className="VoteButton" role="img" aria-label="upHand">
                 ☝︎
               </span>
-              <p>{article.votes}</p>
+            </button>
+            <p>{article.votes + this.state.voteChange}</p>
+            <button onClick={() => this.handleVoteChange(-1)}>
               <span className="VoteButton" role="img" aria-label="downHand">
                 ☟
               </span>
-            </div>
+            </button>
           </div>
           <Comments
             article_id={article.article_id}
@@ -50,4 +54,12 @@ export default class SingleArticle extends Component {
       )
     );
   }
+  handleVoteChange = direction => {
+    this.setState(prevState => {
+      return { voteChange: prevState.voteChange + direction };
+    });
+    updateArticleVotes(this.state.article.article_id, {
+      votes: direction
+    }).catch();
+  };
 }

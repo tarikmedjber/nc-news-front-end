@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ArticleList from "./ArticleList";
 
-import { getArticles } from "../Api";
+import { getArticles, updateArticleVotes } from "../Api";
 export default class ArticlesPage extends Component {
   state = {
     articles: []
@@ -29,7 +29,10 @@ export default class ArticlesPage extends Component {
         </button>
 
         <ul id="Article">
-          <ArticleList articles={articles} />
+          <ArticleList
+            handleVoteChange={this.handleVoteChange}
+            articles={articles}
+          />
         </ul>
       </div>
     );
@@ -47,4 +50,11 @@ export default class ArticlesPage extends Component {
         }
       );
   }
+  // handleVoteChange = event => {
+  //   event.preventDefault();
+  //   let direction = { votes: 1 };
+  //   updateArticleVotes(article.article_id, direction).then(res => {
+  //     return res;
+  //   });
+  // };
 }
