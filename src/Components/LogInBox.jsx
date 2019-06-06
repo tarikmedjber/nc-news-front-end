@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import { getUsers } from "../Api";
-
 export default class LogInBox extends Component {
-  state = { usernameInput: "" };
+  state = { usernameInput: "", userNotValid: null };
 
   render() {
-    const { usernameInput } = this.state;
+    const { usernameInput, userNotValid } = this.state;
     const isAllFilledIn = usernameInput ? true : false;
-
     if (this.props.logInButton === "LOG OUT") {
       return (
         <div className="LogOut">
@@ -25,6 +23,7 @@ export default class LogInBox extends Component {
               type="text"
               placeholder="Type Username Here"
             />
+            <p>{userNotValid}</p>
             <button
               disabled={!isAllFilledIn}
               id="SignIn"
@@ -42,8 +41,24 @@ export default class LogInBox extends Component {
   };
   checkUsername = event => {
     event.preventDefault();
-    getUsers(this.state.usernameInput).then(user => {
-      if (user) this.props.updateUsername(user);
-    });
+    if (this.state.usernameInput === "guest") {
+      this.props.updateUsername("guest");
+    }
+    getUsers(this.state.usernameInput)
+      .then(user => {
+        if (user) {
+          this.props.updateUsername(user);
+        } else if (!user)
+          this.setState({
+            userNotValid:
+              "Please sign in with a valid Username or log in as 'Guest"
+          });
+      })
+      .catch(({ response }) => {
+        this.setState({
+          userNotValid:
+            "Please sign in with a valid Username or log in as 'Guest"
+        });
+      });
   };
 }

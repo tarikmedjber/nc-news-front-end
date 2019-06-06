@@ -75,9 +75,9 @@ You should implement the following functionality in your website. Check the lect
 
 **Error-handling: As a user, I should...**
 
-18. be directed to a 404 page if I go on a non-existent path/a path for a non-existent article
+<!-- 18. be directed to a 404 page if I go on a non-existent path/a path for a non-existent article
 19. not be allowed to post an article if I have not filled in all of the form boxes.
-20. not be able to log in with a non-existent username.
+20. not be able to log in with a non-existent username. -->
 
 ### _If time, and if you have implemented it in your back-end API..._
 
