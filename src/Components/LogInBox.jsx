@@ -42,17 +42,16 @@ export default class LogInBox extends Component {
   checkUsername = event => {
     event.preventDefault();
     if (this.state.usernameInput === "guest") {
+      this.setState({ userNotValid: null });
       this.props.updateUsername("guest");
     }
     getUsers(this.state.usernameInput)
       .then(user => {
         if (user) {
+          this.setState({ userNotValid: null });
+
           this.props.updateUsername(user);
-        } else if (!user)
-          this.setState({
-            userNotValid:
-              "Please sign in with a valid Username or log in as 'Guest"
-          });
+        }
       })
       .catch(({ response }) => {
         this.setState({

@@ -10,9 +10,10 @@ import SingleArticle from "./Components/SingleArticle";
 import SingleTopic from "./Components/SingleTopic";
 import Comments from "./Components/Comments";
 import Error from "./Components/Error";
+import LogInBox from "./Components/LogInBox";
 
 class App extends React.Component {
-  state = { logInButton: "", loggedInUser: "", stuff: null, err: null };
+  state = { logInButton: "", loggedInUser: "", err: null };
   render() {
     const { err } = this.state;
     if (err) console.log(err);
@@ -21,6 +22,7 @@ class App extends React.Component {
         <Header
           logInButton={this.state.logInButton}
           updateUsername={this.updateUsername}
+          userNotValid={this.state.userNotValid}
         />
 
         <Router>
@@ -38,15 +40,19 @@ class App extends React.Component {
             loggedInUser={this.state.loggedInUser}
           />
           <UserProfile path="users/:username" />
+          <LogInBox changeUserNotValid={this.changeUserNotValid} default />
         </Router>
       </div>
     );
   }
   updateUsername = user => {
     if (this.state.logInButton === "") {
-      this.setState({ loggedInUser: user, logInButton: "LOG OUT" });
+      this.setState({
+        loggedInUser: user,
+        logInButton: "LOG OUT"
+      });
     } else if (this.state.logInButton === "LOG OUT") {
-      this.setState({ loggedInUser: "", logInButton: "" });
+      this.setState({ loggedInUser: "", logInButton: "", userNotValid: null });
     }
   };
 }

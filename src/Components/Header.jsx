@@ -10,6 +10,7 @@ export default function Header(props) {
       <LogInBox
         logInButton={props.logInButton}
         updateUsername={props.updateUsername}
+        userNotValid={props.userNotValid}
       />
 
       <div className="Navs">
