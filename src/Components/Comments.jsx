@@ -37,6 +37,7 @@ export default class Comments extends Component {
             comments.map(comment => {
               return (
                 <SingleComment
+                  comment_id={comment.comment_id}
                   comment={comment}
                   key={comment.comment_id}
                   loggedInUser={this.props.loggedInUser}
