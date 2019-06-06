@@ -30,7 +30,7 @@ export default class SingleArticle extends Component {
       article && (
         <div>
           <h2>{article.title}</h2>
-          <Link to={`/topics`}>
+          <Link to={`/topics/${article.topic}/articles`}>
             <h3>{`Topic: ${article.topic}`}</h3>
           </Link>
 

@@ -3,12 +3,22 @@ import { getArticles } from "../Api";
 import { Link } from "@reach/router";
 
 export default class SingleTopic extends Component {
-  state = { topic: [] };
+  state = { topic: [], sortBy: "created_at" };
 
   componentDidMount() {
     getArticles({ topic: this.props.slug }).then(articles => {
       this.setState({ topic: articles });
     });
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.sortBy !== this.state.sortBy) {
+      getArticles({ topic: this.props.slug, sort_by: this.state.sortBy }).then(
+        articles => {
+          this.setState({ topic: articles });
+        }
+      );
+    }
   }
 
   render() {
@@ -17,16 +27,12 @@ export default class SingleTopic extends Component {
       topic && (
         <div>
           <h1>{`All about ${this.props.slug}`}</h1>
-          <button onClick={() => this.sortBy("created_at")}>
-            Filter by date created
-          </button>
-          <button onClick={() => this.sortBy("comment_count")}>
-            Filter by comment count
-          </button>
-          <button onClick={() => this.sortBy("votes")}>
-            Filter by vote count
-          </button>
-
+          Sort By:
+          <select onChange={this.sortBy} value={this.state.sortBy}>
+            <option value="created_at">Created At </option>
+            <option value="comment_count">Comment Count</option>
+            <option value="votes">Vote Count</option>
+          </select>
           <ul>
             {topic.map(article => {
               return (
@@ -48,11 +54,7 @@ export default class SingleTopic extends Component {
     );
   }
 
-  sortBy(searchTerm) {
-    getArticles({ topic: this.props.slug, sort_by: searchTerm }).then(
-      articles => {
-        this.setState({ topic: articles });
-      }
-    );
-  }
+  sortBy = event => {
+    this.setState({ sortBy: event.target.value });
+  };
 }
