@@ -5,6 +5,9 @@ export default class LogInBox extends Component {
   state = { usernameInput: "" };
 
   render() {
+    const { usernameInput } = this.state;
+    const isAllFilledIn = usernameInput ? true : false;
+
     if (this.props.logInButton === "LOG OUT") {
       return (
         <div className="LogOut">
@@ -22,7 +25,11 @@ export default class LogInBox extends Component {
               type="text"
               placeholder="Type Username Here"
             />
-            <button id="SignIn" onClick={this.checkUsername}>
+            <button
+              disabled={!isAllFilledIn}
+              id="SignIn"
+              onClick={this.checkUsername}
+            >
               Sign In
             </button>
           </form>

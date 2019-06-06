@@ -3,14 +3,23 @@ import { getArticleById, updateArticleVotes } from "../Api";
 import "./SingleArticle.css";
 import { Link } from "@reach/router";
 import Comments from "./Comments";
+import Error from "./Error";
 
 export default class SingleArticle extends Component {
-  state = { article: null, voteChange: 0, disableButton: true };
+  state = { article: null, voteChange: 0, disableButton: true, err: null };
 
   componentDidMount() {
-    getArticleById(this.props.article_id).then(article => {
-      this.setState({ article: article });
-    });
+    getArticleById(this.props.article_id)
+      .then(article => {
+        this.setState({ article: article });
+      })
+      .catch(({ response }) => {
+        const errMessage = response.statusText;
+        const errStatus = response.status;
+        const err = { errMessage, errStatus };
+        console.log(response, "resonse");
+        this.setState({ err });
+      });
   }
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.loggedInUser !== this.props.loggedInUser) {
@@ -25,7 +34,8 @@ export default class SingleArticle extends Component {
   }
 
   render() {
-    const { article } = this.state;
+    const { article, err } = this.state;
+    if (err) return <Error err={err} />;
     return (
       article && (
         <div>

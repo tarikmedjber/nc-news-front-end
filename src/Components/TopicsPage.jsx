@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TopicsList from "./TopicsList";
 import "./Topic.css";
+import Error from "./Error";
 
 import { getTopics } from "../Api";
 export default class TopicsPage extends Component {
@@ -8,12 +9,21 @@ export default class TopicsPage extends Component {
     topics: []
   };
   componentDidMount() {
-    getTopics().then(topics => {
-      this.setState({ topics: topics });
-    });
+    getTopics()
+      .then(topics => {
+        this.setState({ topics: topics });
+      })
+      .catch(({ response }) => {
+        const errMessage = response.statusText;
+        const errStatus = response.status;
+        const err = { errMessage, errStatus };
+        console.log(response, "resonse");
+        this.setState({ err });
+      });
   }
   render() {
-    const { topics } = this.state;
+    const { topics, err } = this.state;
+    if (err) return <Error err={err} />;
     return (
       <div>
         <h2>Topics</h2>

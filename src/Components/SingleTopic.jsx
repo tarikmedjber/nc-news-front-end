@@ -1,14 +1,23 @@
 import React, { Component } from "react";
 import { getArticles } from "../Api";
 import { Link } from "@reach/router";
+import Error from "./Error";
 
 export default class SingleTopic extends Component {
-  state = { topic: [], sortBy: "created_at" };
+  state = { topic: [], sortBy: "created_at", err: null };
 
   componentDidMount() {
-    getArticles({ topic: this.props.slug }).then(articles => {
-      this.setState({ topic: articles });
-    });
+    getArticles({ topic: this.props.slug })
+      .then(articles => {
+        this.setState({ topic: articles });
+      })
+      .catch(({ response }) => {
+        const errMessage = response.statusText;
+        const errStatus = response.status;
+        const err = { errMessage, errStatus };
+        console.log(response, "resonse");
+        this.setState({ err });
+      });
   }
 
   componentDidUpdate(_, prevState) {
@@ -22,7 +31,8 @@ export default class SingleTopic extends Component {
   }
 
   render() {
-    const { topic } = this.state;
+    const { topic, err } = this.state;
+    if (err) return <Error err={err} />;
     return (
       topic && (
         <div>

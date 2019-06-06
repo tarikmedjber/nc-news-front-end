@@ -2,12 +2,21 @@ import React, { Component } from "react";
 import { getComments, postComment, deleteComment } from "../Api";
 import "./Comments.css";
 import SingleComment from "./SingleComment";
+import Error from "./Error";
 export default class Comments extends Component {
-  state = { comments: [], userComment: "", disableButton: true };
+  state = { comments: [], userComment: "", disableButton: true, err: null };
   componentDidMount() {
-    getComments(this.props.article_id).then(comments => {
-      this.setState({ comments: comments });
-    });
+    getComments(this.props.article_id)
+      .then(comments => {
+        this.setState({ comments: comments });
+      })
+      .catch(({ response }) => {
+        const errMessage = response.statusText;
+        const errStatus = response.status;
+        const err = { errMessage, errStatus };
+        console.log(response, "resonse");
+        this.setState({ err });
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -17,15 +26,18 @@ export default class Comments extends Component {
   }
 
   render() {
-    const { comments } = this.state;
-
+    const { comments, userComment, err } = this.state;
+    if (err) return <Error err={err} />;
+    let isAllFilledIn = userComment ? true : false;
     return (
       <div>
         {this.props.loggedInUser ? (
           <form>
             Comment:
             <input onChange={this.handleOnChange} />
-            <button onClick={this.postComment}>Post Comment</button>
+            <button disabled={!isAllFilledIn} onClick={this.postComment}>
+              Post Comment
+            </button>
           </form>
         ) : (
           <div id="NoUser">

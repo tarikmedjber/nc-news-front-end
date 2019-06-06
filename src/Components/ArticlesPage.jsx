@@ -1,16 +1,26 @@
 import React, { Component } from "react";
 import ArticleList from "./ArticleList";
+import Error from "./Error";
 
 import { getArticles } from "../Api";
 export default class ArticlesPage extends Component {
   state = {
     articles: [],
-    sortBy: "created_at"
+    sortBy: "created_at",
+    err: null
   };
   componentDidMount() {
-    getArticles().then(articles => {
-      this.setState({ articles: articles });
-    });
+    getArticles()
+      .then(articles => {
+        this.setState({ articles: articles });
+      })
+      .catch(({ response }) => {
+        const errMessage = response.statusText;
+        const errStatus = response.status;
+        const err = { errMessage, errStatus };
+        console.log(response, "resonse");
+        this.setState({ err });
+      });
   }
   componentDidUpdate(_, prevState) {
     if (prevState.sortBy !== this.state.sortBy) {
@@ -21,7 +31,8 @@ export default class ArticlesPage extends Component {
   }
 
   render() {
-    const { articles } = this.state;
+    const { articles, err } = this.state;
+    if (err) return <Error err={err} />;
 
     return (
       <div>
