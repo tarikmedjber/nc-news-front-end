@@ -7,7 +7,9 @@ export default class ArticlesPage extends Component {
   state = {
     articles: [],
     sortBy: "created_at",
-    err: null
+    err: null,
+    page: 1,
+    total_count: null
   };
   componentDidMount() {
     getArticles()
@@ -35,12 +37,19 @@ export default class ArticlesPage extends Component {
           console.log(response, "resonse");
           this.setState({ err });
         });
+    } else if (prevState.page !== this.state.page) {
+      getArticles({ p: this.state.page }).then(articles => {
+        console.log(articles, "updated pages");
+        this.setState(articles);
+      });
     }
   }
 
   render() {
-    const { articles, sortBy, err } = this.state;
+    const { articles, sortBy, err, page, total_count } = this.state;
     if (err) return <Error err={err} />;
+    const maxPages = Math.ceil(total_count / 10);
+    const totalButtons = Array.from({ length: maxPages });
 
     return (
       <div className="articlesPage">
@@ -63,11 +72,17 @@ export default class ArticlesPage extends Component {
             articles={articles}
           />
         </ul>
+        <button onClick={() => this.changePage(1)}>{totalButtons} </button>
       </div>
     );
   }
 
   filterBy = event => {
     this.setState({ sortBy: event.target.value });
+  };
+  changePage = direction => {
+    this.setState(prevState => {
+      return { page: prevState.page + direction };
+    });
   };
 }

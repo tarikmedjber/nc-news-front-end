@@ -15,11 +15,13 @@ import { Container } from "react-bootstrap";
 
 class App extends React.Component {
   state = { logInButton: "", loggedInUser: "", err: null };
-  // componentDidMount() {
-  //   if (localStorage.loggedInUser.hasOwnProperty("loggedInUser")) {
-  //     this.setState({ loggedInUser: localStorage.loggedInuser.username });
-  //   }
-  // }
+  componentDidMount() {
+    // if (localStorage.hasOwnProperty("loggedInUser")) {
+    //   this.setState({
+    //     loggedInUser: localStorage.getItem("loggedInUser")
+    //   });
+    // }
+  }
 
   render() {
     const { err, loggedInUser, logInButton } = this.state;
@@ -32,7 +34,6 @@ class App extends React.Component {
         />
 
         <Router>
-          <Error default />
           <Homepage path="/" />
           <ArticlesPage path="/articles" />
           <TopicsPage path="/topics" />
@@ -47,12 +48,19 @@ class App extends React.Component {
           />
           <UserProfile path="users/:username" />
           <LogInBox default />
+          <Error default />
         </Router>
       </Container>
     );
   }
   updateUsername = user => {
-    if (this.state.logInButton === "") {
+    if (this.state.logInButton === "" && typeof user === "object") {
+      localStorage.setItem("loggedInUser", JSON.stringify(user.username));
+      this.setState({
+        loggedInUser: user,
+        logInButton: "LOG OUT"
+      });
+    } else if (this.state.logInButton === "" && typeof user === "string") {
       localStorage.setItem("loggedInUser", JSON.stringify(user));
       this.setState({
         loggedInUser: user,
@@ -61,7 +69,7 @@ class App extends React.Component {
     } else if (this.state.logInButton === "LOG OUT") {
       localStorage.removeItem("loggedInUser");
 
-      this.setState({ loggedInUser: "", logInButton: "", userNotValid: null });
+      this.setState({ loggedInUser: "", logInButton: "" });
     }
   };
 }

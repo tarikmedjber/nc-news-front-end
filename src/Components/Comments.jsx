@@ -30,12 +30,10 @@ export default class Comments extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.loggedInUser !== this.props.loggedInUser) {
       this.setState({ disableButton: false });
-      if (prevState.page !== this.state.page)
-        getArticles({ p: this.state.page }).then(
-          ({ articles, total_count }) => {
-            this.setState({ articles, total_count });
-          }
-        );
+    } else if (prevState.page !== this.state.page) {
+      getComments({ p: this.state.page }).then(({ comments, total_count }) => {
+        this.setState({ comments, total_count });
+      });
     }
   }
 
@@ -48,6 +46,7 @@ export default class Comments extends Component {
       page,
       total_count
     } = this.state;
+
     const maxPages = Math.ceil(total_count / 10);
     const totalButtons = Array.from({ length: maxPages });
     if (err) return <Error err={err} />;
@@ -133,9 +132,9 @@ export default class Comments extends Component {
         this.setState({ err });
       });
   };
-  // changePage = direction => {
-  //   this.setState(prevState => {
-  //     return { page: prevState.page + direction };
-  //   });
-  // };
+  changePage = direction => {
+    this.setState(prevState => {
+      return { page: prevState.page + direction };
+    });
+  };
 }
