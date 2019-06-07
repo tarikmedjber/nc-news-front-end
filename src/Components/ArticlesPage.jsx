@@ -8,7 +8,6 @@ export default class ArticlesPage extends Component {
     articles: [],
     sortBy: "created_at",
     err: null
-    // page: 1
   };
   componentDidMount() {
     getArticles()
@@ -40,7 +39,7 @@ export default class ArticlesPage extends Component {
   }
 
   render() {
-    const { articles, err } = this.state;
+    const { articles, sortBy, err } = this.state;
     if (err) return <Error err={err} />;
 
     return (
@@ -48,7 +47,7 @@ export default class ArticlesPage extends Component {
         <h2>Articles</h2>
         <div className="sortBy">
           Sort By:
-          <select onChange={this.sortBy} value={this.state.sortBy}>
+          <select onChange={this.filterBy} value={sortBy}>
             <option value="created_at">Created At </option>
             <option value="comment_count">Comment Count</option>
             <option value="votes">Vote Count</option>
@@ -68,7 +67,7 @@ export default class ArticlesPage extends Component {
     );
   }
 
-  sortBy = event => {
+  filterBy = event => {
     this.setState({ sortBy: event.target.value });
   };
 }

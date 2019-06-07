@@ -1,11 +1,18 @@
 import React, { Component } from "react";
-import { getComments, postComment, deleteComment } from "../Api";
+import { getComments, postComment, deleteComment, getArticles } from "../Api";
 import "./Comments.css";
 import SingleComment from "./SingleComment";
 import Error from "./Error";
 import { Button } from "react-bootstrap";
 export default class Comments extends Component {
-  state = { comments: [], userComment: "", disableButton: true, err: null };
+  state = {
+    comments: [],
+    userComment: "",
+    disableButton: true,
+    err: null,
+    page: 1,
+    total_count: null
+  };
   componentDidMount() {
     getComments(this.props.article_id)
       .then(comments => {
@@ -23,11 +30,19 @@ export default class Comments extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.loggedInUser !== this.props.loggedInUser) {
       this.setState({ disableButton: false });
+      if (prevState.page !== this.state.page)
+        getArticles({ p: this.state.page }).then(
+          ({ articles, total_count }) => {
+            this.setState({ articles, total_count });
+          }
+        );
     }
   }
 
   render() {
-    const { comments, userComment, err } = this.state;
+    const { comments, userComment, err, page, total_count } = this.state;
+    const maxPages = Math.ceil(total_count / 10);
+    const totalButtons = Array.from({ length: maxPages });
     if (err) return <Error err={err} />;
     let isAllFilledIn = userComment ? true : false;
     return (
@@ -63,6 +78,7 @@ export default class Comments extends Component {
               );
             })}
         </ul>
+        <button onClick={() => this.changePage(1)}>{totalButtons} </button>
       </div>
     );
   }
@@ -110,4 +126,9 @@ export default class Comments extends Component {
         this.setState({ err });
       });
   };
+  // changePage = direction => {
+  //   this.setState(prevState => {
+  //     return { page: prevState.page + direction };
+  //   });
+  // };
 }

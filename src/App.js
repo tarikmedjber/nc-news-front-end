@@ -16,14 +16,13 @@ import { Container } from "react-bootstrap";
 class App extends React.Component {
   state = { logInButton: "", loggedInUser: "", err: null };
   render() {
-    const { err } = this.state;
+    const { err, loggedInUser, logInButton } = this.state;
     if (err) console.log(err);
     return (
       <Container className="App">
         <Header
           logInButton={this.state.logInButton}
           updateUsername={this.updateUsername}
-          userNotValid={this.state.userNotValid}
         />
 
         <Router>
@@ -32,16 +31,16 @@ class App extends React.Component {
           <ArticlesPage path="/articles" />
           <TopicsPage path="/topics" />
           <SingleArticle
-            loggedInUser={this.state.loggedInUser}
+            loggedInUser={loggedInUser}
             path="/articles/:article_id"
           />
           <SingleTopic path="/topics/:slug/articles" />
           <Comments
             path="/articles/:article_id/comments"
-            loggedInUser={this.state.loggedInUser}
+            loggedInUser={loggedInUser}
           />
           <UserProfile path="users/:username" />
-          <LogInBox changeUserNotValid={this.changeUserNotValid} default />
+          <LogInBox default />
         </Router>
       </Container>
     );

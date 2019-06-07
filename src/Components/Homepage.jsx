@@ -44,7 +44,7 @@ export default class Homepage extends Component {
         <ul id="Article">
           {articlesByVotes.map(article => {
             return (
-              <ListGroup key={article.article_id}>
+              <ListGroup key={article.article_id} className="mostVotesBody">
                 <Link to={`/articles/${article.article_id}`}>
                   <ListGroup.Item variant="primary">
                     {article.title}
