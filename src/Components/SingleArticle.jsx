@@ -37,7 +37,7 @@ export default class SingleArticle extends Component {
   }
 
   render() {
-    const { article, err } = this.state;
+    const { article, voteChange, disableButton, err } = this.state;
     if (err) return <Error err={err} />;
     return (
       article && (
@@ -51,17 +51,17 @@ export default class SingleArticle extends Component {
             <Card.Text id="ArticleBody">{article.body}</Card.Text>
             <Button
               variant="outline-secondary"
-              disabled={this.state.disableButton || this.state.voteChange > 0}
+              disabled={disableButton || voteChange > 0}
               onClick={() => this.handleVoteChange(1)}
             >
               <span className="VoteButton" role="img" aria-label="upHand">
                 ☝︎
               </span>
             </Button>
-            <p>{article.votes + this.state.voteChange}</p>
+            <p>{article.votes + voteChange}</p>
             <Button
               variant="outline-secondary"
-              disabled={this.state.disableButton || this.state.voteChange < 0}
+              disabled={disableButton || voteChange < 0}
               onClick={() => this.handleVoteChange(-1)}
             >
               <span className="VoteButton" role="img" aria-label="downHand">

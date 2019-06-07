@@ -38,14 +38,14 @@ export default class SingleTopic extends Component {
   }
 
   render() {
-    const { topic, err } = this.state;
+    const { topic, sortBy, err } = this.state;
     if (err) return <Error err={err} />;
     return (
       topic && (
         <div>
           <h1>{`All about ${this.props.slug}`}</h1>
           Sort By:
-          <select onChange={this.sortBy} value={this.state.sortBy}>
+          <select onChange={this.sortBy} value={sortBy}>
             <option value="created_at">Created At </option>
             <option value="comment_count">Comment Count</option>
             <option value="votes">Vote Count</option>

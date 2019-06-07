@@ -19,6 +19,7 @@ export default class SingleComment extends Component {
     }
   }
   render() {
+    const { voteChange, disableButton } = this.state;
     const { comment } = this.props;
     return (
       <ListGroup id="Comment" key={comment.comment_id}>
@@ -26,17 +27,17 @@ export default class SingleComment extends Component {
         <ListGroup.Item>{comment.body}</ListGroup.Item>
         <Button
           variant="outline-secondary"
-          disabled={this.state.disableButton || this.state.voteChange > 0}
+          disabled={disableButton || voteChange > 0}
           onClick={() => this.handleVoteChange(1)}
         >
           <span className="VoteButton" role="img" aria-label="upHand">
             ☝︎
           </span>
         </Button>
-        <ListGroup.Item>{comment.votes + this.state.voteChange}</ListGroup.Item>
+        <ListGroup.Item>{comment.votes + voteChange}</ListGroup.Item>
         <Button
           variant="outline-secondary"
-          disabled={this.state.disableButton || this.state.voteChange < 0}
+          disabled={disableButton || voteChange < 0}
           onClick={() => this.handleVoteChange(-1)}
         >
           <span className="VoteButton" role="img" aria-label="downHand">

@@ -40,7 +40,14 @@ export default class Comments extends Component {
   }
 
   render() {
-    const { comments, userComment, err, page, total_count } = this.state;
+    const {
+      comments,
+      disableButton,
+      userComment,
+      err,
+      page,
+      total_count
+    } = this.state;
     const maxPages = Math.ceil(total_count / 10);
     const totalButtons = Array.from({ length: maxPages });
     if (err) return <Error err={err} />;

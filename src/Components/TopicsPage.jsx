@@ -6,7 +6,8 @@ import Error from "./Error";
 import { getTopics } from "../Api";
 export default class TopicsPage extends Component {
   state = {
-    topics: []
+    topics: [],
+    err: null
   };
   componentDidMount() {
     getTopics()
