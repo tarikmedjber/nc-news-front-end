@@ -11,6 +11,7 @@ import SingleTopic from "./Components/SingleTopic";
 import Comments from "./Components/Comments";
 import Error from "./Components/Error";
 import LogInBox from "./Components/LogInBox";
+import { Container } from "react-bootstrap";
 
 class App extends React.Component {
   state = { logInButton: "", loggedInUser: "", err: null };
@@ -18,7 +19,7 @@ class App extends React.Component {
     const { err } = this.state;
     if (err) console.log(err);
     return (
-      <div className="App">
+      <Container className="App">
         <Header
           logInButton={this.state.logInButton}
           updateUsername={this.updateUsername}
@@ -42,7 +43,7 @@ class App extends React.Component {
           <UserProfile path="users/:username" />
           <LogInBox changeUserNotValid={this.changeUserNotValid} default />
         </Router>
-      </div>
+      </Container>
     );
   }
   updateUsername = user => {

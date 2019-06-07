@@ -4,6 +4,7 @@ import "./SingleArticle.css";
 import { Link } from "@reach/router";
 import Comments from "./Comments";
 import Error from "./Error";
+import { Button, Card } from "react-bootstrap";
 
 export default class SingleArticle extends Component {
   state = { article: null, voteChange: 0, disableButton: true, err: null };
@@ -38,38 +39,40 @@ export default class SingleArticle extends Component {
     if (err) return <Error err={err} />;
     return (
       article && (
-        <div>
-          <h2>{article.title}</h2>
+        <Card>
+          <Card.Title className="card-header">{article.title}</Card.Title>
           <Link to={`/topics/${article.topic}/articles`}>
-            <h3>{`Topic: ${article.topic}`}</h3>
+            <Card.Body>{`Topic: ${article.topic}`}</Card.Body>
           </Link>
 
           <div className="Article">
-            <h3 id="ArticleBody">{article.body}</h3>
-            <button
+            <Card.Text id="ArticleBody">{article.body}</Card.Text>
+            <Button
+              variant="outline-secondary"
               disabled={this.state.disableButton || this.state.voteChange > 0}
               onClick={() => this.handleVoteChange(1)}
             >
               <span className="VoteButton" role="img" aria-label="upHand">
                 ☝︎
               </span>
-            </button>
+            </Button>
             <p>{article.votes + this.state.voteChange}</p>
-            <button
+            <Button
+              variant="outline-secondary"
               disabled={this.state.disableButton || this.state.voteChange < 0}
               onClick={() => this.handleVoteChange(-1)}
             >
               <span className="VoteButton" role="img" aria-label="downHand">
                 ☟
               </span>
-            </button>
+            </Button>
           </div>
 
           <Comments
             article_id={article.article_id}
             loggedInUser={this.props.loggedInUser}
           />
-        </div>
+        </Card>
       )
     );
   }

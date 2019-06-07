@@ -37,7 +37,7 @@ export default class Comments extends Component {
             Comment:
             <input onChange={this.handleOnChange} />
             <Button
-              variant="secondary"
+              variant="outline-secondary"
               disabled={!isAllFilledIn}
               onClick={this.postComment}
             >

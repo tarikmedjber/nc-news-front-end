@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getUsers } from "../Api";
+import { Button } from "react-bootstrap";
 export default class LogInBox extends Component {
   state = { usernameInput: "", userNotValid: null };
 
@@ -9,7 +10,12 @@ export default class LogInBox extends Component {
     if (this.props.logInButton === "LOG OUT") {
       return (
         <div className="LogOut">
-          <button onClick={this.props.updateUsername}>LOG OUT</button>
+          <Button
+            variant="outline-secondary"
+            onClick={this.props.updateUsername}
+          >
+            LOG OUT
+          </Button>
         </div>
       );
     } else
@@ -24,13 +30,14 @@ export default class LogInBox extends Component {
               placeholder="Type Username Here"
             />
             <p>{userNotValid}</p>
-            <button
+            <Button
+              variant="outline-secondary"
               disabled={!isAllFilledIn}
               id="SignIn"
               onClick={this.checkUsername}
             >
               Sign In
-            </button>
+            </Button>
           </form>
         </div>
       );
