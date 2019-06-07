@@ -23,15 +23,17 @@ export default class SingleArticle extends Component {
       });
   }
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.loggedInUser !== this.props.loggedInUser) {
+    if (
+      prevProps.loggedInUser !== this.props.loggedInUser &&
+      this.props.loggedInUser
+    ) {
       this.setState({ disableButton: false });
+    } else if (
+      prevProps.loggedInUser.length !== this.props.loggedInUser.length &&
+      !this.props.loggedInUser
+    ) {
+      this.setState({ disableButton: true });
     }
-    // if (
-    //   prevProps.loggedInUser !== this.props.loggedInUser &&
-    //   this.props.loggedInUser.length < 1
-    // ) {
-    //   this.setState({ disableButton: false });
-    // }
   }
 
   render() {
@@ -39,13 +41,13 @@ export default class SingleArticle extends Component {
     if (err) return <Error err={err} />;
     return (
       article && (
-        <Card>
+        <Card className="Article">
           <Card.Title className="card-header">{article.title}</Card.Title>
           <Link to={`/topics/${article.topic}/articles`}>
             <Card.Body>{`Topic: ${article.topic}`}</Card.Body>
           </Link>
 
-          <div className="Article">
+          <div>
             <Card.Text id="ArticleBody">{article.body}</Card.Text>
             <Button
               variant="outline-secondary"

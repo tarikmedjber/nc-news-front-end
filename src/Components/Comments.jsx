@@ -46,7 +46,7 @@ export default class Comments extends Component {
           </form>
         ) : (
           <div id="NoUser">
-            <p>Log In To Comment And Vote</p>
+            <h6>Please Log In To Comment And Vote</h6>
           </div>
         )}
         <ul>

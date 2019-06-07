@@ -6,12 +6,17 @@ export default class SingleComment extends Component {
   state = { voteChange: 0, disableButton: true };
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.loggedInUser !== this.props.loggedInUser) {
+    if (
+      prevProps.loggedInUser !== this.props.loggedInUser &&
+      this.props.loggedInUser
+    ) {
       this.setState({ disableButton: false });
+    } else if (
+      prevProps.loggedInUser.length !== this.props.loggedInUser.length &&
+      !this.props.loggedInUser
+    ) {
+      this.setState({ disableButton: true });
     }
-    // if (prevProps.loggedInUser.length !== this.props.loggedInUser.length) {
-    //   this.setState({ disableButton: false });
-    // }
   }
   render() {
     const { comment } = this.props;

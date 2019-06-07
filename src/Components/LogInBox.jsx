@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getUsers } from "../Api";
 import { Button } from "react-bootstrap";
+import "./Header.css";
 export default class LogInBox extends Component {
   state = { usernameInput: "", userNotValid: null };
 
@@ -29,6 +30,7 @@ export default class LogInBox extends Component {
               type="text"
               placeholder="Type Username Here"
             />
+            <p className="signInMessage">Sign in as 'guest'</p>
             <p>{userNotValid}</p>
             <Button
               variant="outline-secondary"
@@ -63,7 +65,7 @@ export default class LogInBox extends Component {
       .catch(({ response }) => {
         this.setState({
           userNotValid:
-            "Please sign in with a valid Username or log in as 'Guest"
+            "Please sign in with a valid Username or log in as 'guest"
         });
       });
   };

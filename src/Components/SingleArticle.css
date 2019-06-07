@@ -1,6 +1,7 @@
 #Article {
   display: grid;
   list-style: none;
+  margin-top: 20%;
 }
 
 #ArticleBody {

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getArticles } from "../Api";
 import { Link } from "@reach/router";
 import Error from "./Error";
+import { ListGroup } from "react-bootstrap";
 
 export default class SingleTopic extends Component {
   state = { topic: [], sortBy: "created_at", err: null };
@@ -52,16 +53,20 @@ export default class SingleTopic extends Component {
           <ul>
             {topic.map(article => {
               return (
-                <li key={article.article_id}>
+                <ListGroup key={article.article_id}>
                   <Link to={`/articles/${article.article_id}`}>
-                    <h2>{article.title}</h2>
+                    <ListGroup.Item variant="primary">
+                      {article.title}
+                    </ListGroup.Item>
                   </Link>
-                  <h3>{article.body}</h3>
-                  <h4>{`${article.votes} votes`}</h4>
+                  <ListGroup.Item>{article.body}</ListGroup.Item>
+                  <ListGroup.Item>{`${article.votes} votes`}</ListGroup.Item>
                   <Link to={`/articles/${article.article_id}/comments`}>
-                    <h4>{`${article.comment_count} comments`}</h4>
+                    <ListGroup.Item>{`${
+                      article.comment_count
+                    } comments`}</ListGroup.Item>
                   </Link>
-                </li>
+                </ListGroup>
               );
             })}
           </ul>

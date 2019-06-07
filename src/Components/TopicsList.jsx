@@ -1,16 +1,17 @@
 import React from "react";
 import { Link } from "@reach/router";
+import { ListGroup } from "react-bootstrap";
 
 export default function TopicsList(props) {
   return props.topics.map((topic, i) => {
     return (
       <div key={i}>
-        <li key={i}>
+        <ListGroup key={i}>
           <Link to={`/topics/${topic.slug}/articles`}>
-            <h3>{topic.slug}</h3>
+            <ListGroup.Item variant="primary">{topic.slug}</ListGroup.Item>
           </Link>
-          <h4> {topic.description}</h4>
-        </li>
+          <ListGroup.Item> {topic.description}</ListGroup.Item>
+        </ListGroup>
       </div>
     );
   });
