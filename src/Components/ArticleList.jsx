@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "@reach/router";
 import "./articles.css";
-import { SplitButton, MenuItem, ListGroup } from "react-bootstrap";
+import { ListGroup } from "react-bootstrap";
 export default function ArticleList(props) {
   return props.articles.map((article, i) => {
     return (

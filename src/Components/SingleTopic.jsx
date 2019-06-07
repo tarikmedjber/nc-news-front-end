@@ -22,11 +22,17 @@ export default class SingleTopic extends Component {
 
   componentDidUpdate(_, prevState) {
     if (prevState.sortBy !== this.state.sortBy) {
-      getArticles({ topic: this.props.slug, sort_by: this.state.sortBy }).then(
-        articles => {
+      getArticles({ topic: this.props.slug, sort_by: this.state.sortBy })
+        .then(articles => {
           this.setState({ topic: articles });
-        }
-      );
+        })
+        .catch(({ response }) => {
+          const errMessage = response.statusText;
+          const errStatus = response.status;
+          const err = { errMessage, errStatus };
+          console.log(response, "resonse");
+          this.setState({ err });
+        });
     }
   }
 

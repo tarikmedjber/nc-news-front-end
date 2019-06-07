@@ -67,17 +67,25 @@ export default class Comments extends Component {
     );
   }
   deleteUserComment = comment_id => {
-    deleteComment(comment_id).then(res => {
-      this.setState(prevState => {
-        return {
-          comments: [
-            ...prevState.comments.filter(comment => {
-              return comment.comment_id !== comment_id;
-            })
-          ]
-        };
+    deleteComment(comment_id)
+      .then(res => {
+        this.setState(prevState => {
+          return {
+            comments: [
+              ...prevState.comments.filter(comment => {
+                return comment.comment_id !== comment_id;
+              })
+            ]
+          };
+        });
+      })
+      .catch(({ response }) => {
+        const errMessage = response.statusText;
+        const errStatus = response.status;
+        const err = { errMessage, errStatus };
+        console.log(response, "resonse");
+        this.setState({ err });
       });
-    });
   };
   handleOnChange = event => {
     this.setState({ userComment: event.target.value });
@@ -88,10 +96,18 @@ export default class Comments extends Component {
       username: this.props.loggedInUser.username,
       body: this.state.userComment
     };
-    postComment(this.props.article_id, newComment).then(comment => {
-      this.setState(prevState => {
-        return { comments: [comment, ...prevState.comments] };
+    postComment(this.props.article_id, newComment)
+      .then(comment => {
+        this.setState(prevState => {
+          return { comments: [comment, ...prevState.comments] };
+        });
+      })
+      .catch(({ response }) => {
+        const errMessage = response.statusText;
+        const errStatus = response.status;
+        const err = { errMessage, errStatus };
+        console.log(response, "resonse");
+        this.setState({ err });
       });
-    });
   };
 }
