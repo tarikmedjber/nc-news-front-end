@@ -18,7 +18,7 @@ export const getArticleById = article_id => {
     });
 };
 
-export const getTopics = props => {
+export const getTopics = () => {
   return axios.get(`${url}/topics`).then(({ data: { topics } }) => {
     return topics;
   });
@@ -32,7 +32,7 @@ export const getComments = article_id => {
     });
 };
 
-export const getUsers = username => {
+export const getUser = username => {
   return axios.get(`${url}/users/${username}`).then(({ data: { user } }) => {
     return user;
   });
@@ -47,12 +47,9 @@ export const postComment = (article_id, body) => {
 };
 
 export const deleteComment = comment_id => {
-  return axios
-    .delete(`${url}/comments/${comment_id}`)
-    .then(res => {
-      return res;
-    })
-    .catch(err => console.log(err));
+  return axios.delete(`${url}/comments/${comment_id}`).then(res => {
+    return res;
+  });
 };
 
 export const updateArticleVotes = (article_id, direction) => {

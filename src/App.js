@@ -30,7 +30,7 @@ class App extends React.Component {
       <Container className="App">
         <Header
           logInButton={this.state.logInButton}
-          updateUsername={this.updateUsername}
+          loginUser={this.loginUser}
         />
 
         <Router>
@@ -53,7 +53,7 @@ class App extends React.Component {
       </Container>
     );
   }
-  updateUsername = user => {
+  loginUser = user => {
     if (this.state.logInButton === "" && typeof user === "object") {
       localStorage.setItem("loggedInUser", JSON.stringify(user.username));
       this.setState({

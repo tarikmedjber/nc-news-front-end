@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getUsers } from "../Api";
+import { getUser } from "../Api";
 import { Button } from "react-bootstrap";
 import "./Header.css";
 export default class LogInBox extends Component {
@@ -11,10 +11,7 @@ export default class LogInBox extends Component {
     if (this.props.logInButton === "LOG OUT") {
       return (
         <div className="LogOut">
-          <Button
-            variant="outline-secondary"
-            onClick={this.props.updateUsername}
-          >
+          <Button variant="outline-secondary" onClick={this.props.loginUser}>
             LOG OUT
           </Button>
         </div>
@@ -52,14 +49,14 @@ export default class LogInBox extends Component {
     event.preventDefault();
     if (this.state.usernameInput === "guest") {
       this.setState({ userNotValid: null });
-      this.props.updateUsername("guest");
+      this.props.loginUser("guest");
     }
-    getUsers(this.state.usernameInput)
+    getUser(this.state.usernameInput)
       .then(user => {
         if (user) {
           this.setState({ userNotValid: null });
 
-          this.props.updateUsername(user);
+          this.props.loginUser(user);
         }
       })
       .catch(({ response }) => {
