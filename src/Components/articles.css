@@ -12,7 +12,14 @@
   font-size: 30px;
 }
 
-#Article {
-  display: flex;
+.Article {
+  /* display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center; */
+}
+.articleCard {
+  /* border-style: ridge;
+  border-color: coral;
+  border-width: 7px; */
 }

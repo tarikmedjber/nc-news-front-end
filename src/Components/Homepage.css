@@ -1,0 +1,6 @@
+#Article {
+  margin-top: 100%;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}

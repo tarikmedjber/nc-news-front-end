@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "@reach/router";
 import "./articles.css";
+import { SplitButton, MenuItem } from "react-bootstrap";
 export default function ArticleList(props) {
   return props.articles.map((article, i) => {
     return (
       <div key={i}>
-        <li key={article.article_id}>
+        <li key={article.article_id} className="articleCard">
           <Link to={`${article.article_id}`}>
             <h3>{article.title}</h3>
           </Link>

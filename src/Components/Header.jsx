@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "@reach/router";
 import "./Header.css";
 import LogInBox from "./LogInBox";
+import { Nav } from "react-bootstrap";
 
 export default function Header(props) {
   return (
@@ -13,17 +14,23 @@ export default function Header(props) {
         userNotValid={props.userNotValid}
       />
 
-      <div className="Navs">
-        <Link id="Nav1" to="/">
-          Homepage
-        </Link>
-        <Link id="Nav2" to="/articles">
-          Articles
-        </Link>
-        <Link id="Nav3" to="/topics">
-          Topics
-        </Link>
-      </div>
+      <Nav variant="tabs">
+        <Nav.Item>
+          <Nav.Link id="Nav1" href="/">
+            Homepage
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link id="Nav2" href="/articles">
+            Articles
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link id="Nav3" href="/topics">
+            Topics
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
     </div>
   );
 }

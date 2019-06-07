@@ -67,11 +67,11 @@ You should implement the following functionality in your website. Check the lect
 **As a hiring partner, I should be able to...**
 
 12. use the site on my mobile without sacrificing style or functionality (as I may not have my laptop nearby).
-13. log-in clearly with a suggested or default user (as I have no knowledge of the users in the database)
-14. follow the readme instructions to easily run the project locally.
-15. find a link to the hosted version of the project in the readme.
-16. find a link to the back-end repository of the project in the readme.
-17. find a link to the hosted version of the back-end project in the readme.
+    <!-- 13. log-in clearly with a suggested or default user (as I have no knowledge of the users in the database) -->
+13. follow the readme instructions to easily run the project locally.
+14. find a link to the hosted version of the project in the readme.
+15. find a link to the back-end repository of the project in the readme.
+16. find a link to the hosted version of the back-end project in the readme.
 
 **Error-handling: As a user, I should...**
 

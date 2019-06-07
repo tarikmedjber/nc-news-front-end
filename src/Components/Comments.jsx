@@ -3,6 +3,7 @@ import { getComments, postComment, deleteComment } from "../Api";
 import "./Comments.css";
 import SingleComment from "./SingleComment";
 import Error from "./Error";
+import { Button } from "react-bootstrap";
 export default class Comments extends Component {
   state = { comments: [], userComment: "", disableButton: true, err: null };
   componentDidMount() {
@@ -35,9 +36,13 @@ export default class Comments extends Component {
           <form>
             Comment:
             <input onChange={this.handleOnChange} />
-            <button disabled={!isAllFilledIn} onClick={this.postComment}>
+            <Button
+              variant="secondary"
+              disabled={!isAllFilledIn}
+              onClick={this.postComment}
+            >
               Post Comment
-            </button>
+            </Button>
           </form>
         ) : (
           <div id="NoUser">
