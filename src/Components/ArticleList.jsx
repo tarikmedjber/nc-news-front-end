@@ -1,26 +1,26 @@
 import React from "react";
 import { Link } from "@reach/router";
 import "./articles.css";
-import { SplitButton, MenuItem } from "react-bootstrap";
+import { SplitButton, MenuItem, ListGroup } from "react-bootstrap";
 export default function ArticleList(props) {
   return props.articles.map((article, i) => {
     return (
-      <div key={i}>
-        <li key={article.article_id} className="articleCard">
+      <div key={i} className="articleCard">
+        <ListGroup key={article.article_id}>
           <Link to={`${article.article_id}`}>
-            <h3>{article.title}</h3>
+            <ListGroup.Item variant="primary">{article.title}</ListGroup.Item>
           </Link>
 
-          <h4>{`Created by ${article.author}  `}</h4>
+          <ListGroup.Item>{`Created by ${article.author}  `}</ListGroup.Item>
 
-          <p>{`${article.votes} votes`}</p>
+          <ListGroup.Item>{`${article.votes} votes`}</ListGroup.Item>
 
           <Link to={`/articles/${article.article_id}/comments`}>
             {`${article.comment_count} comments`}
           </Link>
 
-          <p id="CreatedAt">{article.created_at}</p>
-        </li>
+          <ListGroup.Item id="CreatedAt">{article.created_at}</ListGroup.Item>
+        </ListGroup>
       </div>
     );
   });

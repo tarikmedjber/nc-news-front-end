@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { updateCommentVotes } from "../Api";
-import { Button } from "react-bootstrap";
+import { Button, ListGroup } from "react-bootstrap";
 
 export default class SingleComment extends Component {
   state = { voteChange: 0, disableButton: true };
@@ -16,9 +16,9 @@ export default class SingleComment extends Component {
   render() {
     const { comment } = this.props;
     return (
-      <li id="Comment" key={comment.comment_id}>
-        <h3>{comment.author}:</h3>
-        <p>{comment.body}</p>
+      <ListGroup id="Comment" key={comment.comment_id}>
+        <ListGroup.Item variant="primary">{comment.author}:</ListGroup.Item>
+        <ListGroup.Item>{comment.body}</ListGroup.Item>
         <Button
           variant="outline-secondary"
           disabled={this.state.disableButton || this.state.voteChange > 0}
@@ -28,7 +28,7 @@ export default class SingleComment extends Component {
             ☝︎
           </span>
         </Button>
-        <p>{comment.votes + this.state.voteChange}</p>
+        <ListGroup.Item>{comment.votes + this.state.voteChange}</ListGroup.Item>
         <Button
           variant="outline-secondary"
           disabled={this.state.disableButton || this.state.voteChange < 0}
@@ -47,7 +47,7 @@ export default class SingleComment extends Component {
           </Button>
         ) : null}
         {comment.created_at}
-      </li>
+      </ListGroup>
     );
   }
 

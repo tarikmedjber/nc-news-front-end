@@ -38,12 +38,15 @@ export default class ArticlesPage extends Component {
     return (
       <div>
         <h2>Articles</h2>
-        Sort By:
-        <select onChange={this.sortBy} value={this.state.sortBy}>
-          <option value="created_at">Created At </option>
-          <option value="comment_count">Comment Count</option>
-          <option value="votes">Vote Count</option>
-        </select>
+        <div className="sortBy">
+          Sort By:
+          <select onChange={this.sortBy} value={this.state.sortBy}>
+            <option value="created_at">Created At </option>
+            <option value="comment_count">Comment Count</option>
+            <option value="votes">Vote Count</option>
+          </select>
+        </div>
+
         <div>
           {/* Page: <button onClick={this.changePage}>{page}</button> */}
         </div>
