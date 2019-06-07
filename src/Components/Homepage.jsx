@@ -4,13 +4,26 @@ import { Link } from "@reach/router";
 import Error from "./Error";
 
 import "./articles.css";
+import { ListGroup } from "react-bootstrap";
 
 export default class Homepage extends Component {
-  state = { articles: [], err: null };
+  state = { articlesByVotes: [], articlesByComments: [], err: null };
   componentDidMount() {
     getArticles({ sort_by: "votes", limit: 2 })
       .then(articles => {
-        this.setState({ articles: articles });
+        this.setState({ articlesByVotes: articles });
+      })
+      .catch(({ response }) => {
+        const errMessage = response.statusText;
+        const errStatus = response.status;
+        const err = { errMessage, errStatus };
+        console.log(response, "resonse");
+        this.setState({ err });
+      });
+
+    getArticles({ sort_by: "comment_count", limit: 2 })
+      .then(articles => {
+        this.setState({ articlesByComments: articles });
       })
       .catch(({ response }) => {
         const errMessage = response.statusText;
@@ -21,29 +34,67 @@ export default class Homepage extends Component {
       });
   }
   render() {
-    const { articles, err } = this.state;
+    const { articlesByVotes, articlesByComments, err } = this.state;
     if (err) return <Error err={err} />;
     return (
       <div>
-        <h2>Todays Top Two!</h2>
+        <h2>Todays Top Two's!</h2>
+        <h3 className="mostVotes">Most Votes!</h3>
+
         <ul id="Article">
-          {articles.map(article => {
+          {articlesByVotes.map(article => {
             return (
-              <li key={article.article_id}>
+              <ListGroup key={article.article_id}>
                 <Link to={`/articles/${article.article_id}`}>
-                  <h3>{article.title}</h3>
+                  <ListGroup.Item variant="primary">
+                    {article.title}
+                  </ListGroup.Item>
                 </Link>
 
-                <h4>{`Created by ${article.author}  `}</h4>
+                <ListGroup.Item>
+                  {`Created by ${article.author}  `}{" "}
+                </ListGroup.Item>
 
-                <p>{`${article.votes} votes`}</p>
+                <ListGroup.Item>{`${article.votes} votes`} </ListGroup.Item>
 
                 <Link to={`/articles/${article.article_id}/comments`}>
                   {`${article.comment_count} comments`}
                 </Link>
 
-                <p id="CreatedAt">{article.created_at}</p>
-              </li>
+                <ListGroup.Item id="CreatedAt">
+                  {article.created_at}{" "}
+                </ListGroup.Item>
+              </ListGroup>
+            );
+          })}
+        </ul>
+
+        <h3 className="mostComments">Most Comments!</h3>
+
+        <ul id="Article">
+          {articlesByComments.map(article => {
+            return (
+              <ListGroup key={article.article_id}>
+                <Link to={`/articles/${article.article_id}`}>
+                  <ListGroup.Item variant="primary">
+                    {article.title}
+                  </ListGroup.Item>
+                </Link>
+
+                <ListGroup.Item>
+                  {`Created by ${article.author}  `}{" "}
+                </ListGroup.Item>
+
+                <ListGroup.Item>{`${article.votes} votes`} </ListGroup.Item>
+
+                <Link to={`/articles/${article.article_id}/comments`}>
+                  {`${article.comment_count} comments`}
+                </Link>
+
+                <ListGroup.Item id="CreatedAt">
+                  {article.created_at}{" "}
+                </ListGroup.Item>
+              </ListGroup>
             );
           })}
         </ul>

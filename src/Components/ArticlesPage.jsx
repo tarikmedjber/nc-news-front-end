@@ -36,7 +36,7 @@ export default class ArticlesPage extends Component {
     if (err) return <Error err={err} />;
 
     return (
-      <div>
+      <div className="articlesPage">
         <h2>Articles</h2>
         <div className="sortBy">
           Sort By:
