@@ -10,21 +10,26 @@ import SingleArticle from "./Components/SingleArticle";
 import SingleTopic from "./Components/SingleTopic";
 import Comments from "./Components/Comments";
 import Error from "./Components/Error";
-import LogInBox from "./Components/LogInBox";
 import { Container } from "react-bootstrap";
 
 class App extends React.Component {
   state = { logInButton: "", loggedInUser: "", err: null };
   componentDidMount() {
-    // if (localStorage.hasOwnProperty("loggedInUser")) {
-    //   this.setState({
-    //     loggedInUser: localStorage.getItem("loggedInUser")
-    //   });
-    // }
+    if (localStorage.hasOwnProperty("loggedInUser")) {
+      let username = localStorage.getItem("loggedInUser");
+      username = JSON.parse(username);
+      console.log(username, "user");
+      this.setState({
+        loggedInUser: username
+      });
+    }
   }
 
   render() {
     const { err, loggedInUser, logInButton } = this.state;
+    console.log(loggedInUser, "loggedin");
+    console.log(localStorage, "storage");
+
     if (err) console.log(err);
     return (
       <Container className="App">
@@ -47,7 +52,7 @@ class App extends React.Component {
             loggedInUser={loggedInUser}
           />
           <UserProfile path="users/:username" />
-          <LogInBox default />
+
           <Error default />
         </Router>
       </Container>
