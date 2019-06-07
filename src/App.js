@@ -15,6 +15,12 @@ import { Container } from "react-bootstrap";
 
 class App extends React.Component {
   state = { logInButton: "", loggedInUser: "", err: null };
+  // componentDidMount() {
+  //   if (localStorage.loggedInUser.hasOwnProperty("loggedInUser")) {
+  //     this.setState({ loggedInUser: localStorage.loggedInuser.username });
+  //   }
+  // }
+
   render() {
     const { err, loggedInUser, logInButton } = this.state;
     if (err) console.log(err);
@@ -47,11 +53,14 @@ class App extends React.Component {
   }
   updateUsername = user => {
     if (this.state.logInButton === "") {
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
       this.setState({
         loggedInUser: user,
         logInButton: "LOG OUT"
       });
     } else if (this.state.logInButton === "LOG OUT") {
+      localStorage.removeItem("loggedInUser");
+
       this.setState({ loggedInUser: "", logInButton: "", userNotValid: null });
     }
   };
