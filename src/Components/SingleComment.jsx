@@ -27,15 +27,14 @@ export default class SingleComment extends Component {
   render() {
     const { voteChange, disableButton } = this.state;
     const { comment, loggedInUser } = this.props;
-    console.log(localStorage.hasOwnProperty("loggedInUser"), "loggedInUser");
-    console.log(disableButton, "disableButton");
 
     if (!localStorage.hasOwnProperty("loggedInUser")) {
       return (
         <ListGroup id="Comment" key={comment.comment_id}>
           <ListGroup.Item variant="primary">{comment.author}:</ListGroup.Item>
           <ListGroup.Item>{comment.body}</ListGroup.Item>
-          <ListGroup.Item>{comment.votes + voteChange}</ListGroup.Item>
+          <ListGroup.Item>{`${comment.votes +
+            voteChange} votes`}</ListGroup.Item>
           {comment.created_at}
         </ListGroup>
       );
@@ -54,7 +53,7 @@ export default class SingleComment extends Component {
             ☝︎
           </span>
         </Button>
-        <ListGroup.Item>{comment.votes + voteChange}</ListGroup.Item>
+        <ListGroup.Item>{`${comment.votes + voteChange} votes`}</ListGroup.Item>
         <Button
           variant="outline-secondary"
           disabled={disableButton || voteChange < 0}

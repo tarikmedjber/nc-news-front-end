@@ -17,6 +17,7 @@ class App extends React.Component {
   componentDidMount() {
     if (localStorage.hasOwnProperty("loggedInUser")) {
       let username = localStorage.getItem("loggedInUser");
+      username = JSON.parse(username);
       this.setState({
         loggedInUser: username
       });

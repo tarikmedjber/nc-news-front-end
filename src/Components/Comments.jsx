@@ -4,6 +4,7 @@ import "./Comments.css";
 import SingleComment from "./SingleComment";
 import Error from "./Error";
 import { Button } from "react-bootstrap";
+
 export default class Comments extends Component {
   state = {
     comments: [],
@@ -38,14 +39,7 @@ export default class Comments extends Component {
   }
 
   render() {
-    const {
-      comments,
-      userComment,
-      err,
-      total_count,
-      disableButton
-    } = this.state;
-    console.log(disableButton, "disablebutton incomments");
+    const { comments, userComment, err, total_count } = this.state;
 
     const maxPages = Math.ceil(total_count / 10);
     const totalButtons = Array.from({ length: maxPages });
@@ -113,11 +107,17 @@ export default class Comments extends Component {
     this.setState({ userComment: event.target.value });
   };
   postComment = event => {
+    console.log(this.props.loggedInUser);
+    console.log(this.state.userComment);
+    console.log(this.props.article_id);
+    console.log(localStorage);
+
     event.preventDefault();
     let newComment = {
       username: this.props.loggedInUser,
       body: this.state.userComment
     };
+    console.log(newComment, "newComment");
     postComment(this.props.article_id, newComment)
       .then(comment => {
         this.setState(prevState => {

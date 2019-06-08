@@ -61,7 +61,7 @@ export default class SingleArticle extends Component {
                 ☝︎
               </span>
             </Button>
-            <p>{article.votes + voteChange}</p>
+            <p>{`${article.votes + voteChange} votes`}</p>
             <Button
               variant="outline-secondary"
               disabled={disableButton || voteChange < 0}
