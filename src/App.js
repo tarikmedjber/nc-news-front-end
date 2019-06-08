@@ -14,19 +14,19 @@ import { Container } from "react-bootstrap";
 
 class App extends React.Component {
   state = { loggedInUser: "", err: null };
-  // componentDidMount() {
-  //   if (localStorage.hasOwnProperty("loggedInUser")) {
-  //     let username = localStorage.getItem("loggedInUser");
-  //     username = JSON.parse(username);
-  //     this.setState({
-  //       loggedInUser: username
-  //     });
-  //   }
-  // }
+  componentDidMount() {
+    if (localStorage.hasOwnProperty("loggedInUser")) {
+      let username = localStorage.getItem("loggedInUser");
+      this.setState({
+        loggedInUser: username
+      });
+    }
+  }
 
   render() {
-    const { err, loggedInUser } = this.state;
+    const { loggedInUser } = this.state;
     console.log(loggedInUser, "loggedin");
+    console.log(localStorage, "storage");
 
     return (
       <Container className="App">

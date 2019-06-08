@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getComments, postComment, deleteComment, getArticles } from "../Api";
+import { getComments, postComment, deleteComment } from "../Api";
 import "./Comments.css";
 import SingleComment from "./SingleComment";
 import Error from "./Error";
@@ -40,10 +40,10 @@ export default class Comments extends Component {
   render() {
     const {
       comments,
-      disableButton,
+
       userComment,
       err,
-      page,
+
       total_count
     } = this.state;
 

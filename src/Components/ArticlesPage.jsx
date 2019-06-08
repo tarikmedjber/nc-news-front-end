@@ -45,7 +45,7 @@ export default class ArticlesPage extends Component {
   }
 
   render() {
-    const { articles, sortBy, err, page, total_count } = this.state;
+    const { articles, sortBy, err, total_count } = this.state;
     if (err) return <Error err={err} />;
     const maxPages = Math.ceil(total_count / 10);
     const totalButtons = Array.from({ length: maxPages });

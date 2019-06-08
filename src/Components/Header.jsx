@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "@reach/router";
+import { Link } from "@reach/router";
 import "./Header.css";
 import LogInBox from "./LogInBox";
 import { Nav } from "react-bootstrap";
@@ -16,19 +16,19 @@ export default function Header(props) {
 
       <Nav variant="tabs">
         <Nav.Item>
-          <Nav.Link id="Nav1" href="/">
+          <Link id="Nav1" to="/">
             Homepage
-          </Nav.Link>
+          </Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link id="Nav2" href="/articles">
+          <Link id="Nav2" to="/articles">
             Articles
-          </Nav.Link>
+          </Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link id="Nav3" href="/topics">
+          <Link id="Nav3" to="/topics">
             Topics
-          </Nav.Link>
+          </Link>
         </Nav.Item>
       </Nav>
     </div>
