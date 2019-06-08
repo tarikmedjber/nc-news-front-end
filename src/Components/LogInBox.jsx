@@ -19,7 +19,7 @@ export default class LogInBox extends Component {
     } else
       return (
         <div>
-          <form id="LoginForm">
+          <form id="LoginForm" onSubmit={this.handleSubmit}>
             Username:
             <input
               id="Input"
@@ -33,7 +33,7 @@ export default class LogInBox extends Component {
               variant="outline-secondary"
               disabled={!isAllFilledIn}
               id="SignIn"
-              onClick={this.checkUsername}
+              onClick={this.handleSubmit}
             >
               Sign In
             </Button>
@@ -45,7 +45,7 @@ export default class LogInBox extends Component {
   handleUsernameChange = event => {
     this.setState({ usernameInput: event.target.value });
   };
-  checkUsername = event => {
+  handleSubmit = event => {
     event.preventDefault();
     if (this.state.usernameInput === "guest") {
       this.setState({ userNotValid: null });

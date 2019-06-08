@@ -3,6 +3,7 @@ import { getArticles } from "../Api";
 import { Link } from "@reach/router";
 import Error from "./Error";
 import { ListGroup } from "react-bootstrap";
+import "./Topic.css";
 
 export default class SingleTopic extends Component {
   state = { topic: [], sortBy: "created_at", err: null };
@@ -42,7 +43,7 @@ export default class SingleTopic extends Component {
     if (err) return <Error err={err} />;
     return (
       topic && (
-        <div>
+        <div className="topicArticleList">
           <h1>{`All about ${this.props.slug}`}</h1>
           Sort By:
           <select onChange={this.sortBy} value={sortBy}>
