@@ -13,7 +13,7 @@ import Error from "./Components/Error";
 import { Container } from "react-bootstrap";
 
 class App extends React.Component {
-  state = { logInButton: "", loggedInUser: "", err: null };
+  state = { loggedInUser: "", err: null };
   // componentDidMount() {
   //   if (localStorage.hasOwnProperty("loggedInUser")) {
   //     let username = localStorage.getItem("loggedInUser");
@@ -25,14 +25,13 @@ class App extends React.Component {
   // }
 
   render() {
-    const { err, loggedInUser, logInButton } = this.state;
+    const { err, loggedInUser } = this.state;
     console.log(loggedInUser, "loggedin");
 
     return (
       <Container className="App">
         <Header
           loggedInUser={this.state.loggedInUser}
-          logInButton={this.state.logInButton}
           loginUser={this.loginUser}
         />
 
@@ -57,22 +56,20 @@ class App extends React.Component {
     );
   }
   loginUser = user => {
-    if (this.state.logInButton === "" && typeof user === "object") {
+    if (this.state.loggedInUser.length < 1 && typeof user === "object") {
       localStorage.setItem("loggedInUser", JSON.stringify(user.username));
       this.setState({
-        loggedInUser: user.username,
-        logInButton: "LOG OUT"
+        loggedInUser: user.username
       });
-    } else if (this.state.logInButton === "" && typeof user === "string") {
+    } else if (this.state.loggedInUser.length < 1 && typeof user === "string") {
       localStorage.setItem("loggedInUser", JSON.stringify(user));
       this.setState({
-        loggedInUser: user.username,
-        logInButton: "LOG OUT"
+        loggedInUser: user
       });
-    } else if (this.state.logInButton === "LOG OUT") {
+    } else if (this.state.loggedInUser.length > 0) {
       localStorage.removeItem("loggedInUser");
 
-      this.setState({ loggedInUser: "", logInButton: "" });
+      this.setState({ loggedInUser: "" });
     }
   };
 }

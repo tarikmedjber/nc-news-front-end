@@ -6,10 +6,10 @@ export default class LogInBox extends Component {
   state = { usernameInput: "", userNotValid: null };
 
   render() {
-    console.log(this.props.loggedInUser.length, "loggedinuser length");
+    console.log(this.props.loggedInUser, "guest");
     const { usernameInput, userNotValid } = this.state;
     const isAllFilledIn = usernameInput ? true : false;
-    if (this.props.logInButton === "LOG OUT") {
+    if (this.props.loggedInUser.length > 0) {
       return (
         <div className="LogOut">
           <Button variant="outline-secondary" onClick={this.props.loginUser}>
