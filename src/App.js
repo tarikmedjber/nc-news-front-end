@@ -25,8 +25,6 @@ class App extends React.Component {
 
   render() {
     const { loggedInUser } = this.state;
-    console.log(loggedInUser, "loggedin");
-    console.log(localStorage, "storage");
 
     return (
       <Container className="App">

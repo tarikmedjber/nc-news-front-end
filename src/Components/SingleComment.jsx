@@ -5,22 +5,42 @@ import { Button, ListGroup } from "react-bootstrap";
 export default class SingleComment extends Component {
   state = { voteChange: 0, disableButton: true };
 
+  componentDidMount() {
+    if (localStorage.hasOwnProperty("loggedInUser")) {
+      this.setState({ disableButton: false });
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (
       prevProps.loggedInUser !== this.props.loggedInUser &&
-      this.props.loggedInUser
+      localStorage.hasOwnProperty("loggedInUser")
     ) {
       this.setState({ disableButton: false });
     } else if (
       prevProps.loggedInUser.length !== this.props.loggedInUser.length &&
-      !this.props.loggedInUser
+      !localStorage.hasOwnProperty("loggedInUser")
     ) {
       this.setState({ disableButton: true });
     }
   }
   render() {
     const { voteChange, disableButton } = this.state;
-    const { comment } = this.props;
+    const { comment, loggedInUser } = this.props;
+    console.log(localStorage.hasOwnProperty("loggedInUser"), "loggedInUser");
+    console.log(disableButton, "disableButton");
+
+    if (!localStorage.hasOwnProperty("loggedInUser")) {
+      return (
+        <ListGroup id="Comment" key={comment.comment_id}>
+          <ListGroup.Item variant="primary">{comment.author}:</ListGroup.Item>
+          <ListGroup.Item>{comment.body}</ListGroup.Item>
+          <ListGroup.Item>{comment.votes + voteChange}</ListGroup.Item>
+          {comment.created_at}
+        </ListGroup>
+      );
+    }
+
     return (
       <ListGroup id="Comment" key={comment.comment_id}>
         <ListGroup.Item variant="primary">{comment.author}:</ListGroup.Item>
@@ -44,7 +64,7 @@ export default class SingleComment extends Component {
             ☟
           </span>
         </Button>
-        {comment.author === this.props.loggedInUser ? (
+        {comment.author === loggedInUser ? (
           <Button
             variant="outline-secondary"
             onClick={() => this.props.deleteUserComment(comment.comment_id)}

@@ -21,6 +21,9 @@ export default class SingleArticle extends Component {
         console.log(response, "resonse");
         this.setState({ err });
       });
+    if (localStorage.hasOwnProperty("loggedInUser")) {
+      this.setState({ disableButton: false });
+    }
   }
   componentDidUpdate(prevProps, prevState) {
     if (

@@ -40,12 +40,12 @@ export default class Comments extends Component {
   render() {
     const {
       comments,
-
       userComment,
       err,
-
-      total_count
+      total_count,
+      disableButton
     } = this.state;
+    console.log(disableButton, "disablebutton incomments");
 
     const maxPages = Math.ceil(total_count / 10);
     const totalButtons = Array.from({ length: maxPages });
