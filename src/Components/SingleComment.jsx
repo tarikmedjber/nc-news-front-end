@@ -14,12 +14,12 @@ export default class SingleComment extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (
       prevProps.loggedInUser !== this.props.loggedInUser &&
-      localStorage.hasOwnProperty("loggedInUser")
+      this.props.loggedInUser
     ) {
       this.setState({ disableButton: false });
     } else if (
       prevProps.loggedInUser.length !== this.props.loggedInUser.length &&
-      !localStorage.hasOwnProperty("loggedInUser")
+      !this.props.loggedInUser
     ) {
       this.setState({ disableButton: true });
     }

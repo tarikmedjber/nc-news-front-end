@@ -107,17 +107,11 @@ export default class Comments extends Component {
     this.setState({ userComment: event.target.value });
   };
   postComment = event => {
-    console.log(this.props.loggedInUser);
-    console.log(this.state.userComment);
-    console.log(this.props.article_id);
-    console.log(localStorage);
-
     event.preventDefault();
     let newComment = {
       username: this.props.loggedInUser,
       body: this.state.userComment
     };
-    console.log(newComment, "newComment");
     postComment(this.props.article_id, newComment)
       .then(comment => {
         this.setState(prevState => {
