@@ -7,7 +7,7 @@ import Homepage from "./Components/Homepage";
 import TopicsPage from "./Components/TopicsPage";
 import UserProfile from "./Components/UserProfile";
 import SingleArticle from "./Components/SingleArticle";
-import SingleTopic from "./Components/SingleTopic";
+import ArticlesByTopic from "./Components/ArticlesByTopic";
 import Comments from "./Components/Comments";
 import Error from "./Components/Error";
 import { Container } from "react-bootstrap";
@@ -42,7 +42,7 @@ class App extends React.Component {
             loggedInUser={loggedInUser}
             path="/articles/:article_id"
           />
-          <SingleTopic path="/topics/:slug/articles" />
+          <ArticlesByTopic path="/topics/:slug/articles" />
           <Comments
             path="/articles/:article_id/comments"
             loggedInUser={loggedInUser}

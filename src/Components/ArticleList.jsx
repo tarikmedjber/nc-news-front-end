@@ -1,28 +1,10 @@
 import React from "react";
-import { Link } from "@reach/router";
 import "./articles.css";
-import { ListGroup } from "react-bootstrap";
+import ArticleCard from "./ArticleCard";
 export default function ArticleList(props) {
-  return props.articles.map((article, i) => {
-    return (
-      <div key={i} className="articleCard">
-        <ListGroup key={article.article_id}>
-          <Link to={`${article.article_id}`}>
-            <ListGroup.Item variant="primary">{article.title}</ListGroup.Item>
-          </Link>
-
-          <ListGroup.Item>{`Created by ${article.author}  `}</ListGroup.Item>
-
-          <ListGroup.Item>{`${article.votes} votes`}</ListGroup.Item>
-
-          <Link to={`/articles/${article.article_id}/comments`}>
-            {`${article.comment_count} comments`}
-          </Link>
-
-          <ListGroup.Item id="CreatedAt">{article.created_at}</ListGroup.Item>
-        </ListGroup>
-      </div>
-    );
+  const { articles } = props;
+  return articles.map((article, i) => {
+    return <ArticleCard article={article} />;
   });
 }
 

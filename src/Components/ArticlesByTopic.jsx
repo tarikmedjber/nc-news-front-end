@@ -4,7 +4,7 @@ import Error from "./Error";
 import "./Topic.css";
 import ArticleList from "./ArticleList";
 
-export default class SingleTopic extends Component {
+export default class ArticlesByTopic extends Component {
   state = { articles: [], sortBy: "created_at", err: null };
 
   componentDidMount() {

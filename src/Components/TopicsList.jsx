@@ -3,7 +3,8 @@ import { Link } from "@reach/router";
 import { ListGroup } from "react-bootstrap";
 
 export default function TopicsList(props) {
-  return props.topics.map((topic, i) => {
+  const { topics } = props;
+  return topics.map((topic, i) => {
     return (
       <div key={i}>
         <ListGroup key={i}>

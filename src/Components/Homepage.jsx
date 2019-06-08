@@ -9,7 +9,7 @@ import { ListGroup } from "react-bootstrap";
 export default class Homepage extends Component {
   state = { articlesByVotes: [], articlesByComments: [], err: null };
   componentDidMount() {
-    getArticles({ sort_by: "votes", limit: 2 })
+    getArticles({ sort_by: "votes", order: "desc", limit: 2 })
       .then(articles => {
         this.setState({ articlesByVotes: articles });
       })
@@ -21,7 +21,7 @@ export default class Homepage extends Component {
         this.setState({ err });
       });
 
-    getArticles({ sort_by: "comment_count", limit: 2 })
+    getArticles({ sort_by: "comment_count", order: "desc", limit: 2 })
       .then(articles => {
         this.setState({ articlesByComments: articles });
       })
