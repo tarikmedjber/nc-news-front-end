@@ -14,26 +14,24 @@ import { Container } from "react-bootstrap";
 
 class App extends React.Component {
   state = { logInButton: "", loggedInUser: "", err: null };
-  componentDidMount() {
-    if (localStorage.hasOwnProperty("loggedInUser")) {
-      let username = localStorage.getItem("loggedInUser");
-      username = JSON.parse(username);
-      console.log(username, "user");
-      this.setState({
-        loggedInUser: username
-      });
-    }
-  }
+  // componentDidMount() {
+  //   if (localStorage.hasOwnProperty("loggedInUser")) {
+  //     let username = localStorage.getItem("loggedInUser");
+  //     username = JSON.parse(username);
+  //     this.setState({
+  //       loggedInUser: username
+  //     });
+  //   }
+  // }
 
   render() {
     const { err, loggedInUser, logInButton } = this.state;
     console.log(loggedInUser, "loggedin");
-    console.log(localStorage, "storage");
 
-    if (err) console.log(err);
     return (
       <Container className="App">
         <Header
+          loggedInUser={this.state.loggedInUser}
           logInButton={this.state.logInButton}
           loginUser={this.loginUser}
         />
@@ -62,13 +60,13 @@ class App extends React.Component {
     if (this.state.logInButton === "" && typeof user === "object") {
       localStorage.setItem("loggedInUser", JSON.stringify(user.username));
       this.setState({
-        loggedInUser: user,
+        loggedInUser: user.username,
         logInButton: "LOG OUT"
       });
     } else if (this.state.logInButton === "" && typeof user === "string") {
       localStorage.setItem("loggedInUser", JSON.stringify(user));
       this.setState({
-        loggedInUser: user,
+        loggedInUser: user.username,
         logInButton: "LOG OUT"
       });
     } else if (this.state.logInButton === "LOG OUT") {

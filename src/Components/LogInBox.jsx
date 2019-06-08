@@ -6,6 +6,7 @@ export default class LogInBox extends Component {
   state = { usernameInput: "", userNotValid: null };
 
   render() {
+    console.log(this.props.loggedInUser.length, "loggedinuser length");
     const { usernameInput, userNotValid } = this.state;
     const isAllFilledIn = usernameInput ? true : false;
     if (this.props.logInButton === "LOG OUT") {

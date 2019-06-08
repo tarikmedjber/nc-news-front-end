@@ -44,7 +44,7 @@ export default class SingleComment extends Component {
             ☟
           </span>
         </Button>
-        {comment.author === this.props.loggedInUser.username ? (
+        {comment.author === this.props.loggedInUser ? (
           <Button
             variant="outline-secondary"
             onClick={() => this.props.deleteUserComment(comment.comment_id)}

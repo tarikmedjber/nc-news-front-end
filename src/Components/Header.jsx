@@ -9,6 +9,7 @@ export default function Header(props) {
     <div>
       <h1 id="Title">NC-NEWS</h1>
       <LogInBox
+        loggedInUser={props.loggedInUser}
         logInButton={props.logInButton}
         loginUser={props.loginUser}
         userNotValid={props.userNotValid}

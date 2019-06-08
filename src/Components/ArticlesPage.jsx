@@ -39,7 +39,6 @@ export default class ArticlesPage extends Component {
         });
     } else if (prevState.page !== this.state.page) {
       getArticles({ p: this.state.page }).then(articles => {
-        console.log(articles, "updated pages");
         this.setState(articles);
       });
     }

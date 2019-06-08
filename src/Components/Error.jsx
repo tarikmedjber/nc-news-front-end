@@ -1,7 +1,6 @@
 import React from "react";
 
 const Error = ({ err }) => {
-  console.log(err);
   if (!err) return <h2>Something went wrong...</h2>;
   return (
     <div>

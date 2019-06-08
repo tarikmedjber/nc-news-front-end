@@ -115,7 +115,7 @@ export default class Comments extends Component {
   postComment = event => {
     event.preventDefault();
     let newComment = {
-      username: this.props.loggedInUser.username,
+      username: this.props.loggedInUser,
       body: this.state.userComment
     };
     postComment(this.props.article_id, newComment)
