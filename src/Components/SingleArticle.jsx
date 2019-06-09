@@ -95,6 +95,14 @@ export default class SingleArticle extends Component {
     });
     updateArticleVotes(this.state.article.article_id, {
       votes: direction
-    }).catch();
+    }).catch(({ response }) => {
+      const errMessage = response.statusText;
+      const errStatus = response.status;
+      const err = { errMessage, errStatus };
+      console.log(response, "resonse");
+      this.setState(prevState => {
+        return { err, voteChange: prevState.voteChange - direction };
+      });
+    });
   };
 }
