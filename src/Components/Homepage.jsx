@@ -1,29 +1,33 @@
 import React, { Component } from "react";
 import { getArticles } from "../Api";
-import { Link } from "@reach/router";
+import ArticleList from "./ArticleList";
 import Error from "./Error";
-
 import "./articles.css";
-import { ListGroup } from "react-bootstrap";
 
 export default class Homepage extends Component {
   state = { articlesByVotes: [], articlesByComments: [], err: null };
   componentDidMount() {
-    getArticles({ sort_by: "votes", order: "desc", limit: 2 })
+    let topArticlesByVotes = getArticles({
+      sort_by: "votes",
+      order: "desc",
+      limit: 3
+    }).then(articlesAndVotes => {
+      return articlesAndVotes;
+    });
+    let topArticlesByComments = getArticles({
+      sort_by: "comment_count",
+      order: "desc",
+      limit: 3
+    }).then(articlesAndComments => {
+      return articlesAndComments;
+    });
+    let promises = Promise.all([topArticlesByVotes, topArticlesByComments]);
+    promises
       .then(articles => {
-        this.setState({ articlesByVotes: articles });
-      })
-      .catch(({ response }) => {
-        const errMessage = response.statusText;
-        const errStatus = response.status;
-        const err = { errMessage, errStatus };
-        console.log(response, "resonse");
-        this.setState({ err });
-      });
-
-    getArticles({ sort_by: "comment_count", order: "desc", limit: 2 })
-      .then(articles => {
-        this.setState({ articlesByComments: articles });
+        this.setState({
+          articlesByVotes: articles[0],
+          articlesByComments: articles[1]
+        });
       })
       .catch(({ response }) => {
         const errMessage = response.statusText;
@@ -38,65 +42,17 @@ export default class Homepage extends Component {
     if (err) return <Error err={err} />;
     return (
       <div>
-        <h2>Todays Top Two's!</h2>
+        <h2>Todays Top Three's!</h2>
         <h3 className="mostVotes">Most Votes!</h3>
 
         <ul id="Article">
-          {articlesByVotes.map(article => {
-            return (
-              <ListGroup key={article.article_id} className="mostVotesBody">
-                <Link to={`/articles/${article.article_id}`}>
-                  <ListGroup.Item variant="primary">
-                    {article.title}
-                  </ListGroup.Item>
-                </Link>
-
-                <ListGroup.Item>
-                  {`Created by ${article.author}  `}{" "}
-                </ListGroup.Item>
-
-                <ListGroup.Item>{`${article.votes} votes`} </ListGroup.Item>
-
-                <Link to={`/articles/${article.article_id}/comments`}>
-                  {`${article.comment_count} comments`}
-                </Link>
-
-                <ListGroup.Item id="CreatedAt">
-                  {article.created_at}{" "}
-                </ListGroup.Item>
-              </ListGroup>
-            );
-          })}
+          <ArticleList articles={articlesByVotes} />
         </ul>
 
         <h3 className="mostComments">Most Comments!</h3>
 
         <ul id="Article">
-          {articlesByComments.map(article => {
-            return (
-              <ListGroup key={article.article_id}>
-                <Link to={`/articles/${article.article_id}`}>
-                  <ListGroup.Item variant="primary">
-                    {article.title}
-                  </ListGroup.Item>
-                </Link>
-
-                <ListGroup.Item>
-                  {`Created by ${article.author}  `}{" "}
-                </ListGroup.Item>
-
-                <ListGroup.Item>{`${article.votes} votes`} </ListGroup.Item>
-
-                <Link to={`/articles/${article.article_id}/comments`}>
-                  {`${article.comment_count} comments`}
-                </Link>
-
-                <ListGroup.Item id="CreatedAt">
-                  {article.created_at}{" "}
-                </ListGroup.Item>
-              </ListGroup>
-            );
-          })}
+          <ArticleList articles={articlesByComments} />
         </ul>
       </div>
     );
