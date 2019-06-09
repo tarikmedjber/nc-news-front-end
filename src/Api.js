@@ -24,9 +24,9 @@ export const getTopics = () => {
   });
 };
 
-export const getComments = article_id => {
+export const getComments = (article_id, params) => {
   return axios
-    .get(`${url}/articles/${article_id}/comments?order=desc`)
+    .get(`${url}/articles/${article_id}/comments`, { params })
     .then(({ data: { comments } }) => {
       return comments;
     });
@@ -40,7 +40,7 @@ export const getUser = username => {
 
 export const postComment = (article_id, body) => {
   return axios
-    .post(`${url}/aicles/${article_id}/comments`, body)
+    .post(`${url}/articles/${article_id}/comments`, body)
     .then(({ data: { comment } }) => {
       return comment;
     });
