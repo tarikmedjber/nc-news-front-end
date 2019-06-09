@@ -7,7 +7,7 @@ import Error from "./Error";
 import { Button, Card } from "react-bootstrap";
 
 export default class SingleArticle extends Component {
-  state = { article: null, voteChange: 0, disableButton: true, err: null };
+  state = { article: null, voteChange: 0, err: null };
 
   componentDidMount() {
     getArticleById(this.props.article_id)
@@ -21,65 +21,73 @@ export default class SingleArticle extends Component {
         console.log(response, "resonse");
         this.setState({ err });
       });
-    if (localStorage.hasOwnProperty("loggedInUser")) {
-      this.setState({ disableButton: false });
-    }
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (
-      prevProps.loggedInUser !== this.props.loggedInUser &&
-      this.props.loggedInUser
-    ) {
-      this.setState({ disableButton: false });
-    } else if (
-      prevProps.loggedInUser.length !== this.props.loggedInUser.length &&
-      !this.props.loggedInUser
-    ) {
-      this.setState({ disableButton: true });
-    }
   }
 
   render() {
     const { article, voteChange, disableButton, err } = this.state;
+    const { loggedInUser } = this.props;
     if (err) return <Error err={err} />;
-    return (
-      article && (
-        <Card className="Article">
-          <Card.Title className="card-header">{article.title}</Card.Title>
-          <Link to={`/topics/${article.topic}/articles`}>
-            <Card.Body>{`Topic: ${article.topic}`}</Card.Body>
-          </Link>
+    if (loggedInUser) {
+      return (
+        article && (
+          <Card className="Article">
+            <Card.Title className="card-header">{article.title}</Card.Title>
+            <Link to={`/topics/${article.topic}/articles`}>
+              <Card.Body>{`Topic: ${article.topic}`}</Card.Body>
+            </Link>
 
-          <div>
-            <Card.Text id="ArticleBody">{article.body}</Card.Text>
-            <Button
-              variant="outline-secondary"
-              disabled={disableButton || voteChange > 0}
-              onClick={() => this.handleVoteChange(1)}
-            >
-              <span className="VoteButton" role="img" aria-label="upHand">
-                ☝︎
-              </span>
-            </Button>
-            <p>{`${article.votes + voteChange} votes`}</p>
-            <Button
-              variant="outline-secondary"
-              disabled={disableButton || voteChange < 0}
-              onClick={() => this.handleVoteChange(-1)}
-            >
-              <span className="VoteButton" role="img" aria-label="downHand">
-                ☟
-              </span>
-            </Button>
-          </div>
+            <div>
+              <Card.Text id="ArticleBody">{article.body}</Card.Text>
+              <Button
+                variant="outline-secondary"
+                disabled={disableButton || voteChange > 0}
+                onClick={() => this.handleVoteChange(1)}
+              >
+                <span className="VoteButton" role="img" aria-label="upHand">
+                  ☝︎
+                </span>
+              </Button>
+              <p>{`${article.votes + voteChange} votes`}</p>
+              <Button
+                variant="outline-secondary"
+                disabled={disableButton || voteChange < 0}
+                onClick={() => this.handleVoteChange(-1)}
+              >
+                <span className="VoteButton" role="img" aria-label="downHand">
+                  ☟
+                </span>
+              </Button>
+            </div>
 
-          <Comments
-            article_id={article.article_id}
-            loggedInUser={this.props.loggedInUser}
-          />
-        </Card>
-      )
-    );
+            <Comments
+              article_id={article.article_id}
+              loggedInUser={this.props.loggedInUser}
+            />
+          </Card>
+        )
+      );
+    } else
+      return (
+        article && (
+          <Card className="Article">
+            <Card.Title className="card-header">{article.title}</Card.Title>
+            <Link to={`/topics/${article.topic}/articles`}>
+              <Card.Body>{`Topic: ${article.topic}`}</Card.Body>
+            </Link>
+
+            <div>
+              <Card.Text id="ArticleBody">{article.body}</Card.Text>
+
+              <p>{`${article.votes} votes`}</p>
+            </div>
+
+            <Comments
+              article_id={article.article_id}
+              loggedInUser={this.props.loggedInUser}
+            />
+          </Card>
+        )
+      );
   }
   handleVoteChange = direction => {
     this.setState(prevState => {

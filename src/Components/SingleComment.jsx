@@ -28,7 +28,7 @@ export default class SingleComment extends Component {
     const { voteChange, disableButton } = this.state;
     const { comment, loggedInUser } = this.props;
 
-    if (!localStorage.hasOwnProperty("loggedInUser")) {
+    if (!loggedInUser) {
       return (
         <ListGroup id="Comment" key={comment.comment_id}>
           <ListGroup.Item variant="primary">{comment.author}:</ListGroup.Item>
@@ -38,42 +38,42 @@ export default class SingleComment extends Component {
           {comment.created_at}
         </ListGroup>
       );
-    }
-
-    return (
-      <ListGroup id="Comment" key={comment.comment_id}>
-        <ListGroup.Item variant="primary">{comment.author}:</ListGroup.Item>
-        <ListGroup.Item>{comment.body}</ListGroup.Item>
-        <Button
-          variant="outline-secondary"
-          disabled={disableButton || voteChange > 0}
-          onClick={() => this.handleVoteChange(1)}
-        >
-          <span className="VoteButton" role="img" aria-label="upHand">
-            ☝︎
-          </span>
-        </Button>
-        <ListGroup.Item>{`${comment.votes + voteChange} votes`}</ListGroup.Item>
-        <Button
-          variant="outline-secondary"
-          disabled={disableButton || voteChange < 0}
-          onClick={() => this.handleVoteChange(-1)}
-        >
-          <span className="VoteButton" role="img" aria-label="downHand">
-            ☟
-          </span>
-        </Button>
-        {comment.author === loggedInUser ? (
+    } else
+      return (
+        <ListGroup id="Comment" key={comment.comment_id}>
+          <ListGroup.Item variant="primary">{comment.author}:</ListGroup.Item>
+          <ListGroup.Item>{comment.body}</ListGroup.Item>
           <Button
             variant="outline-secondary"
-            onClick={() => this.props.deleteUserComment(comment.comment_id)}
+            disabled={disableButton || voteChange > 0}
+            onClick={() => this.handleVoteChange(1)}
           >
-            Delete Comment
+            <span className="VoteButton" role="img" aria-label="upHand">
+              ☝︎
+            </span>
           </Button>
-        ) : null}
-        {comment.created_at}
-      </ListGroup>
-    );
+          <ListGroup.Item>{`${comment.votes +
+            voteChange} votes`}</ListGroup.Item>
+          <Button
+            variant="outline-secondary"
+            disabled={disableButton || voteChange < 0}
+            onClick={() => this.handleVoteChange(-1)}
+          >
+            <span className="VoteButton" role="img" aria-label="downHand">
+              ☟
+            </span>
+          </Button>
+          {comment.author === loggedInUser ? (
+            <Button
+              variant="outline-secondary"
+              onClick={() => this.props.deleteUserComment(comment.comment_id)}
+            >
+              Delete Comment
+            </Button>
+          ) : null}
+          {comment.created_at}
+        </ListGroup>
+      );
   }
 
   handleVoteChange = direction => {

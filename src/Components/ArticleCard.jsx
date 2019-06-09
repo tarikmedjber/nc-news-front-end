@@ -6,7 +6,7 @@ export default function ArticleCard(props) {
   const { article } = props;
   return (
     <ListGroup key={article.article_id}>
-      <Link to={`${article.article_id}`}>
+      <Link to={`/articles/${article.article_id}`}>
         <ListGroup.Item variant="primary">{article.title}</ListGroup.Item>
       </Link>
 
