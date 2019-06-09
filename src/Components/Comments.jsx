@@ -9,9 +9,7 @@ export default class Comments extends Component {
   state = {
     comments: [],
     disableButton: true,
-    err: null,
-    page: 1,
-    total_count: null
+    err: null
   };
   componentDidMount() {
     getComments(this.props.article_id)
@@ -30,27 +28,34 @@ export default class Comments extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.loggedInUser !== this.props.loggedInUser) {
       this.setState({ disableButton: false });
-    } else if (prevState.page !== this.state.page) {
-      getComments({ p: this.state.page }).then(({ comments, total_count }) => {
-        this.setState({ comments, total_count });
-      });
     }
   }
 
   render() {
-    const { comments, err, total_count } = this.state;
+    const { comments, err } = this.state;
+    console.log(err, "err");
     const { loggedInUser, article_id } = this.props;
-    const maxPages = Math.ceil(total_count / 10);
-    const totalButtons = Array.from({ length: maxPages });
-    if (err) return <Error err={err} />;
+
+    if (
+      err &&
+      err.errMessage !==
+        "Sorry you cannot post a comment right now please try again later"
+    ) {
+      return <Error err={err} />;
+    }
     return (
       <div>
-        {loggedInUser ? (
+        {loggedInUser && !err ? (
           <PostComment
             postComment={this.postComment}
             loggedInUser={loggedInUser}
             article_id={article_id}
           />
+        ) : err.errMessage ===
+          "Sorry you cannot post a comment right now please try again later" ? (
+          <div id="NoUser">
+            <h6>{err.errMessage}</h6>
+          </div>
         ) : (
           <div id="NoUser">
             <h6>Please Log In To Comment And Vote</h6>
@@ -70,7 +75,6 @@ export default class Comments extends Component {
               );
             })}
         </ul>
-        <button onClick={() => this.changePage(1)}>{totalButtons} </button>
       </div>
     );
   }
@@ -96,7 +100,7 @@ export default class Comments extends Component {
       });
   };
   postComment = userComment => {
-    let newComment = {
+    const newComment = {
       username: this.props.loggedInUser,
       body: userComment
     };
@@ -107,16 +111,11 @@ export default class Comments extends Component {
         });
       })
       .catch(({ response }) => {
-        const errMessage = response.statusText;
-        const errStatus = response.status;
-        const err = { errMessage, errStatus };
+        const errMessage =
+          "Sorry you cannot post a comment right now please try again later";
+        const err = { errMessage };
         console.log(response, "resonse");
         this.setState({ err });
       });
-  };
-  changePage = direction => {
-    this.setState(prevState => {
-      return { page: prevState.page + direction };
-    });
   };
 }

@@ -40,7 +40,7 @@ export const getUser = username => {
 
 export const postComment = (article_id, body) => {
   return axios
-    .post(`${url}/articles/${article_id}/comments`, body)
+    .post(`${url}/aicles/${article_id}/comments`, body)
     .then(({ data: { comment } }) => {
       return comment;
     });
