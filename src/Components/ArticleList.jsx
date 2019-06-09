@@ -4,8 +4,6 @@ import ArticleCard from "./ArticleCard";
 export default function ArticleList(props) {
   const { articles } = props;
   return articles.map((article, i) => {
-    return <ArticleCard article={article} />;
+    return <ArticleCard article={article} key={article.article_id} />;
   });
 }
-
-//extract the div out and create a new page of single article and call that new page here

@@ -21,7 +21,6 @@ export default class Comments extends Component {
         const errMessage = response.statusText;
         const errStatus = response.status;
         const err = { errMessage, errStatus };
-        console.log(response, "resonse");
         this.setState({ err });
       });
   }
@@ -39,7 +38,6 @@ export default class Comments extends Component {
           const errMessage = response.statusText;
           const errStatus = response.status;
           const err = { errMessage, errStatus };
-          console.log(response, "resonse");
           this.setState({ err });
         });
     }
@@ -47,7 +45,6 @@ export default class Comments extends Component {
 
   render() {
     const { comments, err, sortBy } = this.state;
-    console.log(err, "err");
     const { loggedInUser, article_id } = this.props;
 
     if (
@@ -117,7 +114,6 @@ export default class Comments extends Component {
         const errMessage = response.statusText;
         const errStatus = response.status;
         const err = { errMessage, errStatus };
-        console.log(response, "resonse");
         this.setState({ err });
       });
   };
@@ -136,7 +132,6 @@ export default class Comments extends Component {
         const errMessage =
           "Sorry you cannot post a comment right now please try again later. If you are signed in as 'guest' you cannot comment";
         const err = { errMessage };
-        console.log(response, "resonse");
         this.setState({ err });
       });
   };

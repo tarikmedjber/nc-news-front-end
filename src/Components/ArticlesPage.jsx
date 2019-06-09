@@ -3,13 +3,13 @@ import ArticleList from "./ArticleList";
 import Error from "./Error";
 import "./articles.css";
 import { getArticles } from "../Api";
+import DropDownSortBy from "./DropDownSortBy";
+
 export default class ArticlesPage extends Component {
   state = {
     articles: [],
     sortBy: "created_at",
-    err: null,
-    page: 1,
-    total_count: null
+    err: null
   };
   componentDidMount() {
     getArticles()
@@ -20,7 +20,6 @@ export default class ArticlesPage extends Component {
         const errMessage = response.statusText;
         const errStatus = response.status;
         const err = { errMessage, errStatus };
-        console.log(response, "resonse");
         this.setState({ err });
       });
   }
@@ -34,50 +33,39 @@ export default class ArticlesPage extends Component {
           const errMessage = response.statusText;
           const errStatus = response.status;
           const err = { errMessage, errStatus };
-          console.log(response, "resonse");
           this.setState({ err });
         });
     }
   }
 
   render() {
-    const { articles, sortBy, err, total_count } = this.state;
+    const { articles, sortBy, err } = this.state;
     if (err) return <Error err={err} />;
-    const maxPages = Math.ceil(total_count / 10);
-    const totalButtons = Array.from({ length: maxPages });
 
     return (
       <div className="articlesPage">
         <h2>Articles</h2>
         <div className="sortBy">
           Sort By:
-          <select onChange={this.filterBy} value={sortBy}>
-            <option value="created_at">Created At </option>
-            <option value="comment_count">Comment Count</option>
-            <option value="votes">Vote Count</option>
-          </select>
+          <DropDownSortBy sortByFunc={this.sortByFunc} sortBy={sortBy} />
         </div>
 
-        <div>
-          {/* Page: <button onClick={this.changePage}>{page}</button> */}
-        </div>
         <ul className="Article">
           <ArticleList
             handleVoteChange={this.handleVoteChange}
             articles={articles}
           />
         </ul>
-        <button onClick={() => this.changePage(1)}>{totalButtons} </button>
       </div>
     );
   }
 
-  filterBy = event => {
+  sortByFunc = event => {
     this.setState({ sortBy: event.target.value });
   };
-  changePage = direction => {
-    this.setState(prevState => {
-      return { page: prevState.page + direction };
-    });
-  };
+  // changePage = direction => {
+  //   this.setState(prevState => {
+  //     return { page: prevState.page + direction };
+  //   });
+  // };
 }

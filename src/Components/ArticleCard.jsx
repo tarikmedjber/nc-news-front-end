@@ -5,7 +5,7 @@ import { Link } from "@reach/router";
 export default function ArticleCard(props) {
   const { article } = props;
   return (
-    <ListGroup key={article.article_id}>
+    <ListGroup>
       <Link to={`/articles/${article.article_id}`}>
         <ListGroup.Item variant="primary">{article.title}</ListGroup.Item>
       </Link>

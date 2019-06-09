@@ -3,6 +3,7 @@ import { getArticles } from "../Api";
 import Error from "./Error";
 import "./Topic.css";
 import ArticleList from "./ArticleList";
+import DropDownSortBy from "./DropDownSortBy";
 
 export default class ArticlesByTopic extends Component {
   state = { articles: [], sortBy: "created_at", err: null };
@@ -16,7 +17,6 @@ export default class ArticlesByTopic extends Component {
         const errMessage = response.statusText;
         const errStatus = response.status;
         const err = { errMessage, errStatus };
-        console.log(response, "resonse");
         this.setState({ err });
       });
   }
@@ -31,7 +31,6 @@ export default class ArticlesByTopic extends Component {
           const errMessage = response.statusText;
           const errStatus = response.status;
           const err = { errMessage, errStatus };
-          console.log(response, "resonse");
           this.setState({ err });
         });
     }
@@ -45,11 +44,7 @@ export default class ArticlesByTopic extends Component {
         <div className="topicArticleList">
           <h1>{`All about ${this.props.slug}`}</h1>
           Sort By:
-          <select onChange={this.sortBy} value={sortBy}>
-            <option value="created_at">Created At </option>
-            <option value="comment_count">Comment Count</option>
-            <option value="votes">Vote Count</option>
-          </select>
+          <DropDownSortBy sortByFunc={this.sortByFunc} sortBy={sortBy} />
           <ul>
             <ArticleList articles={articles} />;
           </ul>
@@ -58,7 +53,7 @@ export default class ArticlesByTopic extends Component {
     );
   }
 
-  sortBy = event => {
+  sortByFunc = event => {
     this.setState({ sortBy: event.target.value });
   };
 }

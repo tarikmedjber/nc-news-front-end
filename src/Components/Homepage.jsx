@@ -33,7 +33,6 @@ export default class Homepage extends Component {
         const errMessage = response.statusText;
         const errStatus = response.status;
         const err = { errMessage, errStatus };
-        console.log(response, "resonse");
         this.setState({ err });
       });
   }
