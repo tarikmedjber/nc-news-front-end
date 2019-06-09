@@ -3,12 +3,11 @@ import { getComments, postComment, deleteComment } from "../Api";
 import "./Comments.css";
 import SingleComment from "./SingleComment";
 import Error from "./Error";
-import { Button } from "react-bootstrap";
+import PostComment from "./PostComment";
 
 export default class Comments extends Component {
   state = {
     comments: [],
-    userComment: "",
     disableButton: true,
     err: null,
     page: 1,
@@ -39,26 +38,19 @@ export default class Comments extends Component {
   }
 
   render() {
-    const { comments, userComment, err, total_count } = this.state;
-
+    const { comments, err, total_count } = this.state;
+    const { loggedInUser, article_id } = this.props;
     const maxPages = Math.ceil(total_count / 10);
     const totalButtons = Array.from({ length: maxPages });
     if (err) return <Error err={err} />;
-    let isAllFilledIn = userComment ? true : false;
     return (
       <div>
-        {this.props.loggedInUser ? (
-          <form>
-            Comment:
-            <input onChange={this.handleOnChange} />
-            <Button
-              variant="outline-secondary"
-              disabled={!isAllFilledIn}
-              onClick={this.postComment}
-            >
-              Post Comment
-            </Button>
-          </form>
+        {loggedInUser ? (
+          <PostComment
+            postComment={this.postComment}
+            loggedInUser={loggedInUser}
+            article_id={article_id}
+          />
         ) : (
           <div id="NoUser">
             <h6>Please Log In To Comment And Vote</h6>
@@ -73,7 +65,7 @@ export default class Comments extends Component {
                   comment_id={comment.comment_id}
                   comment={comment}
                   key={comment.comment_id}
-                  loggedInUser={this.props.loggedInUser}
+                  loggedInUser={loggedInUser}
                 />
               );
             })}
@@ -103,14 +95,10 @@ export default class Comments extends Component {
         this.setState({ err });
       });
   };
-  handleOnChange = event => {
-    this.setState({ userComment: event.target.value });
-  };
-  postComment = event => {
-    event.preventDefault();
+  postComment = userComment => {
     let newComment = {
       username: this.props.loggedInUser,
-      body: this.state.userComment
+      body: userComment
     };
     postComment(this.props.article_id, newComment)
       .then(comment => {
