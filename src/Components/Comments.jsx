@@ -13,7 +13,7 @@ export default class Comments extends Component {
     err: null
   };
   componentDidMount() {
-    getComments(this.props.article_id)
+    getComments(this.props.article_id, {})
       .then(comments => {
         this.setState({ comments: comments });
       })
@@ -60,23 +60,24 @@ export default class Comments extends Component {
     return (
       <div>
         <div className="sortBy">
-          Sort By:
+          Sort Comments By:
           <select onChange={this.filterBy} value={sortBy}>
             <option value="created_at">Created At </option>
             <option value="votes">Vote Count</option>
           </select>
         </div>
-        {loggedInUser && !err ? (
+        {err &&
+        err.errMessage ===
+          "Sorry you cannot post a comment right now please try again later. If you are signed in as 'guest' you cannot comment" ? (
+          <div id="NoUser">
+            <h6>{err.errMessage}</h6>
+          </div>
+        ) : loggedInUser ? (
           <PostComment
             postComment={this.postComment}
             loggedInUser={loggedInUser}
             article_id={article_id}
           />
-        ) : err.errMessage ===
-          "Sorry you cannot post a comment right now please try again later. If you are signed in as 'guest' you cannot comment" ? (
-          <div id="NoUser">
-            <h6>{err.errMessage}</h6>
-          </div>
         ) : (
           <div id="NoUser">
             <h6>Please Log In To Comment And Vote</h6>

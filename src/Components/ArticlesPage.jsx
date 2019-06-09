@@ -37,10 +37,6 @@ export default class ArticlesPage extends Component {
           console.log(response, "resonse");
           this.setState({ err });
         });
-    } else if (prevState.page !== this.state.page) {
-      getArticles({ p: this.state.page }).then(articles => {
-        this.setState(articles);
-      });
     }
   }
 
