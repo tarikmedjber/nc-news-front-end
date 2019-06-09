@@ -10,7 +10,8 @@ export default class Comments extends Component {
     comments: [],
     disableButton: true,
     sortBy: "created_at",
-    err: null
+    err: null,
+    page: 1
   };
   componentDidMount() {
     getComments(this.props.article_id, {})
@@ -40,6 +41,13 @@ export default class Comments extends Component {
           const err = { errMessage, errStatus };
           this.setState({ err });
         });
+    }
+    if (prevState.page !== this.state.page) {
+      getComments(this.props.article_id, { p: this.state.page }).then(
+        comments => {
+          this.setState({ comments: comments });
+        }
+      );
     }
   }
 
@@ -94,6 +102,8 @@ export default class Comments extends Component {
               );
             })}
         </ul>
+        <button onClick={() => this.changePage(-1)}>Last Page</button>
+        <button onClick={() => this.changePage(1)}>Next Page</button>
       </div>
     );
   }
@@ -137,5 +147,10 @@ export default class Comments extends Component {
   };
   filterBy = event => {
     this.setState({ sortBy: event.target.value });
+  };
+  changePage = direction => {
+    this.setState(prevState => {
+      return { page: prevState.page + direction };
+    });
   };
 }

@@ -21,6 +21,7 @@ export default class TopicsPage extends Component {
         this.setState({ err });
       });
   }
+
   render() {
     const { topics, err } = this.state;
     if (err) return <Error err={err} />;

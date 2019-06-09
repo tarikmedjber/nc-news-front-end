@@ -9,7 +9,8 @@ export default class ArticlesPage extends Component {
   state = {
     articles: [],
     sortBy: "created_at",
-    err: null
+    err: null,
+    page: 1
   };
   componentDidMount() {
     getArticles()
@@ -36,12 +37,16 @@ export default class ArticlesPage extends Component {
           this.setState({ err });
         });
     }
+    if (prevState.page !== this.state.page) {
+      getArticles({ p: this.state.page }).then(articles => {
+        this.setState({ articles: articles });
+      });
+    }
   }
 
   render() {
     const { articles, sortBy, err } = this.state;
     if (err) return <Error err={err} />;
-
     return (
       <div className="articlesPage">
         <h2>Articles</h2>
@@ -56,6 +61,9 @@ export default class ArticlesPage extends Component {
             articles={articles}
           />
         </ul>
+        <button onClick={() => this.changePage(-1)}>Last Page</button>
+
+        <button onClick={() => this.changePage(1)}>Next Page</button>
       </div>
     );
   }
@@ -63,9 +71,9 @@ export default class ArticlesPage extends Component {
   sortByFunc = event => {
     this.setState({ sortBy: event.target.value });
   };
-  // changePage = direction => {
-  //   this.setState(prevState => {
-  //     return { page: prevState.page + direction };
-  //   });
-  // };
+  changePage = direction => {
+    this.setState(prevState => {
+      return { page: prevState.page + direction };
+    });
+  };
 }

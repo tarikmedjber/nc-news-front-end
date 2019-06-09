@@ -4,10 +4,10 @@ import { ListGroup } from "react-bootstrap";
 
 export default function TopicsList(props) {
   const { topics } = props;
-  return topics.map((topic, i) => {
+  return topics.map(topic => {
     return (
-      <div key={i}>
-        <ListGroup key={i}>
+      <div key={topic.slug}>
+        <ListGroup>
           <Link to={`/topics/${topic.slug}/articles`}>
             <ListGroup.Item variant="primary">{topic.slug}</ListGroup.Item>
           </Link>
