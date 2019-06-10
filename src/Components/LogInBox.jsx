@@ -18,23 +18,20 @@ export default class LogInBox extends Component {
 
     if (this.props.loggedInUser.length > 0) {
       return (
-        <div>
-          <div className="LogOut">
-            <Button variant="outline-secondary" onClick={this.props.loginUser}>
-              LOG OUT
-            </Button>
-          </div>
-
+        <div className="LogInBox">
           {localStorage.hasOwnProperty("usersPic") ? (
             <Link to={`/users/${this.props.loggedInUser}`}>
               <img className="usersPic" src={usersPic} alt="users pic" />
             </Link>
           ) : null}
+          <Button variant="outline-secondary" onClick={this.props.loginUser}>
+            LOG OUT
+          </Button>
         </div>
       );
     } else
       return (
-        <div>
+        <div className="LogInBox">
           <form id="LoginForm" onSubmit={this.handleSubmit}>
             Username:
             <input

@@ -42,13 +42,13 @@ export default class Homepage extends Component {
     return (
       <div>
         <h2>Todays Top Three's!</h2>
-        <h3 className="mostVotes">Most Votes!</h3>
+        <h3 className="mostVotes">Popular with votes!</h3>
 
         <ul id="Article">
           <ArticleList articles={articlesByVotes} />
         </ul>
 
-        <h3 className="mostComments">Most Comments!</h3>
+        <h3 className="mostComments">Popular with comments!</h3>
 
         <ul id="Article">
           <ArticleList articles={articlesByComments} />

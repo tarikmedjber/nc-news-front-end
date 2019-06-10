@@ -11,31 +11,26 @@
   padding-right: 20px;
 }
 
-.LogOut {
-  position: absolute;
-  margin-top: 1%;
-  right: 220px;
-  width: 300px;
-  padding: 10px;
-}
-
-#LoginForm {
-  position: absolute;
-  right: 420px;
-  width: 100px;
-  padding: 10px;
-}
-
-.signInMessage {
+#Title {
   display: flex;
-  width: 20em;
-  font-size: 0.7em;
+  position: absolute;
+  align-self: center;
+}
+#Header {
+  margin-top: 5%;
 }
 
 .usersPic {
-  width: 90px;
-  position: absolute;
-  margin-top: 0.5%;
-  right: 450px;
-  padding: 10px;
+  width: 60px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-right: 100%;
+}
+
+.LogInBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }

@@ -63,31 +63,31 @@ export default class Comments extends Component {
       return <Error err={err} />;
     }
     return (
-      <div>
-        <div className="sortBy">
+      <div id="commentPage">
+        <div id="sortAndComment">
           Sort Comments By:
           <select onChange={this.filterBy} value={sortBy}>
             <option value="created_at">Created At </option>
             <option value="votes">Vote Count</option>
           </select>
+          {err &&
+          err.errMessage ===
+            "Sorry you cannot post a comment right now please try again later. If you are signed in as 'guest' you cannot comment" ? (
+            <div id="NoUser">
+              <h6>{err.errMessage}</h6>
+            </div>
+          ) : loggedInUser ? (
+            <PostComment
+              postComment={this.postComment}
+              loggedInUser={loggedInUser}
+              article_id={article_id}
+            />
+          ) : (
+            <div id="NoUser">
+              <h6>Please Log In To Comment And Vote</h6>
+            </div>
+          )}
         </div>
-        {err &&
-        err.errMessage ===
-          "Sorry you cannot post a comment right now please try again later. If you are signed in as 'guest' you cannot comment" ? (
-          <div id="NoUser">
-            <h6>{err.errMessage}</h6>
-          </div>
-        ) : loggedInUser ? (
-          <PostComment
-            postComment={this.postComment}
-            loggedInUser={loggedInUser}
-            article_id={article_id}
-          />
-        ) : (
-          <div id="NoUser">
-            <h6>Please Log In To Comment And Vote</h6>
-          </div>
-        )}
         <ul>
           {comments &&
             comments.map(comment => {

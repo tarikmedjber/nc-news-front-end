@@ -6,7 +6,7 @@ import { Nav } from "react-bootstrap";
 
 export default function Header(props) {
   return (
-    <div>
+    <div id="Header">
       <h1 id="Title">NC-NEWS</h1>
       <LogInBox
         loggedInUser={props.loggedInUser}
