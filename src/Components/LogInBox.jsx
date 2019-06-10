@@ -33,13 +33,15 @@ export default class LogInBox extends Component {
       return (
         <div className="LogInBox">
           <form id="LoginForm" onSubmit={this.handleSubmit}>
-            Username:
-            <input
-              id="Input"
-              onChange={this.handleUsernameChange}
-              type="text"
-              placeholder="Type Username Here"
-            />
+            <div id="usernameInput">
+              Username:
+              <input
+                id="Input"
+                onChange={this.handleUsernameChange}
+                type="text"
+                placeholder="Type Username Here"
+              />
+            </div>
             <p className="signInMessage">Sign in as 'guest'</p>
             <p>{userNotValid}</p>
             <Button

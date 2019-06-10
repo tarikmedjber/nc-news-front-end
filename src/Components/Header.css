@@ -39,3 +39,14 @@ ul,
 ol {
   padding-left: 0;
 }
+
+#LoginForm {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  margin: right;
+}
+
+#usernameInput {
+  margin-top: 3%;
+}
