@@ -4,6 +4,7 @@ import "./Comments.css";
 import SingleComment from "./SingleComment";
 import Error from "./Error";
 import PostComment from "./PostComment";
+import { Container, Row } from "react-bootstrap";
 
 export default class Comments extends Component {
   state = {
@@ -63,17 +64,19 @@ export default class Comments extends Component {
       return <Error err={err} />;
     }
     return (
-      <div id="commentPage">
-        <div id="sortAndComment">
+      <Container>
+        <Row className="justify-content-md-center">
           Sort Comments By:
-          <select onChange={this.filterBy} value={sortBy}>
+          <select id="sortBy" onChange={this.filterBy} value={sortBy}>
             <option value="created_at">Created At </option>
             <option value="votes">Vote Count</option>
           </select>
+        </Row>
+        <Row className="justify-content-md-center">
           {err &&
           err.errMessage ===
             "Sorry you cannot post a comment right now please try again later. If you are signed in as 'guest' you cannot comment" ? (
-            <div id="NoUser">
+            <div className="NoUser">
               <h6>{err.errMessage}</h6>
             </div>
           ) : loggedInUser ? (
@@ -83,11 +86,12 @@ export default class Comments extends Component {
               article_id={article_id}
             />
           ) : (
-            <div id="NoUser">
+            <div className="NoUser">
               <h6>Please Log In To Comment And Vote</h6>
             </div>
           )}
-        </div>
+        </Row>
+
         <ul>
           {comments &&
             comments.map(comment => {
@@ -102,9 +106,10 @@ export default class Comments extends Component {
               );
             })}
         </ul>
+
         <button onClick={() => this.changePage(-1)}>Last Page</button>
         <button onClick={() => this.changePage(1)}>Next Page</button>
-      </div>
+      </Container>
     );
   }
   deleteUserComment = comment_id => {

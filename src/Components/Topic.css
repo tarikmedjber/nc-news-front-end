@@ -6,3 +6,8 @@
 .topicArticleList {
   margin-top: 7%;
 }
+
+ul,
+ol {
+  padding-left: 0;
+}

@@ -41,14 +41,14 @@ export default class Homepage extends Component {
     if (err) return <Error err={err} />;
     return (
       <div>
-        <h2>Todays Top Three's!</h2>
-        <h3 className="mostVotes">Popular with votes!</h3>
+        <h2>Todays Top Threes!</h2>
+        <h3 className="mostVotes">Most Voted Articles!</h3>
 
         <ul id="Article">
           <ArticleList articles={articlesByVotes} />
         </ul>
 
-        <h3 className="mostComments">Popular with comments!</h3>
+        <h3 className="mostComments">Most Commented Articles!</h3>
 
         <ul id="Article">
           <ArticleList articles={articlesByComments} />

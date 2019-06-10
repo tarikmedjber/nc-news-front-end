@@ -34,3 +34,8 @@
   flex-wrap: wrap;
   justify-content: flex-end;
 }
+
+ul,
+ol {
+  padding-left: 0;
+}

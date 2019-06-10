@@ -1,8 +1,9 @@
-#NoUser {
-  width: 120px;
-  margin-left: auto;
+.NoUser {
+  margin-top: 3%;
+  display: flex;
+  flex-wrap: wrap;
   margin-right: auto;
-  margin-top: 30px;
+  margin-left: auto;
   width: 8em;
 }
 
@@ -16,8 +17,17 @@
   margin-top: 5%;
 }
 
-#sortAndComment {
+/* #sortAndComment {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+} */
+
+ul,
+ol {
+  padding-left: 0;
+}
+
+.justify-content-md-center {
+  margin-top: 3%;
 }

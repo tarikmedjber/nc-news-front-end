@@ -9,3 +9,8 @@
   margin-right: 25%;
   margin-left: 25%;
 }
+
+ul,
+ol {
+  padding-left: 0;
+}

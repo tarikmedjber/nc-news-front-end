@@ -4,3 +4,8 @@
   flex-direction: row;
   justify-content: center;
 }
+
+ul,
+ol {
+  padding-left: 0;
+}
