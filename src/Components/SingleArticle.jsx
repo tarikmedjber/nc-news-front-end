@@ -27,8 +27,6 @@ export default class SingleArticle extends Component {
     const { loggedInUser } = this.props;
     if (err) return <Error err={err} />;
     if (loggedInUser) {
-      console.log(article);
-
       return (
         article && (
           <Card className="Article">

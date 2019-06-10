@@ -42,7 +42,7 @@ export default class SingleComment extends Component {
             <ListGroup.Item>{comment.body}</ListGroup.Item>
             <ListGroup.Item>{`${comment.votes +
               voteChange} votes`}</ListGroup.Item>
-            {comment.created_at}
+            {comment.created_at.slice(0, 10)}
           </ListGroup>
         </div>
       );
@@ -84,7 +84,7 @@ export default class SingleComment extends Component {
                 Delete Comment
               </Button>
             ) : null}
-            {comment.created_at}
+            {comment.created_at.slice(0, 10)}
           </ListGroup>
         </div>
       );

@@ -19,7 +19,9 @@ export default function ArticleCard(props) {
         {`${article.comment_count} comments`}
       </Link>
 
-      <ListGroup.Item id="CreatedAt">{article.created_at}</ListGroup.Item>
+      <ListGroup.Item id="CreatedAt">
+        {article.created_at.slice(0, 10)}
+      </ListGroup.Item>
     </ListGroup>
   );
 }
