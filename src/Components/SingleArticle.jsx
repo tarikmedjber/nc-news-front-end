@@ -64,6 +64,7 @@ export default class SingleArticle extends Component {
             </div>
 
             <Comments
+              comment_count={article.comment_count}
               article_id={article.article_id}
               loggedInUser={this.props.loggedInUser}
             />
@@ -91,6 +92,7 @@ export default class SingleArticle extends Component {
             </Link>
 
             <Comments
+              comment_count={article.comment_count}
               article_id={article.article_id}
               loggedInUser={this.props.loggedInUser}
             />

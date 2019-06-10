@@ -12,12 +12,16 @@ export default class Comments extends Component {
     disableButton: true,
     sortBy: "created_at",
     err: null,
-    page: 1
+    page: 1,
+    total_count: 0
   };
   componentDidMount() {
     getComments(this.props.article_id, {})
       .then(comments => {
-        this.setState({ comments: comments });
+        this.setState({
+          comments: comments,
+          total_count: this.props.comment_count
+        });
       })
       .catch(({ response }) => {
         const errMessage = response.statusText;
@@ -53,7 +57,7 @@ export default class Comments extends Component {
   }
 
   render() {
-    const { comments, err, sortBy } = this.state;
+    const { comments, err, sortBy, page, total_count } = this.state;
     const { loggedInUser, article_id } = this.props;
 
     if (
@@ -63,6 +67,8 @@ export default class Comments extends Component {
     ) {
       return <Error err={err} />;
     }
+    const maxPages = Math.ceil(total_count / 10);
+    const pageNav = Array.from({ length: maxPages }, (v, i) => i + 1);
     return (
       <Container>
         <Row className="justify-content-md-center">
@@ -107,8 +113,16 @@ export default class Comments extends Component {
             })}
         </ul>
 
-        <button onClick={() => this.changePage(-1)}>Last Page</button>
-        <button onClick={() => this.changePage(1)}>Next Page</button>
+        <ul className="pageNav">
+          {pageNav.map((page, i) => {
+            return (
+              <li key={i} id="pageNumber">
+                <button onClick={() => this.changePage(i + 1)}>{page}</button>
+              </li>
+            );
+          })}
+        </ul>
+        <p>{`Page: ${page}`}</p>
       </Container>
     );
   }
@@ -154,8 +168,6 @@ export default class Comments extends Component {
     this.setState({ sortBy: event.target.value });
   };
   changePage = direction => {
-    this.setState(prevState => {
-      return { page: prevState.page + direction };
-    });
+    this.setState({ page: direction });
   };
 }
