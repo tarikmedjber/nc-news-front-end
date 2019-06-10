@@ -3,6 +3,7 @@ import { getUser, getArticles } from "../Api";
 import ArticleList from "./ArticleList";
 import DropDownSortBy from "./DropDownSortBy";
 import Error from "./Error";
+import "./UserProfile.css";
 
 export default class UserProfile extends Component {
   state = {
@@ -48,7 +49,7 @@ export default class UserProfile extends Component {
       user && (
         <div>
           <h2>{`${user.username}`}</h2>
-          <img src={user.avatar_url} alt="user avatar" />
+          <img id="usersPic" src={user.avatar_url} alt="user avatar" />
           <h4>{`${user.username}s Articles:`}</h4>
           <div className="sortBy">
             Sort By:

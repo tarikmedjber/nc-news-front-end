@@ -44,7 +44,9 @@ export default class SingleComment extends Component {
     } else
       return (
         <ListGroup id="Comment" key={comment.comment_id}>
-          <ListGroup.Item variant="primary">{comment.author}:</ListGroup.Item>
+          <Link to={`/users/${comment.author}`}>
+            <ListGroup.Item variant="primary">{comment.author}:</ListGroup.Item>
+          </Link>
           <ListGroup.Item>{comment.body}</ListGroup.Item>
           <Button
             variant="outline-secondary"
