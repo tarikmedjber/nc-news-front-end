@@ -69,6 +69,13 @@ export default class Comments extends Component {
     }
     const maxPages = Math.ceil(total_count / 10);
     const pageNav = Array.from({ length: maxPages }, (v, i) => i + 1);
+
+    if (comments.length < 1)
+      return (
+        <div>
+          <h3>No comments for this article, be the first!</h3>
+        </div>
+      );
     return (
       <Container>
         <Row className="justify-content-md-center">
