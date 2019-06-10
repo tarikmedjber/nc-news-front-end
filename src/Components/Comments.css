@@ -25,3 +25,15 @@ ol {
 .justify-content-md-center {
   margin-top: 3%;
 }
+
+.pageNav {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  width: 2%;
+  margin: auto;
+}
+
+#pageNumber {
+  margin-right: 2%;
+}
