@@ -67,6 +67,7 @@ class App extends React.Component {
       });
     } else if (this.state.loggedInUser.length > 0) {
       localStorage.removeItem("loggedInUser");
+      localStorage.removeItem("usersPic");
 
       this.setState({ loggedInUser: "" });
     }

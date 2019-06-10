@@ -2,18 +2,34 @@ import React, { Component } from "react";
 import { getUser } from "../Api";
 import { Button } from "react-bootstrap";
 import "./Header.css";
+import { Link } from "@reach/router";
+
 export default class LogInBox extends Component {
   state = { usernameInput: "", userNotValid: null };
 
   render() {
     const { usernameInput, userNotValid } = this.state;
     const isAllFilledIn = usernameInput ? true : false;
+    let usersPic = null;
+
+    if (localStorage.hasOwnProperty("usersPic")) {
+      usersPic = JSON.parse(localStorage.getItem("usersPic"));
+    }
+
     if (this.props.loggedInUser.length > 0) {
       return (
-        <div className="LogOut">
-          <Button variant="outline-secondary" onClick={this.props.loginUser}>
-            LOG OUT
-          </Button>
+        <div>
+          <div className="LogOut">
+            <Button variant="outline-secondary" onClick={this.props.loginUser}>
+              LOG OUT
+            </Button>
+          </div>
+
+          {localStorage.hasOwnProperty("usersPic") ? (
+            <Link to={`/users/${this.props.loggedInUser}`}>
+              <img className="usersPic" src={usersPic} alt="users pic" />
+            </Link>
+          ) : null}
         </div>
       );
     } else
@@ -54,8 +70,8 @@ export default class LogInBox extends Component {
     getUser(this.state.usernameInput)
       .then(user => {
         if (user) {
+          localStorage.setItem("usersPic", JSON.stringify(user.avatar_url));
           this.setState({ userNotValid: null });
-
           this.props.loginUser(user);
         }
       })

@@ -13,27 +13,29 @@
 
 .LogOut {
   position: absolute;
-  margin-top: 0px;
-  right: 150px;
-  width: 5em;
-  height: 1.2em;
-}
-
-#SignIn {
-  margin: 10px;
-  width: 100%;
-  margin-top: 0%;
+  margin-top: 1%;
+  right: 220px;
+  width: 300px;
+  padding: 10px;
 }
 
 #LoginForm {
   position: absolute;
-  right: 150px;
-  width: 5em;
-  height: 1.2em;
+  right: 420px;
+  width: 100px;
+  padding: 10px;
 }
 
 .signInMessage {
   display: flex;
   width: 20em;
   font-size: 0.7em;
+}
+
+.usersPic {
+  width: 90px;
+  position: absolute;
+  margin-top: 0.5%;
+  right: 450px;
+  padding: 10px;
 }

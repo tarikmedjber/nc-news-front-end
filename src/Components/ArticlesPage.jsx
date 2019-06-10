@@ -14,7 +14,7 @@ export default class ArticlesPage extends Component {
   };
   componentDidMount() {
     getArticles()
-      .then(articles => {
+      .then(({ articles, total_count }) => {
         this.setState({ articles: articles });
       })
       .catch(({ response }) => {
@@ -27,7 +27,7 @@ export default class ArticlesPage extends Component {
   componentDidUpdate(_, prevState) {
     if (prevState.sortBy !== this.state.sortBy) {
       getArticles({ sort_by: this.state.sortBy })
-        .then(articles => {
+        .then(({ articles }) => {
           this.setState({ articles: articles });
         })
         .catch(({ response }) => {
@@ -38,7 +38,7 @@ export default class ArticlesPage extends Component {
         });
     }
     if (prevState.page !== this.state.page) {
-      getArticles({ p: this.state.page }).then(articles => {
+      getArticles({ p: this.state.page }).then(({ articles, total_count }) => {
         this.setState({ articles: articles });
       });
     }

@@ -5,8 +5,8 @@ const url = "https://nc-news-web.herokuapp.com/api";
 export const getArticles = params => {
   return axios
     .get(`${url}/articles`, { params })
-    .then(({ data: { articles } }) => {
-      return articles;
+    .then(({ data: { articles }, data: { total_count } }) => {
+      return { articles, total_count };
     });
 };
 export const getArticleById = article_id => {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { updateCommentVotes } from "../Api";
 import { Button, ListGroup } from "react-bootstrap";
+import { Link } from "@reach/router";
 
 export default class SingleComment extends Component {
   state = { voteChange: 0, disableButton: true };
@@ -31,7 +32,9 @@ export default class SingleComment extends Component {
     if (!loggedInUser) {
       return (
         <ListGroup id="Comment" key={comment.comment_id}>
-          <ListGroup.Item variant="primary">{comment.author}:</ListGroup.Item>
+          <Link to={`/users/${comment.author}`}>
+            <ListGroup.Item variant="primary">{comment.author}:</ListGroup.Item>
+          </Link>
           <ListGroup.Item>{comment.body}</ListGroup.Item>
           <ListGroup.Item>{`${comment.votes +
             voteChange} votes`}</ListGroup.Item>

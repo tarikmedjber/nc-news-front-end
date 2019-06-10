@@ -10,7 +10,7 @@ export default class ArticlesByTopic extends Component {
 
   componentDidMount() {
     getArticles({ topic: this.props.slug })
-      .then(articles => {
+      .then(({ articles }) => {
         this.setState({ articles: articles });
       })
       .catch(({ response }) => {
@@ -24,7 +24,7 @@ export default class ArticlesByTopic extends Component {
   componentDidUpdate(_, prevState) {
     if (prevState.sortBy !== this.state.sortBy) {
       getArticles({ topic: this.props.slug, sort_by: this.state.sortBy })
-        .then(articles => {
+        .then(({ articles }) => {
           this.setState({ articles: articles });
         })
         .catch(({ response }) => {

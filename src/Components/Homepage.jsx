@@ -11,14 +11,14 @@ export default class Homepage extends Component {
       sort_by: "votes",
       order: "desc",
       limit: 3
-    }).then(articlesAndVotes => {
+    }).then(({ articles: articlesAndVotes }) => {
       return articlesAndVotes;
     });
     let topArticlesByComments = getArticles({
       sort_by: "comment_count",
       order: "desc",
       limit: 3
-    }).then(articlesAndComments => {
+    }).then(({ articles: articlesAndComments }) => {
       return articlesAndComments;
     });
     let promises = Promise.all([topArticlesByVotes, topArticlesByComments]);

@@ -10,8 +10,9 @@ export default function ArticleCard(props) {
         <ListGroup.Item variant="primary">{article.title}</ListGroup.Item>
       </Link>
 
-      <ListGroup.Item>{`Created by ${article.author}  `}</ListGroup.Item>
-
+      <Link to={`/users/${article.author}`}>
+        <ListGroup.Item>{`Created by ${article.author}  `}</ListGroup.Item>
+      </Link>
       <ListGroup.Item>{`${article.votes} votes`}</ListGroup.Item>
 
       <Link to={`/articles/${article.article_id}/comments`}>
