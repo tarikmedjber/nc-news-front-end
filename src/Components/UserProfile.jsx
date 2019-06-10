@@ -44,7 +44,6 @@ export default class UserProfile extends Component {
   render() {
     const { user, articles, sortBy, err } = this.state;
     if (err) return <Error err={err} />;
-
     return (
       user && (
         <div>

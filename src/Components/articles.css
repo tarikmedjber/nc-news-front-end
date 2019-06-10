@@ -30,3 +30,15 @@
 .mostVotesBody {
   margin-top: 0%;
 }
+
+.pageNav {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  width: 10%;
+  margin: auto;
+}
+
+#pageNumber {
+  margin-right: 2%;
+}
