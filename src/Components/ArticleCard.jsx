@@ -15,7 +15,7 @@ export default function ArticleCard(props) {
       </Link>
       <ListGroup.Item>{`${article.votes} votes`}</ListGroup.Item>
 
-      <Link to={`/articles/${article.article_id}/comments`}>
+      <Link to={`/articles/${article.article_id}`}>
         {`${article.comment_count} comments`}
       </Link>
 

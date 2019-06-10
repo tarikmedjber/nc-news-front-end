@@ -27,6 +27,8 @@ export default class SingleArticle extends Component {
     const { loggedInUser } = this.props;
     if (err) return <Error err={err} />;
     if (loggedInUser) {
+      console.log(article);
+
       return (
         article && (
           <Card className="Article">
@@ -64,6 +66,7 @@ export default class SingleArticle extends Component {
             </div>
 
             <Comments
+              articleTitle={article.title}
               comment_count={article.comment_count}
               article_id={article.article_id}
               loggedInUser={this.props.loggedInUser}
@@ -92,6 +95,7 @@ export default class SingleArticle extends Component {
             </Link>
 
             <Comments
+              articleTitle={article.title}
               comment_count={article.comment_count}
               article_id={article.article_id}
               loggedInUser={this.props.loggedInUser}
