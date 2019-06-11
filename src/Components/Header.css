@@ -1,20 +1,25 @@
 #Nav1 {
+  margin-left: 100%;
   padding-right: 20px;
 }
 #Nav2 {
   padding-right: 20px;
+  margin-left: 101%;
 }
 #Nav3 {
   padding-right: 20px;
+  margin-left: 102%;
 }
 #Nav4 {
   padding-right: 20px;
+  margin-left: 103%;
 }
 
 #Title {
   display: flex;
   position: absolute;
   align-self: center;
+  font-size: 4em;
 }
 #Header {
   margin-top: 5%;
@@ -29,24 +34,20 @@
   margin-right: 100%;
 }
 
-.LogInBox {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
 ul,
 ol {
   padding-left: 0;
 }
-
-#LoginForm {
+.LogInBox {
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: wrap;
+  flex-grow: 1;
   flex-direction: column;
-  margin: right;
+  align-content: flex-end;
+  align-items: flex-end;
+  float: right;
 }
 
-#usernameInput {
-  margin-top: 3%;
+.navBar {
+  margin-right: 25%;
 }

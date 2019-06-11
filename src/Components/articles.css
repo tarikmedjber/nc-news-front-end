@@ -12,7 +12,7 @@
 }
 
 .sortBy {
-  margin-top: 2%;
+  margin-top: 3%;
 }
 
 .articlesPage {
@@ -29,4 +29,20 @@
 
 .mostVotesBody {
   margin-top: 0%;
+}
+
+.sections {
+  width: 50%;
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.Article {
+  padding-top: 0%;
+  margin-top: 0%;
+}
+
+body {
+  margin: 0;
 }

@@ -9,3 +9,7 @@ ul,
 ol {
   padding-left: 0;
 }
+
+body {
+  margin: 0;
+}

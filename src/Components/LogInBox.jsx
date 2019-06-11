@@ -31,29 +31,26 @@ export default class LogInBox extends Component {
       );
     } else
       return (
-        <div className="LogInBox">
-          <form id="LoginForm" onSubmit={this.handleSubmit}>
-            <div id="usernameInput">
-              Username:
-              <input
-                id="Input"
-                onChange={this.handleUsernameChange}
-                type="text"
-                placeholder="Type Username Here"
-              />
-            </div>
-            <p className="signInMessage">Sign in as 'guest'</p>
-            <p>{userNotValid}</p>
-            <Button
-              variant="outline-secondary"
-              disabled={!isAllFilledIn}
-              id="SignIn"
-              onClick={this.handleSubmit}
-            >
-              Sign In
-            </Button>
-          </form>
-        </div>
+        <form className="LogInBox" onSubmit={this.handleSubmit}>
+          <p id="usernameInput">Username:</p>
+          <input
+            id="Input"
+            onChange={this.handleUsernameChange}
+            type="text"
+            placeholder="Type Username Here"
+          />
+
+          <p className="signInMessage">Sign in as 'guest'</p>
+          <p>{userNotValid}</p>
+          <Button
+            variant="outline-secondary"
+            disabled={!isAllFilledIn}
+            id="SignIn"
+            onClick={this.handleSubmit}
+          >
+            Sign In
+          </Button>
+        </form>
       );
   }
 

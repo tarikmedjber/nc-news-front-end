@@ -37,3 +37,7 @@ ol {
 #pageNumber {
   margin-right: 2%;
 }
+
+body {
+  margin: 0;
+}
