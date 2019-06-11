@@ -14,21 +14,23 @@ export default function Header(props) {
       />
       <Navbar bg="light" variant="light" className="navBar">
         <h1 class="bg-info">NC - NEWS</h1>
-        <Nav.Item>
-          <Link id="Nav1" to="/">
-            Homepage
-          </Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Link id="Nav2" to="/articles">
-            Articles
-          </Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Link id="Nav3" to="/topics">
-            Topics
-          </Link>
-        </Nav.Item>
+        <Nav className="navItems">
+          <Nav.Item>
+            <Link id="Nav1" to="/">
+              Homepage
+            </Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Link id="Nav2" to="/articles">
+              Articles
+            </Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Link id="Nav3" to="/topics">
+              Topics
+            </Link>
+          </Nav.Item>
+        </Nav>
       </Navbar>
     </div>
   );

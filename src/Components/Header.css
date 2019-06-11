@@ -1,18 +1,14 @@
 #Nav1 {
-  margin-left: 100%;
   padding-right: 20px;
 }
 #Nav2 {
   padding-right: 20px;
-  margin-left: 101%;
 }
 #Nav3 {
   padding-right: 20px;
-  margin-left: 102%;
 }
 #Nav4 {
   padding-right: 20px;
-  margin-left: 103%;
 }
 
 #Title {
@@ -50,4 +46,8 @@ ol {
 
 .navBar {
   margin-right: 25%;
+}
+
+.navItems {
+  margin-left: 25%;
 }
