@@ -35,12 +35,10 @@ export default class SingleComment extends Component {
         <div className="commentsList">
           <ListGroup id="Comment" key={comment.comment_id}>
             <Link to={`/users/${comment.author}`}>
-              <ListGroup.Item variant="primary">
-                {comment.author}:
-              </ListGroup.Item>
+              <ListGroup.Item variant="info">{comment.author}:</ListGroup.Item>
             </Link>
-            <ListGroup.Item>{comment.body}</ListGroup.Item>
-            <ListGroup.Item>{`${comment.votes +
+            <ListGroup.Item variant="warning">{comment.body}</ListGroup.Item>
+            <ListGroup.Item variant="warning">{`${comment.votes +
               voteChange} votes`}</ListGroup.Item>
             {comment.created_at.slice(0, 10)}
           </ListGroup>
@@ -51,40 +49,49 @@ export default class SingleComment extends Component {
         <div className="commentsList">
           <ListGroup id="Comment" key={comment.comment_id}>
             <Link to={`/users/${comment.author}`}>
-              <ListGroup.Item variant="primary">
-                {comment.author}:
-              </ListGroup.Item>
+              <ListGroup.Item variant="info">{comment.author}:</ListGroup.Item>
             </Link>
-            <ListGroup.Item>{comment.body}</ListGroup.Item>
-            <Button
-              variant="outline-secondary"
-              disabled={disableButton || voteChange > 0}
-              onClick={() => this.handleVoteChange(1)}
-            >
-              <span className="VoteButton" role="img" aria-label="upHand">
-                ☝︎
-              </span>
-            </Button>
-            <ListGroup.Item>{`${comment.votes +
-              voteChange} votes`}</ListGroup.Item>
-            <Button
-              variant="outline-secondary"
-              disabled={disableButton || voteChange < 0}
-              onClick={() => this.handleVoteChange(-1)}
-            >
-              <span className="VoteButton" role="img" aria-label="downHand">
-                ☟
-              </span>
-            </Button>
-            {comment.author === loggedInUser ? (
+            <ListGroup.Item variant="warning">{comment.body}</ListGroup.Item>
+            <ListGroup.Item variant="warning">
               <Button
                 variant="outline-secondary"
-                onClick={() => this.props.deleteUserComment(comment.comment_id)}
+                disabled={disableButton || voteChange > 0}
+                onClick={() => this.handleVoteChange(1)}
               >
-                Delete Comment
+                <span className="VoteButton" role="img" aria-label="upHand">
+                  ☝︎
+                </span>
               </Button>
+            </ListGroup.Item>
+            <ListGroup.Item variant="warning">{`${comment.votes +
+              voteChange} votes`}</ListGroup.Item>
+            <ListGroup.Item variant="warning" />
+            <ListGroup.Item variant="warning">
+              <Button
+                variant="outline-secondary"
+                disabled={disableButton || voteChange < 0}
+                onClick={() => this.handleVoteChange(-1)}
+              >
+                <span className="VoteButton" role="img" aria-label="downHand">
+                  ☟
+                </span>
+              </Button>
+            </ListGroup.Item>
+            {comment.author === loggedInUser ? (
+              <ListGroup.Item variant="warning">
+                <Button
+                  variant="outline-secondary"
+                  onClick={() =>
+                    this.props.deleteUserComment(comment.comment_id)
+                  }
+                >
+                  Delete Comment
+                </Button>
+              </ListGroup.Item>
             ) : null}
-            {comment.created_at.slice(0, 10)}
+            <ListGroup.Item variant="warning">
+              {comment.created_at.slice(0, 10)}
+            </ListGroup.Item>
           </ListGroup>
         </div>
       );

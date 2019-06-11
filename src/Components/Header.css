@@ -37,7 +37,7 @@ ol {
 .LogInBox {
   display: flex;
   flex-wrap: wrap;
-  flex-grow: 1;
+  flex-shrink: 1;
   flex-direction: column;
   align-content: flex-end;
   align-items: flex-end;
@@ -50,4 +50,8 @@ ol {
 
 .navItems {
   margin-left: 25%;
+  margin-right: 25%;
+  display: flex;
+  flex-shrink: 1;
+  flex-direction: column;
 }

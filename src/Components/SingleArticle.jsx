@@ -4,7 +4,7 @@ import "./SingleArticle.css";
 import { Link } from "@reach/router";
 import Comments from "./Comments";
 import Error from "./Error";
-import { Button, Card, ListGroup } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 
 export default class SingleArticle extends Component {
   state = { article: null, voteChange: 0, err: null };
@@ -57,9 +57,7 @@ export default class SingleArticle extends Component {
                 </span>
               </Button>
               <Link to={`/users/${article.author}`}>
-                <ListGroup.Item>{`Created by ${
-                  article.author
-                }  `}</ListGroup.Item>
+                <Card.Text>{`Created by ${article.author}  `}</Card.Text>
               </Link>
             </div>
 
@@ -87,9 +85,7 @@ export default class SingleArticle extends Component {
               <p>{`${article.votes} votes`}</p>
             </div>
             <Link to={`/users/${article.author}`}>
-              <ListGroup.Item>{`Created by ${
-                article.author
-              }  `}</ListGroup.Item>
+              <Card.Text>{`Created by ${article.author}  `}</Card.Text>
             </Link>
 
             <Comments

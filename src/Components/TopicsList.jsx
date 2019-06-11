@@ -7,11 +7,11 @@ export default function TopicsList(props) {
   return topics.map(topic => {
     return (
       <div key={topic.slug}>
-        <ListGroup>
+        <ListGroup className="sections">
           <Link to={`/topics/${topic.slug}/articles`}>
-            <ListGroup.Item variant="primary">{topic.slug}</ListGroup.Item>
+            <ListGroup.Item variant="info">{topic.slug}</ListGroup.Item>
           </Link>
-          <ListGroup.Item> {topic.description}</ListGroup.Item>
+          <ListGroup.Item variant="warning">{topic.description}</ListGroup.Item>
         </ListGroup>
       </div>
     );
