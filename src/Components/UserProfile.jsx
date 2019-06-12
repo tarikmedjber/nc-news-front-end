@@ -22,7 +22,7 @@ export default class UserProfile extends Component {
       this.setState({ articles: articles });
     });
   }
-  componentDidUpdate(_, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevState.sortBy !== this.state.sortBy) {
       getArticles({ sort_by: this.state.sortBy, user: this.props.username })
         .then(({ articles }) => {
@@ -35,6 +35,16 @@ export default class UserProfile extends Component {
           this.setState({ err });
         });
     }
+
+    if (prevProps.username !== this.props.username) {
+      getUser(this.props.username).then(user => {
+        this.setState({ user: user });
+      });
+      getArticles({ author: this.props.username }).then(({ articles }) => {
+        this.setState({ articles: articles });
+      });
+    }
+
     if (prevState.page !== this.state.page) {
       getArticles({ p: this.state.page }).then(({ articles }) => {
         this.setState({ articles: articles });
