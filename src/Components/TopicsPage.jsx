@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TopicsList from "./TopicsList";
 import "./Topic.css";
 import Error from "./Error";
+import { NavDropdown } from "react-bootstrap";
 
 import { getTopics } from "../Api";
 export default class TopicsPage extends Component {
@@ -26,12 +27,9 @@ export default class TopicsPage extends Component {
     const { topics, err } = this.state;
     if (err) return <Error err={err} />;
     return (
-      <div>
-        <h2>Topics</h2>
-        <ul id="Topic">
-          <TopicsList topics={topics} />
-        </ul>
-      </div>
+      <NavDropdown title="Topics" id="nav-dropdown">
+        <TopicsList topics={topics} />
+      </NavDropdown>
     );
   }
 }

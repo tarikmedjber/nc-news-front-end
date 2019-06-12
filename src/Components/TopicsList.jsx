@@ -1,18 +1,17 @@
 import React from "react";
 import { Link } from "@reach/router";
-import { ListGroup } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 
 export default function TopicsList(props) {
   const { topics } = props;
-  return topics.map(topic => {
+  return topics.map((topic, i) => {
     return (
       <div key={topic.slug}>
-        <ListGroup className="sections">
+        <NavDropdown.Item eventKey={i}>
           <Link to={`/topics/${topic.slug}/articles`}>
-            <ListGroup.Item variant="info">{topic.slug}</ListGroup.Item>
+            {topic.slug} <p>- {topic.description}</p>
           </Link>
-          <ListGroup.Item variant="warning">{topic.description}</ListGroup.Item>
-        </ListGroup>
+        </NavDropdown.Item>
       </div>
     );
   });

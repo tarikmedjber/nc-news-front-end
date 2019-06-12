@@ -7,9 +7,6 @@
 #Nav3 {
   padding-right: 20px;
 }
-#Nav4 {
-  padding-right: 20px;
-}
 
 #Title {
   display: flex;
@@ -46,12 +43,13 @@ ol {
 
 .navBar {
   margin-right: 12%;
+  display: flex;
+  align-items: center;
 }
 
 .navItems {
   margin-left: 30%;
   margin-right: 30%;
   display: flex;
-  flex-shrink: 1;
-  flex-direction: column;
+  align-items: center;
 }
