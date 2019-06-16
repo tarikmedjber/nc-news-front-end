@@ -14,7 +14,7 @@ export default function Header(props) {
         userNotValid={props.userNotValid}
       />
       <Navbar bg="light" variant="tabs" className="navBar">
-        <h1 class="bg-info">NC - NEWS</h1>
+        <h1 className="bg-info">NC - NEWS</h1>
         <Nav className="navItems">
           <Nav.Item>
             <Link id="Nav1" to="/">
