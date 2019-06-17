@@ -2,7 +2,7 @@
 
 NC News is a Reddit style news aggregation application.
 
-This repository is for the front end of the application. In order to see the deployed version please click this link (). To view the backend repo click this link (https://github.com/tarikmedjber/nc_news) or to see the hosted version of the backend (https://nc-news-web.herokuapp.com/api/).
+This repository is for the front end of the application. In order to see the deployed version please click this link (https://nc-news-tarikmedjber.netlify.com/). To view the backend repo click this link (https://github.com/tarikmedjber/nc_news) or to see the hosted version of the backend (https://nc-news-web.herokuapp.com/api/).
 
 Within the frontend, you can view the numerous pages NC-NEWS has to offer, if you are logged in you can comment and like articles, you can like individual comments, and you can delete your own comments.
 
