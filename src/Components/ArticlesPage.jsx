@@ -5,6 +5,7 @@ import "./articles.css";
 import { getArticles } from "../Api";
 import DropDownSortBy from "./DropDownSortBy";
 import "./articles.css";
+import { ClipLoader } from "react-spinners";
 
 export default class ArticlesPage extends Component {
   state = {
@@ -12,12 +13,17 @@ export default class ArticlesPage extends Component {
     sortBy: "created_at",
     err: null,
     page: 1,
-    total_count: 0
+    total_count: 0,
+    loading: true
   };
   componentDidMount() {
     getArticles()
       .then(({ articles, total_count }) => {
-        this.setState({ articles: articles, total_count: total_count });
+        this.setState({
+          articles: articles,
+          total_count: total_count,
+          loading: false
+        });
       })
       .catch(({ response }) => {
         const errMessage = response.statusText;
@@ -47,8 +53,19 @@ export default class ArticlesPage extends Component {
   }
 
   render() {
-    const { articles, sortBy, err, total_count, page } = this.state;
+    const { articles, sortBy, err, total_count, page, loading } = this.state;
     if (err) return <Error err={err} />;
+    if (loading)
+      return (
+        <div className="sweet-loading">
+          <ClipLoader
+            sizeUnit={"px"}
+            size={150}
+            color={"#123abc"}
+            loading={loading}
+          />
+        </div>
+      );
     const maxPages = Math.ceil(total_count / 10);
     const pageNav = Array.from({ length: maxPages }, (v, i) => i + 1);
     return (

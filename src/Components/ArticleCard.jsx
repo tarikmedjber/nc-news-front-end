@@ -1,34 +1,29 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { Link } from "@reach/router";
 import "./articles.css";
 
 export default function ArticleCard(props) {
   const { article } = props;
   return (
-    <ListGroup className="sections">
+    <Card className="sections">
       <Link to={`/articles/${article.article_id}`}>
-        <ListGroup.Item variant="info">{article.title}</ListGroup.Item>
+        <Card.Title className="card-header">{article.title}</Card.Title>
       </Link>
-
-      <Link to={`/users/${article.author}`}>
-        <ListGroup.Item variant="warning">{`Created by ${
-          article.author
-        }  `}</ListGroup.Item>
-      </Link>
-      <ListGroup.Item variant="warning">{`${
-        article.votes
-      } votes`}</ListGroup.Item>
-
-      <ListGroup.Item variant="warning">
-        <Link to={`/articles/${article.article_id}`}>
-          {`${article.comment_count} comments`}
+      <div className="articlecardbody">
+        <Link to={`/users/${article.author}`}>
+          <Card.Body>{`Created by ${article.author}`}</Card.Body>
         </Link>
-      </ListGroup.Item>
+        <Card.Body>{`${article.votes} votes`}</Card.Body>
 
-      <ListGroup.Item id="CreatedAt" variant="warning">
-        {article.created_at.slice(0, 10)}
-      </ListGroup.Item>
-    </ListGroup>
+        <Card.Body>
+          <Link to={`/articles/${article.article_id}`}>
+            {`${article.comment_count} comments`}
+          </Link>
+        </Card.Body>
+
+        <Card.Body id="CreatedAt">{article.created_at.slice(0, 10)}</Card.Body>
+      </div>
+    </Card>
   );
 }

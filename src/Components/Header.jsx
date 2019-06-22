@@ -9,7 +9,7 @@ export default function Header(props) {
   return (
     <Nav className="justify-content-center" variant="pills" id="Header">
       <Navbar bg="light" className="NavBar">
-        <Navbar.Brand>NC-NEWS</Navbar.Brand>
+        <Navbar.Brand className="navbar-brand ">NC-NEWS</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Nav.Item>
           <Link id="Nav1" to="/">

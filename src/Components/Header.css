@@ -43,3 +43,24 @@
   text-decoration: none;
   display: inline-block;
 }
+
+.usersPic {
+  width: 3em;
+  height: 3em;
+  margin-left: 1em;
+  float: left;
+}
+
+.Logout {
+  margin-top: 2%;
+  float: right;
+}
+
+.navbar-brand {
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 200;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 0 0 15px;
+}

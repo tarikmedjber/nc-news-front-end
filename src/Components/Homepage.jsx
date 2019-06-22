@@ -3,9 +3,15 @@ import { getArticles } from "../Api";
 import ArticleList from "./ArticleList";
 import Error from "./Error";
 import "./articles.css";
+import { ClipLoader } from "react-spinners";
 
 export default class Homepage extends Component {
-  state = { articlesByVotes: [], articlesByComments: [], err: null };
+  state = {
+    articlesByVotes: [],
+    articlesByComments: [],
+    err: null,
+    loading: true
+  };
   componentDidMount() {
     let topArticlesByVotes = getArticles({
       sort_by: "votes",
@@ -26,7 +32,8 @@ export default class Homepage extends Component {
       .then(articles => {
         this.setState({
           articlesByVotes: articles[0],
-          articlesByComments: articles[1]
+          articlesByComments: articles[1],
+          loading: false
         });
       })
       .catch(({ response }) => {
@@ -37,8 +44,19 @@ export default class Homepage extends Component {
       });
   }
   render() {
-    const { articlesByVotes, articlesByComments, err } = this.state;
+    const { articlesByVotes, articlesByComments, err, loading } = this.state;
     if (err) return <Error err={err} />;
+    if (loading)
+      return (
+        <div className="sweet-loading">
+          <ClipLoader
+            sizeUnit={"px"}
+            size={150}
+            color={"#123abc"}
+            loading={this.state.loading}
+          />
+        </div>
+      );
     return (
       <div className="Homepage">
         <h2>Todays Top Threes!</h2>

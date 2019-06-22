@@ -32,11 +32,10 @@
 }
 
 .sections {
-  width: 50%;
-  display: flex;
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 2%;
+  display: grid;
+  list-style: none;
+  margin-top: 10%;
+  background-color: aliceblue;
 }
 
 .Article {

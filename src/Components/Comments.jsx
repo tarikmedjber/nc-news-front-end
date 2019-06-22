@@ -5,6 +5,7 @@ import SingleComment from "./SingleComment";
 import Error from "./Error";
 import PostComment from "./PostComment";
 import { Container, Row } from "react-bootstrap";
+import { ClipLoader } from "react-spinners";
 
 export default class Comments extends Component {
   state = {
@@ -13,14 +14,16 @@ export default class Comments extends Component {
     sortBy: "created_at",
     err: null,
     page: 1,
-    total_count: 0
+    total_count: 0,
+    loading: true
   };
   componentDidMount() {
     getComments(this.props.article_id, {})
       .then(comments => {
         this.setState({
           comments: comments,
-          total_count: this.props.comment_count
+          total_count: this.props.comment_count,
+          loading: false
         });
       })
       .catch(({ response }) => {
@@ -57,7 +60,7 @@ export default class Comments extends Component {
   }
 
   render() {
-    const { comments, err, sortBy, page, total_count } = this.state;
+    const { comments, err, sortBy, page, total_count, loading } = this.state;
     const { loggedInUser, article_id } = this.props;
 
     if (
@@ -67,6 +70,17 @@ export default class Comments extends Component {
     ) {
       return <Error err={err} />;
     }
+    if (loading)
+      return (
+        <div className="sweet-loading">
+          <ClipLoader
+            sizeUnit={"px"}
+            size={150}
+            color={"#123abc"}
+            loading={this.state.loading}
+          />
+        </div>
+      );
     const maxPages = Math.ceil(total_count / 10);
     const pageNav = Array.from({ length: maxPages }, (v, i) => i + 1);
 

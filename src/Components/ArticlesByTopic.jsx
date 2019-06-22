@@ -4,14 +4,15 @@ import Error from "./Error";
 import "./Topic.css";
 import ArticleList from "./ArticleList";
 import DropDownSortBy from "./DropDownSortBy";
+import { ClipLoader } from "react-spinners";
 
 export default class ArticlesByTopic extends Component {
-  state = { articles: [], sortBy: "created_at", err: null };
+  state = { articles: [], sortBy: "created_at", err: null, loading: true };
 
   componentDidMount() {
     getArticles({ topic: this.props.slug })
       .then(({ articles }) => {
-        this.setState({ articles: articles });
+        this.setState({ articles: articles, loading: false });
       })
       .catch(({ response }) => {
         const errMessage = response.statusText;
@@ -37,8 +38,19 @@ export default class ArticlesByTopic extends Component {
   }
 
   render() {
-    const { articles, sortBy, err } = this.state;
+    const { articles, sortBy, err, loading } = this.state;
     if (err) return <Error err={err} />;
+    if (loading)
+      return (
+        <div className="sweet-loading">
+          <ClipLoader
+            sizeUnit={"px"}
+            size={150}
+            color={"#123abc"}
+            loading={this.state.loading}
+          />
+        </div>
+      );
     return (
       articles && (
         <div className="topicArticleList">

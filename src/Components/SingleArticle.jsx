@@ -5,14 +5,15 @@ import { Link } from "@reach/router";
 import Comments from "./Comments";
 import Error from "./Error";
 import { Button, Card } from "react-bootstrap";
+import { ClipLoader } from "react-spinners";
 
 export default class SingleArticle extends Component {
-  state = { article: null, voteChange: 0, err: null };
+  state = { article: null, voteChange: 0, err: null, loading: true };
 
   componentDidMount() {
     getArticleById(this.props.article_id)
       .then(article => {
-        this.setState({ article: article });
+        this.setState({ article: article, loading: false });
       })
       .catch(({ response }) => {
         const errMessage = response.statusText;
@@ -23,9 +24,20 @@ export default class SingleArticle extends Component {
   }
 
   render() {
-    const { article, voteChange, disableButton, err } = this.state;
+    const { article, voteChange, disableButton, err, loading } = this.state;
     const { loggedInUser } = this.props;
     if (err) return <Error err={err} />;
+    if (loading)
+      return (
+        <div className="sweet-loading">
+          <ClipLoader
+            sizeUnit={"px"}
+            size={150}
+            color={"#123abc"}
+            loading={this.state.loading}
+          />
+        </div>
+      );
     if (loggedInUser) {
       return (
         article && (

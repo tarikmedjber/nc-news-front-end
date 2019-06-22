@@ -24,7 +24,11 @@ export default class LogInBox extends Component {
               <img className="usersPic" src={usersPic} alt="users pic" />
             </Link>
           ) : null}
-          <Button variant="outline-secondary" onClick={this.props.loginUser}>
+          <Button
+            className="Logout"
+            variant="outline-secondary"
+            onClick={this.props.loginUser}
+          >
             LOG OUT
           </Button>
         </div>

@@ -4,6 +4,7 @@ import ArticleList from "./ArticleList";
 import DropDownSortBy from "./DropDownSortBy";
 import Error from "./Error";
 import "./UserProfile.css";
+import { ClipLoader } from "react-spinners";
 
 export default class UserProfile extends Component {
   state = {
@@ -11,12 +12,13 @@ export default class UserProfile extends Component {
     articles: [],
     sortBy: "created_at",
     err: null,
-    page: 1
+    page: 1,
+    loading: true
   };
 
   componentDidMount() {
     getUser(this.props.username).then(user => {
-      this.setState({ user: user });
+      this.setState({ user: user, loading: false });
     });
     getArticles({ author: this.props.username }).then(({ articles }) => {
       this.setState({ articles: articles });
@@ -52,8 +54,19 @@ export default class UserProfile extends Component {
     }
   }
   render() {
-    const { user, articles, sortBy, err } = this.state;
+    const { user, articles, sortBy, err, loading } = this.state;
     if (err) return <Error err={err} />;
+    if (loading)
+      return (
+        <div className="sweet-loading">
+          <ClipLoader
+            sizeUnit={"px"}
+            size={150}
+            color={"#123abc"}
+            loading={this.state.loading}
+          />
+        </div>
+      );
     return (
       user && (
         <div>
