@@ -40,7 +40,7 @@ export default class Homepage extends Component {
     const { articlesByVotes, articlesByComments, err } = this.state;
     if (err) return <Error err={err} />;
     return (
-      <div>
+      <div className="Homepage">
         <h2>Todays Top Threes!</h2>
         <h3 className="mostVotes">Most Voted Articles!</h3>
 

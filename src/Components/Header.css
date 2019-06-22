@@ -4,10 +4,9 @@
   flex: 1 1 0;
 }
 
-/* .LogInBox {
-  margin-left: 90%;
-  float: right;
-} */
+.LogInBox {
+  padding-right: 3%;
+}
 
 .NavBar {
   float: left;

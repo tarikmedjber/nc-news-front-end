@@ -2,15 +2,16 @@ import React from "react";
 import { Link } from "@reach/router";
 import "./Header.css";
 import LogInBox from "./LogInBox";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import TopicsPage from "./TopicsPage";
 
 export default function Header(props) {
   return (
     <div className="Header">
       <Navbar bg="light" variant="tabs" className="NavBar">
-        <h1 className="bg-info">NC - NEWS</h1>
-        <Nav>
+        <Navbar.Brand>NC-NEWS</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Nav className="justify-content-center">
           <Nav.Item>
             <Link id="Nav1" to="/">
               Homepage
@@ -21,17 +22,17 @@ export default function Header(props) {
               Articles
             </Link>
           </Nav.Item>
-          <Nav.Item id="Nav3">
+          <NavDropdown title="Topics" id="nav-dropdown">
             <TopicsPage />
-          </Nav.Item>
+          </NavDropdown>
         </Nav>
-        <div>
+        <Nav className="justify-content-end">
           <LogInBox
             loggedInUser={props.loggedInUser}
             loginUser={props.loginUser}
             userNotValid={props.userNotValid}
           />
-        </div>
+        </Nav>
       </Navbar>
     </div>
   );
