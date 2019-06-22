@@ -18,29 +18,7 @@ Within the frontend, you can view the numerous pages NC-NEWS has to offer, if yo
 
 # As A user:
 
-As a user, I should be able to view a list of all articles.
-As a user, I should be able to view a list of all articles on a specific topic.
-As a user, I should be able to view an individual article.
-As a user, I should be able to view an individual article's comments.
-As a user, I should be able to sort articles by:
-
-- date created
-- votes
-- comment count
-
-  As a user with no access to my laptop, I should be able to use the site on my mobile without sacrificing style or functionality.
-
-  As a user, I should be able to login to the site.
-
-  As a hiring partner with no knowledge of the users in the database, it should be very clear to me how I can login to the site.
-
-  As a logged in user, I should be able to post a new article to an existing topic.
-  As a logged in user, I should be able to post a new article to a new topic.
-  As a logged in user, I should be able to post a new comment to an existing article.
-  As a logged in user, I should be able to vote on an article.
-  As a logged in user, I should be able to vote on a comment.
-  As a logged in user, I should be able to delete my own articles.
-  As a logged in user, I should be able to delete my own comments
+You will be able to log in to the web app. From here you can access a list of articles that are currently available, see who authored the article, when it was created and how many votes and comments the article has. Articles can be clicked on to see it's main body, and all of the comments associated. You can vote and down vote articles and comments. If you have logged in as a user (not guest), you can comment on  articles and delete your comments. You can view users profile pages and see a list of the artiles that belong to them. 
 
 # Built with
 
