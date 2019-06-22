@@ -8,10 +8,10 @@ import TopicsPage from "./TopicsPage";
 export default function Header(props) {
   return (
     <div className="Header">
-      <Navbar bg="light" variant="tabs" className="NavBar">
+      <Navbar bg="light" className="NavBar">
         <Navbar.Brand>NC-NEWS</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Nav className="justify-content-center">
+        <Nav className="justify-content-center" variant="pills">
           <Nav.Item>
             <Link id="Nav1" to="/">
               Homepage
@@ -22,11 +22,12 @@ export default function Header(props) {
               Articles
             </Link>
           </Nav.Item>
-          <NavDropdown title="Topics" id="nav-dropdown">
+
+          <NavDropdown title="Topics" className="nav-dropdown">
             <TopicsPage />
           </NavDropdown>
         </Nav>
-        <Nav className="justify-content-end">
+        <Nav className="justify-content-end" variant="pills">
           <LogInBox
             loggedInUser={props.loggedInUser}
             loginUser={props.loginUser}

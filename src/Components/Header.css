@@ -13,3 +13,16 @@
   display: flex;
   justify-content: space-between;
 }
+
+.nav-dropdown {
+  margin-top: -0.5em;
+  padding-left: 3em;
+}
+
+#Nav1 {
+  padding-left: 3em;
+}
+
+#Nav2 {
+  padding-left: 3em;
+}
