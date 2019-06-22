@@ -47,10 +47,10 @@ export default class LogInBox extends Component {
           <p className="signInMessage">Sign in as 'guest'</p>
           <p>{userNotValid}</p>
           <Button
+            type="submit"
             variant="outline-secondary"
             disabled={!isAllFilledIn}
             id="SignIn"
-            onClick={this.handleSubmit}
           >
             Sign In
           </Button>

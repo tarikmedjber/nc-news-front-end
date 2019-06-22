@@ -85,7 +85,7 @@ export default class ArticlesPage extends Component {
         <ul className="pageNav">
           {pageNav.map((page, i) => {
             return (
-              <li key={i} id="pageNumber">
+              <li key={page} id="pageNumber">
                 <button onClick={() => this.changePage(i + 1)}>{page}</button>
               </li>
             );

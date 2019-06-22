@@ -13,8 +13,8 @@ export default class PostComment extends Component {
         <input onChange={this.handleOnChange} />
         <Button
           variant="outline-secondary"
+          type="submit"
           disabled={!isAllFilledIn}
-          onClick={() => this.props.postComment(userComment)}
         >
           Post Comment
         </Button>

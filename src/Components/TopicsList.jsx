@@ -6,7 +6,7 @@ export default function TopicsList(props) {
   const { topics } = props;
   return topics.map((topic, i) => {
     return (
-      <NavDropdown.Item eventKey={i} key={topic.slug}>
+      <NavDropdown.Item eventKey={topic.slug} key={topic.slug}>
         <Link to={`/topics/${topic.slug}/articles`}>
           {topic.slug} <p>- {topic.description}</p>
         </Link>

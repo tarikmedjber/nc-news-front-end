@@ -62,13 +62,13 @@ export default class Homepage extends Component {
         <h2>Todays Top Threes!</h2>
         <h3 className="mostVotes">Most Voted Articles!</h3>
 
-        <ul id="Article">
+        <ul className="Article">
           <ArticleList articles={articlesByVotes} />
         </ul>
 
         <h3 className="mostComments">Most Commented Articles!</h3>
 
-        <ul id="Article">
+        <ul className="Article">
           <ArticleList articles={articlesByComments} />
         </ul>
       </div>
