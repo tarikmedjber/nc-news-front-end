@@ -7,26 +7,24 @@ import TopicsPage from "./TopicsPage";
 
 export default function Header(props) {
   return (
-    <div className="Header">
+    <Nav className="justify-content-center" variant="pills" id="Header">
       <Navbar bg="light" className="NavBar">
         <Navbar.Brand>NC-NEWS</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Nav className="justify-content-center" variant="pills">
-          <Nav.Item>
-            <Link id="Nav1" to="/">
-              Homepage
-            </Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Link id="Nav2" to="/articles">
-              Articles
-            </Link>
-          </Nav.Item>
+        <Nav.Item>
+          <Link id="Nav1" to="/">
+            Homepage
+          </Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Link id="Nav2" to="/articles">
+            Articles
+          </Link>
+        </Nav.Item>
 
-          <NavDropdown title="Topics" className="nav-dropdown">
-            <TopicsPage />
-          </NavDropdown>
-        </Nav>
+        <NavDropdown title="Topics" className="nav-dropdown">
+          <TopicsPage />
+        </NavDropdown>
         <Nav className="justify-content-end" variant="pills">
           <LogInBox
             loggedInUser={props.loggedInUser}
@@ -35,6 +33,6 @@ export default function Header(props) {
           />
         </Nav>
       </Navbar>
-    </div>
+    </Nav>
   );
 }

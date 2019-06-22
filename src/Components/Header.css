@@ -1,11 +1,11 @@
-.Header {
+#Header {
   display: flex;
   flex-direction: column;
   flex: 1 1 0;
 }
 
 .LogInBox {
-  padding-right: 3%;
+  padding-right: 0%;
 }
 
 .NavBar {
@@ -15,14 +15,31 @@
 }
 
 .nav-dropdown {
-  margin-top: -0.5em;
   padding-left: 3em;
+  background-color: white;
+  color: black;
+  padding: 3px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 }
 
 #Nav1 {
   padding-left: 3em;
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 }
 
 #Nav2 {
   padding-left: 3em;
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 }
