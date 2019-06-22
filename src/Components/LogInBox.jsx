@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getUser } from "../Api";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import "./Header.css";
 import { Link } from "@reach/router";
 
@@ -31,7 +31,7 @@ export default class LogInBox extends Component {
       );
     } else
       return (
-        <form className="LogInBox" onSubmit={this.handleSubmit}>
+        <Form className="LogInBox" onSubmit={this.handleSubmit}>
           <p id="usernameInput">Username:</p>
           <input
             id="Input"
@@ -50,7 +50,7 @@ export default class LogInBox extends Component {
           >
             Sign In
           </Button>
-        </form>
+        </Form>
       );
   }
 

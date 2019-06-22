@@ -7,15 +7,10 @@ import TopicsPage from "./TopicsPage";
 
 export default function Header(props) {
   return (
-    <div id="Header">
-      <LogInBox
-        loggedInUser={props.loggedInUser}
-        loginUser={props.loginUser}
-        userNotValid={props.userNotValid}
-      />
-      <Navbar bg="light" variant="tabs" className="navBar">
+    <div className="Header">
+      <Navbar bg="light" variant="tabs" className="NavBar">
         <h1 className="bg-info">NC - NEWS</h1>
-        <Nav className="navItems">
+        <Nav>
           <Nav.Item>
             <Link id="Nav1" to="/">
               Homepage
@@ -30,6 +25,13 @@ export default function Header(props) {
             <TopicsPage />
           </Nav.Item>
         </Nav>
+        <div>
+          <LogInBox
+            loggedInUser={props.loggedInUser}
+            loginUser={props.loginUser}
+            userNotValid={props.userNotValid}
+          />
+        </div>
       </Navbar>
     </div>
   );

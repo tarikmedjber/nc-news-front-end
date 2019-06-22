@@ -1,55 +1,16 @@
-#Nav1 {
-  padding-right: 20px;
-}
-#Nav2 {
-  padding-right: 20px;
-}
-#Nav3 {
-  padding-right: 20px;
-}
-
-#Title {
+.Header {
   display: flex;
-  position: absolute;
-  align-self: center;
-  font-size: 4em;
-}
-#Header {
-  margin-top: 5%;
-}
-
-.usersPic {
-  width: 60px;
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
-  margin-right: 100%;
+  flex: 1 1 0;
 }
 
-ul,
-ol {
-  padding-left: 0;
-}
-.LogInBox {
-  display: flex;
-  flex-wrap: wrap;
-  flex-shrink: 1;
-  flex-direction: column;
-  align-content: flex-end;
-  align-items: flex-end;
+/* .LogInBox {
+  margin-left: 90%;
   float: right;
-}
+} */
 
-.navBar {
-  margin-right: 12%;
+.NavBar {
+  float: left;
   display: flex;
-  align-items: center;
-}
-
-.navItems {
-  margin-left: 30%;
-  margin-right: 30%;
-  display: flex;
-  align-items: center;
+  justify-content: space-between;
 }
