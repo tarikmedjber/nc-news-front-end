@@ -4,7 +4,6 @@ import Error from "./Error";
 import "./articles.css";
 import { getArticles } from "../Api";
 import DropDownSortBy from "./DropDownSortBy";
-import "./articles.css";
 import { ClipLoader } from "react-spinners";
 
 export default class ArticlesPage extends Component {
@@ -69,7 +68,13 @@ export default class ArticlesPage extends Component {
     const maxPages = Math.ceil(total_count / 10);
     const pageNav = Array.from({ length: maxPages }, (v, i) => i + 1);
     return (
-      <div className="articlesPage">
+      <div
+        className="articlesPage"
+        style={{
+          position: "fixed",
+          left: "15%"
+        }}
+      >
         <h2>Articles</h2>
         <div className="sortBy">
           Sort By:
@@ -85,13 +90,13 @@ export default class ArticlesPage extends Component {
         <ul className="pageNav">
           {pageNav.map((page, i) => {
             return (
-              <li key={page} id="pageNumber">
+              <li key={page} className="pageNumber">
                 <button onClick={() => this.changePage(i + 1)}>{page}</button>
               </li>
             );
           })}
         </ul>
-        <p>{`Page: ${page}`}</p>
+        <p className="pageNumber">{`Page: ${page}`}</p>
       </div>
     );
   }
