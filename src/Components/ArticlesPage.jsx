@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ArticleList from "./ArticleList";
 import Error from "./Error";
 import "./articles.css";
+
 import { getArticles } from "../Api";
 import DropDownSortBy from "./DropDownSortBy";
 import { ClipLoader } from "react-spinners";
@@ -68,14 +69,8 @@ export default class ArticlesPage extends Component {
     const maxPages = Math.ceil(total_count / 10);
     const pageNav = Array.from({ length: maxPages }, (v, i) => i + 1);
     return (
-      <div
-        className="articlesPage"
-        style={{
-          position: "fixed",
-          left: "15%"
-        }}
-      >
-        <h2>Articles</h2>
+      <div className="articlesPage">
+        <h2 className="articlesTitle">Articles</h2>
         <div className="sortBy">
           Sort By:
           <DropDownSortBy sortByFunc={this.sortByFunc} sortBy={sortBy} />
