@@ -39,13 +39,14 @@ class App extends React.Component {
           <TopicsPage path="/topics" />
           <SingleArticle
             loggedInUser={loggedInUser}
-            path="/articles/:article_id"
+            path="/articles/:article_id/"
           />
           <ArticlesByTopic path="/topics/:slug/articles" />
           <Comments
             path="/articles/:article_id/comments"
             loggedInUser={loggedInUser}
           />
+
           <UserProfile path="users/:username" />
 
           <Error default />

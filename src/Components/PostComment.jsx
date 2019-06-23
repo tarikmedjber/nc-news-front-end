@@ -8,13 +8,13 @@ export default class PostComment extends Component {
     let isAllFilledIn = userComment ? true : false;
 
     return (
-      <form onSubmit={() => this.props.postComment(userComment)}>
+      <form>
         Comment:
         <input onChange={this.handleOnChange} />
         <Button
           variant="outline-secondary"
-          type="submit"
           disabled={!isAllFilledIn}
+          onClick={() => this.props.postComment(userComment)}
         >
           Post Comment
         </Button>

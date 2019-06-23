@@ -25,10 +25,6 @@ export default class TopicsPage extends Component {
   render() {
     const { topics, err } = this.state;
     if (err) return <Error err={err} />;
-    return (
-      <div>
-        <TopicsList topics={topics} />
-      </div>
-    );
+    return <TopicsList topics={topics} />;
   }
 }

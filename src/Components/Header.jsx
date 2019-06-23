@@ -21,10 +21,10 @@ export default function Header(props) {
             Articles
           </Link>
         </Nav.Item>
-
         <NavDropdown title="Topics" className="nav-dropdown">
           <TopicsPage />
         </NavDropdown>
+
         <Nav className="justify-content-end" variant="pills">
           <LogInBox
             loggedInUser={props.loggedInUser}

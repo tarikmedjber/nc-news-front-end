@@ -86,6 +86,7 @@ export default class SingleArticle extends Component {
             </div>
 
             <Comments
+              path="/articles/:article_id/comments"
               articleTitle={article.title}
               comment_count={article.comment_count}
               article_id={article.article_id}

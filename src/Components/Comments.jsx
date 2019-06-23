@@ -172,6 +172,7 @@ export default class Comments extends Component {
       username: this.props.loggedInUser,
       body: userComment
     };
+
     postComment(this.props.article_id, newComment)
       .then(comment => {
         this.setState(prevState => {
