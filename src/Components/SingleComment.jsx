@@ -29,6 +29,12 @@ export default class SingleComment extends Component {
   render() {
     const { voteChange, disableButton } = this.state;
     const { comment, loggedInUser } = this.props;
+    let date = comment.created_at
+      .slice(0, 10)
+      .split("-")
+      .reverse()
+      .join()
+      .replace(/,/g, "-");
 
     if (!loggedInUser) {
       return (
@@ -40,7 +46,7 @@ export default class SingleComment extends Component {
             <ListGroup.Item variant="warning">{comment.body}</ListGroup.Item>
             <ListGroup.Item variant="warning">{`${comment.votes +
               voteChange} votes`}</ListGroup.Item>
-            {comment.created_at.slice(0, 10)}
+            <ListGroup.Item variant="warning">{date}</ListGroup.Item>
           </ListGroup>
         </div>
       );
@@ -89,9 +95,7 @@ export default class SingleComment extends Component {
                 </Button>
               </ListGroup.Item>
             ) : null}
-            <ListGroup.Item variant="warning">
-              {comment.created_at.slice(0, 10)}
-            </ListGroup.Item>
+            <ListGroup.Item variant="warning">{date}</ListGroup.Item>
           </ListGroup>
         </div>
       );

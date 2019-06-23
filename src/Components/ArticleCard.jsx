@@ -13,17 +13,19 @@ export default function ArticleCard(props) {
     .replace(/,/g, "-");
   return (
     <Card className="sections">
-      <Link to={`/articles/${article.article_id}`} className="link">
+      <Link to={`/articles/${article.article_id}`}>
         <Card.Title className="card-header">{article.title}</Card.Title>
       </Link>
       <div className="articlecardbody">
-        <Link to={`/users/${article.author}`} className="link">
-          <Card.Body>{`Created by ${article.author} on ${date}`}</Card.Body>
+        <Link to={`/users/${article.author}`}>
+          <Card.Body className="link">{`Created by ${
+            article.author
+          } on ${date}`}</Card.Body>
         </Link>
         <Card.Body>{`${article.votes} votes`}</Card.Body>
 
         <Card.Body>
-          <Link to={`/articles/${article.article_id}`} className="link">
+          <Link className="commentlink" to={`/articles/${article.article_id}`}>
             {`${article.comment_count} comments`}
           </Link>
         </Card.Body>

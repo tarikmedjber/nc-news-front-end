@@ -5,7 +5,7 @@ import "./Header.css";
 import { Link } from "@reach/router";
 
 export default class LogInBox extends Component {
-  state = { usernameInput: "", userNotValid: null };
+  state = { usernameInput: null, userNotValid: null };
 
   render() {
     const { usernameInput, userNotValid } = this.state;

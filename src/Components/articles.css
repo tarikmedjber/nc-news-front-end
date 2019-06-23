@@ -48,4 +48,19 @@ body {
 
 .link {
   color: black;
+  background-color: rgba(173, 216, 230, 0.452);
+}
+
+.commentlink {
+  color: black;
+  text-decoration: underline;
+}
+
+.singleArticleLink {
+  color: black;
+  text-decoration: underline;
+}
+
+.card-header {
+  color: black;
 }

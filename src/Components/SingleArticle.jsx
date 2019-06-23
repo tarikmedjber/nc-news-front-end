@@ -79,7 +79,7 @@ export default class SingleArticle extends Component {
                 </span>
               </Button>
               <Link to={`/users/${article.author}`}>
-                <Card.Text>{`Created by ${
+                <Card.Text className="singleArticleLink">{`Created by ${
                   article.author
                 } on ${date}`}</Card.Text>
               </Link>
@@ -109,7 +109,9 @@ export default class SingleArticle extends Component {
               <p>{`${article.votes} votes`}</p>
             </div>
             <Link to={`/users/${article.author}`}>
-              <Card.Text>{`Created by ${article.author}  `}</Card.Text>
+              <Card.Text className="singleArticleLink">{`Created by ${
+                article.author
+              } on ${date}`}</Card.Text>
             </Link>
 
             <Comments
