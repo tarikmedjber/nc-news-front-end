@@ -26,6 +26,16 @@ export default class SingleArticle extends Component {
   render() {
     const { article, voteChange, disableButton, err, loading } = this.state;
     const { loggedInUser } = this.props;
+    let date;
+    if (article) {
+      date = article.created_at
+        .slice(0, 10)
+        .split("-")
+        .reverse()
+        .join()
+        .replace(/,/g, "-");
+    }
+
     if (err) return <Error err={err} />;
     if (loading)
       return (
@@ -69,7 +79,9 @@ export default class SingleArticle extends Component {
                 </span>
               </Button>
               <Link to={`/users/${article.author}`}>
-                <Card.Text>{`Created by ${article.author}  `}</Card.Text>
+                <Card.Text>{`Created by ${
+                  article.author
+                } on ${date}`}</Card.Text>
               </Link>
             </div>
 
