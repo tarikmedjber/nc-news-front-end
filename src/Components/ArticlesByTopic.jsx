@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getArticles } from "../Api";
 import Error from "./Error";
 import "./Topic.css";
+import "./articles.css";
 import ArticleList from "./ArticleList";
 import DropDownSortBy from "./DropDownSortBy";
 import { ClipLoader } from "react-spinners";
@@ -57,8 +58,8 @@ export default class ArticlesByTopic extends Component {
           <h1>{`All about ${this.props.slug}`}</h1>
           Sort By:
           <DropDownSortBy sortByFunc={this.sortByFunc} sortBy={sortBy} />
-          <ul>
-            <ArticleList articles={articles} />;
+          <ul className="Article">
+            <ArticleList articles={articles} />
           </ul>
         </div>
       )

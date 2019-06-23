@@ -10,7 +10,6 @@ import SingleArticle from "./Components/SingleArticle";
 import ArticlesByTopic from "./Components/ArticlesByTopic";
 import Comments from "./Components/Comments";
 import Error from "./Components/Error";
-import { Container } from "react-bootstrap";
 
 class App extends React.Component {
   state = { loggedInUser: "", err: null };
@@ -28,7 +27,7 @@ class App extends React.Component {
     const { loggedInUser } = this.state;
 
     return (
-      <Container className="App">
+      <div className="App" align="center">
         <Header
           loggedInUser={this.state.loggedInUser}
           loginUser={this.loginUser}
@@ -51,7 +50,7 @@ class App extends React.Component {
 
           <Error default />
         </Router>
-      </Container>
+      </div>
     );
   }
   loginUser = user => {

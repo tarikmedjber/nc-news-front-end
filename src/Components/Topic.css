@@ -4,7 +4,7 @@
 }
 
 .topicArticleList {
-  margin-top: 7%;
+  margin-top: 5%;
 }
 
 ul,
@@ -14,10 +14,4 @@ ol {
 
 body {
   margin: 0;
-}
-.sections {
-  width: 50%;
-  display: flex;
-  margin-right: auto;
-  margin-left: auto;
 }

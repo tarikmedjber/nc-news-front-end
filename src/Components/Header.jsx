@@ -7,7 +7,7 @@ import TopicsPage from "./TopicsPage";
 
 export default function Header(props) {
   return (
-    <Nav className="justify-content-center" variant="pills" id="Header">
+    <Nav className="justify-content-center" variant="tabs" id="Header">
       <Navbar bg="light" className="NavBar">
         <Navbar.Brand className="navbar-brand ">NC-NEWS</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
