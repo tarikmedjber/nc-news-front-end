@@ -15,6 +15,7 @@ Within the frontend, you can view the numerous pages NC-NEWS has to offer, if yo
 - react-bootstrap v1.0.0-beta.9
 - react-dom v16.8
 - react-scripts v3
+- react-spinners v0.5
 
 # As A user:
 
