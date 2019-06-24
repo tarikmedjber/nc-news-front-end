@@ -59,14 +59,14 @@ export default class Homepage extends Component {
       );
     return (
       <div className="Homepage">
-        <h2>Todays Top Threes!</h2>
-        <h3 className="mostVotes">Most Voted Articles!</h3>
+        <h2 className="articlesTitle">Todays Top Threes!</h2>
+        <h3 className="articlesTitle">Most Voted Articles!</h3>
 
-        <ul className="Article">
+        <ul className="articlesTitle">
           <ArticleList articles={articlesByVotes} />
         </ul>
 
-        <h3 className="mostComments">Most Commented Articles!</h3>
+        <h3 className="articlesTitle">Most Commented Articles!</h3>
 
         <ul className="Article">
           <ArticleList articles={articlesByComments} />

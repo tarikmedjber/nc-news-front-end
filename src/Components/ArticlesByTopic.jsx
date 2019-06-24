@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { getArticles } from "../Api";
 import Error from "./Error";
-import "./Topic.css";
 import "./articles.css";
 import ArticleList from "./ArticleList";
 import DropDownSortBy from "./DropDownSortBy";
@@ -54,8 +53,8 @@ export default class ArticlesByTopic extends Component {
       );
     return (
       articles && (
-        <div className="topicArticleList">
-          <h1>{`All about ${this.props.slug}`}</h1>
+        <div>
+          <h1 classname="articlesTitle">{`All about ${this.props.slug}`}</h1>
           Sort By:
           <DropDownSortBy sortByFunc={this.sortByFunc} sortBy={sortBy} />
           <ul className="Article">

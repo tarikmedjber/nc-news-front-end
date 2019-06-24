@@ -41,3 +41,52 @@ ol {
 body {
   margin: 0;
 }
+
+@media only screen and (max-width: 500px) {
+  #sortBy {
+    margin-left: 20%;
+  }
+  .NoUser {
+    margin-top: 3%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: auto;
+    margin-left: auto;
+    width: 4em;
+  }
+
+  #commentPage {
+    margin-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .commentsList {
+    margin-top: 5%;
+  }
+
+  ul,
+  ol {
+    padding-left: 0;
+  }
+
+  .justify-content-md-center {
+    margin-top: 3%;
+  }
+
+  .pageNav {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    width: 1%;
+    margin: auto;
+  }
+
+  #pageNumber {
+    margin-right: 1%;
+  }
+
+  body {
+    margin: 0;
+  }
+}

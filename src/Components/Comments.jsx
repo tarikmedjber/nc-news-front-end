@@ -93,11 +93,13 @@ export default class Comments extends Component {
     return (
       <Container>
         <Row className="justify-content-md-center">
-          Sort Comments By:
-          <select id="sortBy" onChange={this.filterBy} value={sortBy}>
-            <option value="created_at">Created At </option>
-            <option value="votes">Vote Count</option>
-          </select>
+          <div id="sortBy">
+            Sort Comments By:
+            <select onChange={this.filterBy} value={sortBy}>
+              <option value="created_at">Created At </option>
+              <option value="votes">Vote Count</option>
+            </select>
+          </div>
         </Row>
         <Row className="justify-content-md-center">
           {err &&

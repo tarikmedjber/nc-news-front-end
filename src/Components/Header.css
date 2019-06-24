@@ -64,3 +64,72 @@
   vertical-align: middle;
   padding: 0 0 0 15px;
 }
+
+@media only screen and (max-width: 400px) {
+  #Header {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+  }
+
+  .LogInBox {
+    padding-right: 0%;
+  }
+
+  .NavBar {
+    float: left;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nav-dropdown {
+    padding-left: 3em;
+    background-color: white;
+    color: black;
+    padding: 1.5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  #Nav1 {
+    padding-left: 1.5em;
+    background-color: white;
+    color: black;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  #Nav2 {
+    padding-left: 1.5em;
+    background-color: white;
+    color: black;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .usersPic {
+    width: 1.5em;
+    height: 1.5em;
+    margin-left: 0.5em;
+    float: left;
+  }
+
+  .Logout {
+    margin-top: 1%;
+    float: right;
+  }
+
+  .navbar-brand {
+    font-size: 1rem;
+    line-height: 0.6;
+    font-weight: 100;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 0 0 7.5px;
+  }
+}

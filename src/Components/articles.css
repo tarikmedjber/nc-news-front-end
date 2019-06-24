@@ -4,7 +4,7 @@
 .ArticleVotes {
   text-align: center;
   margin-top: 0em;
-  padding: 10px;
+  padding: auto;
 }
 
 .VoteButton {
@@ -17,7 +17,7 @@
 
 .articlesPage {
   display: inline;
-  padding-left: 100em;
+  padding-left: auto;
 }
 
 .mostVotes {
@@ -47,10 +47,11 @@
   margin-top: -0em;
   align-items: center;
   width: 100%;
+  margin-left: auto;
 }
 
 body {
-  margin: 0;
+  margin: auto;
 }
 
 .link {
@@ -73,5 +74,93 @@ body {
 }
 
 .articlesTitle {
-  margin-right: 0em;
+  display: flex;
+  flex-direction: column;
+  margin-top: -0em;
+  align-items: center;
+  width: 100%;
+  margin-left: auto;
+}
+
+@media only screen and (max-width: 500px) {
+  #CreatedAt {
+    font-size: 6px;
+  }
+  .ArticleVotes {
+    text-align: center;
+    margin-top: 0em;
+    padding: 5px;
+  }
+
+  .VoteButton {
+    font-size: 15px;
+  }
+
+  .sortBy {
+    margin-top: 1.5%;
+    margin-left: 50%;
+  }
+
+  .articlesPage {
+    display: inline;
+    padding-left: auto;
+  }
+
+  .mostVotes {
+    margin-top: 2.5%;
+  }
+
+  .mostComments {
+    margin-top: 2.5%;
+  }
+
+  .mostVotesBody {
+    margin-top: 0%;
+  }
+
+  .sections {
+    display: flex;
+
+    margin-top: 1.5%;
+
+    width: 15em;
+    background-color: aliceblue;
+  }
+
+  .Article {
+    display: flex;
+    flex-direction: column;
+    margin-top: -0em;
+    align-items: center;
+    width: 100%;
+    margin-left: 20%;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .link {
+    color: black;
+    background-color: rgba(173, 216, 230, 0.452);
+  }
+
+  .commentlink {
+    color: black;
+    text-decoration: underline;
+  }
+
+  .singleArticleLink {
+    color: black;
+    text-decoration: underline;
+  }
+
+  .card-header {
+    color: black;
+  }
+
+  .articlesTitle {
+    margin-right: auto;
+    margin-left: 20%;
+  }
 }
