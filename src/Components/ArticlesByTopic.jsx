@@ -54,9 +54,11 @@ export default class ArticlesByTopic extends Component {
     return (
       articles && (
         <div>
-          <h1 classname="articlesTitle">{`All about ${this.props.slug}`}</h1>
-          Sort By:
-          <DropDownSortBy sortByFunc={this.sortByFunc} sortBy={sortBy} />
+          <h1 className="articlesTitle">{`All about ${this.props.slug}`}</h1>
+          <div className="sortBy">
+            Sort By:
+            <DropDownSortBy sortByFunc={this.sortByFunc} sortBy={sortBy} />
+          </div>
           <ul className="Article">
             <ArticleList articles={articles} />
           </ul>

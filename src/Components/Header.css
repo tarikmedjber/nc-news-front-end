@@ -5,6 +5,8 @@
 }
 
 .LogInBox {
+  display: flex;
+  flex-direction: column;
   padding-right: 0%;
 }
 
@@ -65,7 +67,7 @@
   padding: 0 0 0 15px;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
   #Header {
     display: flex;
     flex-direction: column;
